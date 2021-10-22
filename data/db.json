@@ -1,0 +1,101 @@
+{
+    "posts":[
+        {
+            "id":1,
+            "author": {
+                "name": "Baker Sentamu",
+                "avatar":"https://randomuser.me/api/portraits/men/70.jpg",
+                "email":"bakersen@gmail.com"
+            },
+            "datePosted":null,
+            "body":"Free Oracle Cloud Infrastructure Training & Certification Oracle is offering free Oracle Cloud Infrastructure (OCI) Training and Certification for all our clients and partners who will sit the Certification exam before 31st December 2021. Find the link to the training and certification resources here https://bit.ly/3j391YG",
+            "images":[],
+            "comments": {
+                "author": {
+                "name": "Mark Mukuye",
+                "avatar":"https://randomuser.me/api/portraits/men/16.jpg",
+                "email":"mukuyemark@gmail.com"
+                },
+                "datePosted":null,
+                "comment-body": "This is cool"
+            }
+        },
+        {
+            "id":2,
+            "author": {
+                "name": "Pricilla Kayegi",
+                "avatar":"https://randomuser.me/api/portraits/women/92.jpg",
+                "email":"bakersen@gmail.com"
+            },
+            "datePosted":"2021-10-21T08:51:44.517Z",
+            "body":"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae ",
+            "comments": {
+                "author": {
+                "name": "Mark Mukuye",
+                "avatar":"https://randomuser.me/api/portraits/men/16.jpg",
+                "email":"mukuyemark@gmail.com"
+                },
+                "datePosted":"2021-10-21T15:51:44.517Z",
+                "comment-body": "This is cool"
+            }
+        },
+        {
+            "id":3,
+            "author": {
+                "name": "Michael Johns",
+                "avatar":"https://randomuser.me/api/portraits/women/89.jpg",
+                "email":"bakersen@gmail.com"
+            },
+            "datePosted":"2021-10-20T12:55:15.322Z",
+            "body":"Lort atem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae ",
+            "comments": {
+                "author": {
+                "name": "Mark Mukuye",
+                "avatar":"https://randomuser.me/api/portraits/men/16.jpg",
+                "email":"mukuyemark@gmail.com"
+                },
+                "datePosted":"2021-10-20T15:51:44.517Z",
+                "comment-body": "This is cool"
+            }
+        },
+         {
+            "id":4,
+            "author": {
+                "name": "Regina Nakasolya",
+                "avatar":"https://randomuser.me/api/portraits/women/92.jpg",
+                "email":"bakersen@gmail.com"
+            },
+            "datePosted":"2021-10-19T12:55:15.322Z",
+            "body":"Lort atem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae ",
+            "comments": {
+                "author": {
+                "name": "Mark Mukuye",
+                "avatar":"https://randomuser.me/api/portraits/men/16.jpg",
+                "email":"mukuyemark@gmail.com"
+                },
+                "datePosted":"2021-10-19T15:51:44.517Z",
+                "comment-body": "This is cool"
+            }
+        },
+         {
+            "id":5,
+            "author": {
+                "name": "Solomon Opio",
+                "avatar":"https://static.innovationvillage.co.ug/assets/attachment/442a8aba-ef5a-4374-9bb2-a1f658d61c2d/original/4.png?1634272969",
+                "email":"bakersen@gmail.com"
+            },
+            "datePosted":"2021-10-18T12:55:15.322Z",
+            "body":"I am self taught front end developer looking for a mentor to learn more and to build real world applications that solve Africa's problems i am looking to use code to solve Africa's problems and rest of the world check out my personal site and some challenges that i did through front end mentor",
+            "comments": {
+                "author": {
+                "name": "Mark Mukuye",
+                "avatar":"https://randomuser.me/api/portraits/men/16.jpg",
+                "email":"mukuyemark@gmail.com"
+                },
+                "datePosted":"2021-10-18T15:51:44.517Z",
+                "comment-body": "This is cool"
+            }
+        }
+        
+    ]
+}
