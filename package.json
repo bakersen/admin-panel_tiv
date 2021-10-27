@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@material-ui/data-grid": "^4.0.0-alpha.37",
     "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -11,14 +12,18 @@
     "axios": "^0.23.0",
     "bootstrap": "^5.1.1",
     "json-server": "^0.17.0",
+    "material-table": "^1.69.3",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-rc.1",
     "react-dom": "^17.0.2",
+    "react-moment": "^1.1.1",
     "react-scripts": "4.0.3",
+    "react-truncate": "^2.4.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3001 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
