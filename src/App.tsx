@@ -3,21 +3,35 @@ import { AuthProvider } from 'oidc-react';
 import logo from './logo.svg';
 import './App.css';
 import LoggedIn from './LoggedIn';
+import { render } from '@testing-library/react';
+import { SSL_OP_EPHEMERAL_RSA } from 'constants';
+
+
+
+
+
 
 const oidcConfig = {
   onSignIn: async (user: any) => {
-    alert('You just signed in, congratz! Check out the console!');
+    
+    //alert('You just signed in, congratz! Check out the console!');
     console.log(user);
-    window.location.hash = '';
+    // window.location.hash = '';
   },
+ 
+
+
+  
   authority: 'https://accounts.google.com',
   clientId:
-    '1066073673387-undfdseanu1soilcdprq1p4m8gq8a1iu.apps.googleusercontent.com',
+    '1098545537010-r340hkl2vechodmdca6oh4met2fq0krv.apps.googleusercontent.com',
   responseType: 'id_token',
   redirectUri:
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/'
       : 'https://cobraz.github.io/example-oidc-react',
+  post_logout_redirect_uri: 'https://localhost:3000/',
+  
 };
 
 function App() {
