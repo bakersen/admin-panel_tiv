@@ -1,23 +1,11 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import usePosts from '../helpers/usePosts.jsx'
-
+import useFetch from '../helpers/useFetch.jsx'
 
 
 export default function PopUp(props) {
 
-    const {posts} = usePosts(`http://localhost:8000/posts/${props.id}`);
-
-    // const [itemData, setItemData] = React.useState([])
-
-    // React.useEffect(()=> {
-    //     axios.get(`${baseURL}/${props.id}`).then((response) => {
-    //         setItemData(response.data);
-    //     });      
-    // }, []);
-
-
+    const {posts} = useFetch(`http://localhost:8000/posts/${props.id}`);
 
     return (
         <Modal
@@ -38,7 +26,8 @@ export default function PopUp(props) {
             </p>
         </Modal.Body>
         <Modal.Footer>
-            <Button onClick={props.onHide}>Close</Button>
+            <Button size="sm" onClick={props.delete}>Delete Post</Button>
+            <Button size="sm" onClick={props.onHide}>Close</Button>
         </Modal.Footer>
         </Modal>
     );

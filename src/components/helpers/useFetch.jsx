@@ -1,12 +1,8 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-unreachable */
-/* eslint-disable prettier/prettier */
-
 import React from "react"
 import axios from "axios"
 
 
-function usePosts(url) {
+function useFetch(url) {
     
     const [posts, setPostsData] = React.useState([])
     const [loading, setLoading] = React.useState(false)
@@ -19,9 +15,10 @@ function usePosts(url) {
             .then((response) => setPostsData(response.data))
             .catch((err)=> setError(err))
     }, [url]);
+
     
     return {posts, loading, error, baseURL}
     
 }
 
-export default usePosts;
+export default useFetch;

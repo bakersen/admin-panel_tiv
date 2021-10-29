@@ -1,6 +1,3 @@
-/* eslint-disable prettier/prettier */
-
-
 import React from 'react'
 import './Topbar.css'
 import NotificationsNone from '@material-ui/icons/NotificationsNone'
@@ -17,8 +14,6 @@ const useStyles = makeStyles ( {
         boxShadow:'none'
     }
 })
-
-
 
 export default function Topbar() {
 

@@ -5,6 +5,7 @@ p {
 .container {
     border-radius:10px;
     background-color: white;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
 
 .header-row {
@@ -32,7 +33,7 @@ h6 {
 }
 
 .btn-primary:focus {
-     background-color: #1c1c1c;
-    border-color: #1c1c1c;
+    background-color: #ff9015;
+    border-color: #ff9015;
     box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 0%);
 }
