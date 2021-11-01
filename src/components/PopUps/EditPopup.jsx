@@ -24,7 +24,7 @@ export default function EditPopup(props) {
         </Modal.Header>
         <Modal.Body>
             <div className="edit-content">
-                <Form.Control as="textarea" value={posts.body} placeholder="" />
+                <Form.Control as="textarea" value={posts.body} placeholder=""/>
             </div>
         </Modal.Body>
          <Modal.Footer>
