@@ -3,9 +3,9 @@
     vertical-align: middle;   
     background:#fff;
     box-shadow: 0 1px 3px rgb(160 166 179 / 30%);
-    justify-content: end;
     padding-right: 5%;
     display: flex;
+    justify-content: flex-end;
 }
 
 .top-bar-item {
