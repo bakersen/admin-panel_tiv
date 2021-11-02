@@ -7,8 +7,8 @@
         "email": "bakersen@gmail.com",
         "avatar": "https://randomuser.me/api/portraits/men/12.jpg"
       },
-      "datePosted": "2021-10-22T06:00:44.517Z",
-      "body": "Free Oracle Cloud Infrastructure Training & Certification Oracle is offering free Oracle Cloud Infrastructure (OCI) Training and Certification for all our clients and partners who will sit the Certification exam before 31st December 2021. Find the link to the training and certification resources here https://bit.ly/3j391YG",
+      "datePosted": "2021-06-22T06:00:44.517Z",
+      "body": "Free Oracle Cloud Infrastructure Training & Certification Oracle is offering free Oracle Cloud Infrastructure (OCI) Training and Certification for all our clients and partners who will sit the Certification exam before 30th December 2021. Find the link to the training and certification resources here https://bit.ly/3j391YG",
       "images": [],
       "comments": {
         "author": {
@@ -27,8 +27,8 @@
         "email": "kayegi@gmail.com",
         "avatar": "https://randomuser.me/api/portraits/women/13.jpg"
       },
-      "datePosted": "2021-10-20T12:55:15.322Z",
-      "body": "I am self taught front end developer looking for a mentor to learn more and to build real world applications that solve Africa's problems i am loo...",
+      "datePosted": "9/21/2021",
+      "body": "I am self taught backend developer looking for a mentor to learn more and to build real world applications that solve Africa's problems i am loo...",
       "comments": {
         "author": {
           "name": "Mark Mukuye",
@@ -55,25 +55,6 @@
           "email": "mukuyemark@gmail.com"
         },
         "datePosted": "2021-10-18T15:51:44.517Z",
-        "comment-body": "This is cool"
-      }
-    },
-    {
-      "id": 578,
-      "author": {
-        "name": "Edgar",
-        "email": "amanda@gmail.com",
-        "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
-      },
-      "datePosted": "2021-10-27T12:55:15.322Z",
-      "body": "Inviting you to Technot  Event",
-      "comments": {
-        "author": {
-          "name": "Mark Mukuye",
-          "avatar": "https://randomuser.me/api/portraits/men/16.jpg",
-          "email": "mukuyemark@gmail.com"
-        },
-        "comment-date": "2021-27-18T15:51:44.517Z",
         "comment-body": "This is cool"
       }
     }

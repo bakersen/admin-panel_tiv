@@ -20,6 +20,11 @@ export default function ListData(props) {
         setModalShow(false)
     }
 
+     const toggleClose = () => {
+        setModalShow(false)
+    }
+
+
 
     return (
         <React.Fragment>           
@@ -47,7 +52,7 @@ export default function ListData(props) {
                     <Button color="primary" size="sm" onClick={()=>handleClick()}>View Post</Button> 
                 </Col>
             </Row>
-            <PopUp id={props.id} show={modalShow} delete={()=> deleteItem()} onHide={handleClose} backdrop="static" keyboard={false} />
+            <PopUp id={props.id} show={modalShow} delete={()=> deleteItem()} onHide={handleClose} onToggle={toggleClose} />
         </React.Fragment>
         )
 }

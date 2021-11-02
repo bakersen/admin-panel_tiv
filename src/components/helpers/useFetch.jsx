@@ -7,7 +7,6 @@ function useFetch(url) {
     const [posts, setPostsData] = React.useState([])
     const [loading, setLoading] = React.useState(true)
     const [error, setError] = React.useState(null)
-    const baseURL = url
 
     React.useEffect(()=> {
         axios.get(url)
@@ -35,7 +34,7 @@ function useFetch(url) {
         .catch((err)=> setError(err))
     }
     
-    return {posts, loading, error, baseURL, setPostsData, deleteItem, editItem}
+    return {posts, loading, error, setPostsData, deleteItem, editItem}
     
 }
 

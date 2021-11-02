@@ -15,11 +15,6 @@ export default function EditPopup(props) {
         setBody(posts.body)
     }, [posts.body])
 
-    const handleEdit = () => {
-        console.log(body)
-    }
-
-
     return (
         <Modal
         {...props}
