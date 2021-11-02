@@ -41,7 +41,7 @@ function Posts() {
                     </Col>
                 </Row>
                 {
-                    posts.map(post=> <ListData key={post.id} id={post.id} name={post} />)
+                    posts.map(post=> <ListData posts={posts} key={post.id} id={post.id} name={post} />)
                 }
                 
             </Container>

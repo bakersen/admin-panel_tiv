@@ -7,7 +7,18 @@ import './PopUps.css'
 
 export default function EditPopup(props) {
     
-    const {posts} = useFetch(`http://localhost:8000/posts/${props.id}`);
+    const {posts, editItem} = useFetch(`http://localhost:8000/posts/${props.id}`);
+
+    const [body, setBody] = React.useState('')
+
+    React.useEffect(()=>{
+        setBody(posts.body)
+    }, [posts.body])
+
+    const handleEdit = () => {
+        console.log(body)
+    }
+
 
     return (
         <Modal
@@ -23,12 +34,13 @@ export default function EditPopup(props) {
             <div className="close"><Close onClick={props.onHide}/></div>
         </Modal.Header>
         <Modal.Body>
-            <div className="edit-content">
-                <Form.Control as="textarea" value={posts.body} placeholder=""/>
-            </div>
+            <Form className="edit-content">
+                <Form.Control as="textarea" name="body" onChange={(e)=>setBody(e.target.value)} value={body} placeholder="" />
+                 <Button size="sm" type="button" onClick={()=>editItem(body)}>Save Post</Button>
+            </Form>
         </Modal.Body>
          <Modal.Footer>
-            <Button size="sm" onClick={props.edit}>Save Post</Button>
+           
          </Modal.Footer>
         </Modal>
     );

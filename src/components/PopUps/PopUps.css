@@ -7,7 +7,7 @@
     cursor: pointer;
 }
 
-.textarea.form-control {
+textarea.form-control {
   height: 300px;
   margin-bottom: 15px;  
 }

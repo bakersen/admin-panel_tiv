@@ -21,25 +21,6 @@
       }
     },
     {
-      "id": 2,
-      "author": {
-        "name": "Micheal Amone",
-        "email": "amone@gmail.com",
-        "avatar": "https://randomuser.me/api/portraits/men/12.jpg"
-      },
-      "datePosted": "2021-10-26T08:51:44.517Z",
-      "body": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae ",
-      "comments": {
-        "author": {
-          "name": "Mark Mukuye",
-          "avatar": "https://randomuser.me/api/portraits/men/16.jpg",
-          "email": "mukuyemark@gmail.com"
-        },
-        "datePosted": "2021-10-21T15:51:44.517Z",
-        "comment-body": "This is cool"
-      }
-    },
-    {
       "id": 3,
       "author": {
         "name": "Priscilla Kayegi",
@@ -47,7 +28,7 @@
         "avatar": "https://randomuser.me/api/portraits/women/13.jpg"
       },
       "datePosted": "2021-10-20T12:55:15.322Z",
-      "body": "Lort atem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae ",
+      "body": "I am self taught front end developer looking for a mentor to learn more and to build real world applications that solve Africa's problems i am loo...",
       "comments": {
         "author": {
           "name": "Mark Mukuye",
@@ -55,25 +36,6 @@
           "email": "mukuyemark@gmail.com"
         },
         "datePosted": "2021-10-20T15:51:44.517Z",
-        "comment-body": "This is cool"
-      }
-    },
-    {
-      "id": 4,
-      "author": {
-        "name": "Kato Agaba",
-        "email": "kato@gmail.com",
-        "avatar": "https://randomuser.me/api/portraits/men/12.jpg"
-      },
-      "datePosted": "2021-10-19T12:55:15.322Z",
-      "body": "Lort atem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae ",
-      "comments": {
-        "author": {
-          "name": "Mark Mukuye",
-          "avatar": "https://randomuser.me/api/portraits/men/10.jpg",
-          "email": "mukuyemark@gmail.com"
-        },
-        "datePosted": "2021-10-19T15:51:44.517Z",
         "comment-body": "This is cool"
       }
     },
@@ -104,7 +66,7 @@
         "avatar": "https://randomuser.me/api/portraits/women/6.jpg"
       },
       "datePosted": "2021-10-27T12:55:15.322Z",
-      "body": "Inviting you to Teck Knot",
+      "body": "Inviting you to Technot  Event",
       "comments": {
         "author": {
           "name": "Mark Mukuye",

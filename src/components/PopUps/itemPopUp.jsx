@@ -39,9 +39,9 @@ export default function PopUp(props) {
         </Modal.Body>
         <Modal.Footer>
              <Button size="sm" onClick={()=> handleClick()}>Edit Post</Button>
-            <Button size="sm" onClick={props.delete}>Delete Post</Button>
-
-            <EditPopup show={editShow} id={props.id} onHide={handleClose}/>
+             <Button size="sm" onClick={props.delete}>Delete Post</Button>
+             
+             <EditPopup show={editShow} id={props.id} onHide={handleClose}/>
         </Modal.Footer>
         </Modal>
     );

@@ -41,8 +41,7 @@ export default function ListData(props) {
                     >
                     {props.name?.body}
                     </Truncate>
-                    </p>
-                    
+                    </p>                    
                 </Col>
                 <Col md={2}>
                     <Button color="primary" size="sm" onClick={()=>handleClick()}>View Post</Button> 

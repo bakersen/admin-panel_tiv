@@ -25,9 +25,17 @@ function useFetch(url) {
         })
         .catch((err)=> setError(err))
     }
+
+    const editItem = (newData) => {
+        axios.patch(url, {body: `${newData}`})
+        .then((response)=> {
+            setPostsData(response.data)
+            console.log(posts.body)
+        })
+        .catch((err)=> setError(err))
+    }
     
-    
-    return {posts, loading, error, baseURL, deleteItem}
+    return {posts, loading, error, baseURL, setPostsData, deleteItem, editItem}
     
 }
 
