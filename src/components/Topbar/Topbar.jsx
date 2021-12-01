@@ -2,6 +2,7 @@ import React from 'react'
 import './Topbar.css'
 import NotificationsNone from '@material-ui/icons/NotificationsNone'
 import Button from '@material-ui/core/Button'
+import {Container} from 'react-bootstrap'
 
 import { makeStyles } from '@material-ui/core'
 
@@ -20,7 +21,7 @@ export default function Topbar() {
      const classes = useStyles()
 
     return (
-        <div className="top-bar">
+        <Container className="top-bar">
             <div className="top-bar-item p-20">
                 <NotificationsNone />
             </div> 
@@ -29,6 +30,6 @@ export default function Topbar() {
                     LOG OUT
                 </Button>
             </div>           
-        </div>
+        </Container>
     )
 }

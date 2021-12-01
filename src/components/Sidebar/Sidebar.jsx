@@ -2,10 +2,10 @@
 
 
 import React from 'react';
-import Logo from './my-village-logo.svg'
+import Logo from './my-village-logo-01.svg'
 import './Sidebar.css'
 import {Container, Row, Col, Nav } from 'react-bootstrap'
-import { Home, People, LibraryBooks, Work, Event, Settings } from '@material-ui/icons';
+import {Home, People, LibraryBooks, Work, Event, LocalFlorist} from '@material-ui/icons';
 
 export default function Sidebar() {
   return (
@@ -22,10 +22,10 @@ export default function Sidebar() {
             <Nav>
               <Nav.Link><Home/><span>Dashboard</span></Nav.Link>
                <Nav.Link><People/><span>Members</span></Nav.Link>
+               <Nav.Link><LocalFlorist/><span>Start ups</span></Nav.Link> 
                <Nav.Link><LibraryBooks/><span>Posts</span></Nav.Link>
                <Nav.Link><Work/><span>Jobs</span></Nav.Link> 
                <Nav.Link><Event/><span>Events</span></Nav.Link> 
-               <Nav.Link><Settings/><span>Settings</span></Nav.Link> 
             </Nav>
           </Col>
         </Row>

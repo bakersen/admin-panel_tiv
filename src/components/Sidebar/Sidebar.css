@@ -5,20 +5,20 @@
 }
 
 img {
-    max-width:60%;
+    max-width:80%;
 }
 
 h4.admin-text {
     text-align: center;
     color:white;
     margin-top:20px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight:700;
     margin-bottom: 20px;
 }
 
 .nav {
-    margin-left: 8%;
+    margin-left: 0%;
     display: block;
 }
 
@@ -29,9 +29,9 @@ h4.admin-text {
 }
 
 .nav-link > span {
-    font-size:18px;
+    font-size:16px;
     font-weight: 400;
-    margin-left:10px;
+    margin-left:5%;
 }
 
 
@@ -43,9 +43,9 @@ h4.admin-text {
 }
 
 .w-25 {
-    width:18% !important;
+    width:20% !important;
 }
 
 .w-75 {
-    width:82% !important;
+    width:80% !important;
 }

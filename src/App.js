@@ -15,12 +15,10 @@ function App() {
         </div>
         <div className="w-75 p-0">
            <Topbar />
-            <Main />
+           <Main />
         </div>
-      </Row>
-      
-    </Container>
-			
+      </Row>      
+    </Container>			
   </div>
 	)
 }

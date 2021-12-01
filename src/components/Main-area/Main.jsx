@@ -1,13 +1,18 @@
 
 import React from 'react';
 import './Main.css';
-import DisplayPosts from '../Posts/Posts'
+import {Container, Row, Col} from 'react-bootstrap'
+import Content from '../content-card/ContentCard';
 
 export default function Main() {
 
    return (
-        <div className="main-area ">
-            <DisplayPosts />
-        </div>
+        <Container className="main-area">
+            <Row>
+                <Col className="box" md={12}>
+                    <Content/>
+                </Col>
+            </Row>
+        </Container>
     )
 }

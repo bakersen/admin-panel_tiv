@@ -4,23 +4,23 @@ import axios from "axios"
 
 function useFetch(url) {
     
-    const [posts, setPostsData] = React.useState([])
+    const [items, setData] = React.useState([])
     const [loading, setLoading] = React.useState(true)
     const [error, setError] = React.useState(null)
 
     React.useEffect(()=> {
         axios.get(url)
             .then((response) => {
-                setPostsData(response.data)
+                setData(response.data)
                 setLoading(false)
             })
             .catch((err)=> setError(err))
-    }, [url, posts]);
+    }, [url, items]);
 
     const deleteItem = () => {
         axios.delete(url)
         .then((response)=> {
-            setPostsData(response.data)
+            setData(response.data)
         })
         .catch((err)=> setError(err))
     }
@@ -28,13 +28,13 @@ function useFetch(url) {
     const editItem = (newData) => {
         axios.patch(url, {body: `${newData}`})
         .then((response)=> {
-            setPostsData(response.data)
-            console.log(posts.body)
+            setData(response.data)
+            console.log(items.body)
         })
         .catch((err)=> setError(err))
     }
     
-    return {posts, loading, error, setPostsData, deleteItem, editItem}
+    return {items, loading, error, setData, deleteItem, editItem}
     
 }
 
