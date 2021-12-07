@@ -6,12 +6,12 @@ tbody, td, tfoot, th, thead, tr {
     font-size:14px !important;
 }
 
-table {
-    border-color: #f5f5f5;
+.table {
+    border-color: #fafafa;
 }
 
 .table>:not(:last-child)>:last-child>* {
-    border-bottom-color: #dee2e6;
+    border-bottom-color: #fafafa;
 }
 
 td:first-child {
@@ -36,9 +36,27 @@ tr:first-child {
 }
 
 tbody > tr:nth-child(odd) {
-    background:#fbfbfb
+    background:#fafafa
 }
 
 .selectedrow {
     background:#e5e5e5;
+}
+
+.search > input {
+    border: none;
+    background-color: rgba(255, 248, 220, 0);
+    
+}
+
+
+
+.search {
+    background-color: #fafafa;
+    width: 55%;
+    display: inline;
+    padding: 3px 10px;
+    border: 1px solid #fafafa;
+    border-radius:20px;
+    float: right;    
 }
