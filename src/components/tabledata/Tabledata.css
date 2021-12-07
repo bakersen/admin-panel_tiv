@@ -1,0 +1,44 @@
+.top-row {
+    padding:15px 0 30px 0;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    font-size:14px !important;
+}
+
+table {
+    border-color: #f5f5f5;
+}
+
+.table>:not(:last-child)>:last-child>* {
+    border-bottom-color: #dee2e6;
+}
+
+td:first-child {
+    width:5%;
+}
+
+td:nth-child(2) {
+    width:33%;
+}
+
+td:nth-child(3) {
+    width:20%;
+}
+
+td:nth-child(4) {
+    width:30%;
+}
+
+
+tr:first-child {
+    background:white
+}
+
+tbody > tr:nth-child(odd) {
+    background:#fbfbfb
+}
+
+.selectedrow {
+    background:#e5e5e5;
+}

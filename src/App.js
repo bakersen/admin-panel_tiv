@@ -1,9 +1,8 @@
-/* eslint-disable */
-
-import { Container, Row, Col } from 'react-bootstrap'
-import Sidebar from './components/sidebar/Sidebar'
+import { Container, Row} from 'react-bootstrap'
 import Topbar from './components/topbar/Topbar'
 import Main from './components/main-area/Main'
+import Sidebar from './components/sidebar/Sidebar'
+import './App.css'
 
 function App() {
 	return (
