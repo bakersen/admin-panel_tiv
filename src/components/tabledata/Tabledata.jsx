@@ -32,7 +32,30 @@ export default function Tabledata() {
 
     const {items} = useFetch(`https://61adfe5ca7c7f3001786f52a.mockapi.io/api/v1/events`);
 
-    const [selected, setSelected]= React.useState(false)
+    const [selected, setSelected]= React.useState([])
+
+    const handleChange = (event, data) => {
+
+        const {name, checked} = event.target;
+
+        if (checked) {
+             if (name === "allSelect") {
+                setSelected(items);
+            } else {
+                // if cheked and specific checkbox add specific field to selectedList
+                setSelected([...selected, data]);
+            }
+        }  else {
+                // if uncheked and selectall checkbox add remove all fileds from selectedList
+                if (name === "allSelect") {
+                    setSelected([]);
+                } else {
+                    // if uncheked and specific checkbox remove specific field from selectedList
+                    let tempevent = selected.filter((item) => item.id !== data.id);
+                    setSelected(tempevent);
+                }
+            }
+    }
 
     
 
@@ -77,7 +100,6 @@ export default function Tabledata() {
                         <h4>Events</h4>
                     </Col>
                     <Col className="top-row float-right" md={6} >
-                        {selected ? "Delete": ""}
                         <div className="search">
                         <Search style={{marginRight:"8px"}}/>
                         <input type="text" placeholder= {"Search"} onChange= {(e) => {
@@ -92,7 +114,15 @@ export default function Tabledata() {
                     <Table hover size="md">
                         <thead>
                             <tr>
-                                <th><Checkboxes setSelected={setSelected} selected={selected}/></th>
+                                <th>
+                                <CustomCheckbox
+                                   checked={selected?.length === items?.length}
+                                    name="allSelect"
+                                    onChange={(event) => handleChange(event, items)}
+                                    inputProps={{ 'aria-label': 'primary checkbox' }}
+                                    size="small"
+                                />
+                                </th>
                                 <th>Event</th>
                                 <th>Posted by</th>
                                 <th>Date Created</th>
@@ -112,7 +142,15 @@ export default function Tabledata() {
                                  return false;
 
                             }).map((events) => 
-                            <Tablerow key={events.id} id={events.id} name={events} setSelected={setSelected} selected={selected}  />)  
+                                    <Tablerow 
+                                    key={events.id} 
+                                    id={events.id} 
+                                    name={events} 
+                                    setSelected={setSelected} 
+                                    selected={selected} data={events}
+                                    handleChange={handleChange} 
+                                    />
+                                )  
                             }      
                         </tbody>
                     </Table>
@@ -124,14 +162,22 @@ export default function Tabledata() {
 }
 
 
-function Tablerow({name, setSelected, selected, id}) {
+function Tablerow({name, setSelected, selected, id, data, handleChange}) {
     
     
     const classes = useStyles()
 
     return (
-        <tr className={selected ? "selectedRow" : ""}>
-            <td><Checkboxes id={id} setSelected={setSelected} selected={selected} /></td>
+        <tr>
+            <td>
+                <CustomCheckbox
+                    checked={selected.some((item) => item?.id === data.id)}
+                    name={data.id}
+                    onChange={(event) => handleChange(event, data)}
+                    inputProps={{ 'aria-label': 'primary checkbox' }}
+                    size="small"
+                />
+            </td>
             <td>{name?.title}</td>
             <td>{name?.author.firstName} {name?.author.lastName}</td>
             <td>{name?.dateCreated}</td>
@@ -140,8 +186,7 @@ function Tablerow({name, setSelected, selected, id}) {
     )
 }
 
-// Checkboxes
-
+// Checkbox Styling
 const CustomCheckbox = withStyles({
   root: {
      padding:'0px', 
@@ -151,27 +196,6 @@ const CustomCheckbox = withStyles({
   },
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
-
-function Checkboxes({setSelected, selected, id}) {
-  const [checked, setChecked] = React.useState(false);
-
-  const handleChange = (event) => {
-     const {id, checked} = event.target
-    setChecked(event.target.checked);
-    // setSelected()
-    console.log(id)
-  };
-
-  return(
-      <CustomCheckbox
-        checked={checked}
-        onChange={handleChange}
-        inputProps={{ 'aria-label': 'primary checkbox' }}
-        size="small"
-      />
-  );
-}
-
 
 
 
