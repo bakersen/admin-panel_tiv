@@ -19,63 +19,22 @@ const useStyles = makeStyles ( {
             color:'#ff9015',
         }
     },
-    selectedrow: {        
-        backgroundColor:'#e5e5e5'
+    selectedRow: {        
+        backgroundColor:'red'
     },
    
 })
 
 
 
-// Checkboxes
-
-const CustomCheckbox = withStyles({
-  root: {
-     padding:'0px', 
-    '&$checked': {
-      color: '#FF9015',
-    },
-  },
-  checked: {},
-})((props) => <Checkbox color="default" {...props} />);
-
-function Checkboxes() {
-  const [checked, setChecked] = React.useState(false);
-
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
-
-  return(
-      <CustomCheckbox
-        checked={checked}
-        onChange={handleChange}
-        inputProps={{ 'aria-label': 'primary checkbox' }}
-        size="small"
-      />
-  );
-}
-
-function Tablerow({name}) {
-
-    
-    const classes = useStyles()
-
-    return (
-        <tr>
-            <td><Checkboxes   /></td>
-            <td>{name?.title}</td>
-            <td>{name?.author.firstName} {name?.author.lastName}</td>
-            <td>{name?.dateCreated}</td>
-            <td><Delete className={classes.deleteButton}/></td>
-        </tr>
-    )
-}
-
 
 export default function Tabledata() {    
 
     const {items} = useFetch(`https://61adfe5ca7c7f3001786f52a.mockapi.io/api/v1/events`);
+
+    const [selected, setSelected]= React.useState(false)
+
+    
 
     // const events = [
     //                 {
@@ -118,6 +77,7 @@ export default function Tabledata() {
                         <h4>Events</h4>
                     </Col>
                     <Col className="top-row float-right" md={6} >
+                        {selected ? "Delete": ""}
                         <div className="search">
                         <Search style={{marginRight:"8px"}}/>
                         <input type="text" placeholder= {"Search"} onChange= {(e) => {
@@ -132,7 +92,7 @@ export default function Tabledata() {
                     <Table hover size="md">
                         <thead>
                             <tr>
-                                <th><Checkboxes/></th>
+                                <th><Checkboxes setSelected={setSelected} selected={selected}/></th>
                                 <th>Event</th>
                                 <th>Posted by</th>
                                 <th>Date Created</th>
@@ -152,7 +112,7 @@ export default function Tabledata() {
                                  return false;
 
                             }).map((events) => 
-                            <Tablerow key={events.id} id={events.id} name={events} />)  
+                            <Tablerow key={events.id} id={events.id} name={events} setSelected={setSelected} selected={selected}  />)  
                             }      
                         </tbody>
                     </Table>
@@ -162,5 +122,56 @@ export default function Tabledata() {
         </>
     )
 }
+
+
+function Tablerow({name, setSelected, selected, id}) {
+    
+    
+    const classes = useStyles()
+
+    return (
+        <tr className={selected ? "selectedRow" : ""}>
+            <td><Checkboxes id={id} setSelected={setSelected} selected={selected} /></td>
+            <td>{name?.title}</td>
+            <td>{name?.author.firstName} {name?.author.lastName}</td>
+            <td>{name?.dateCreated}</td>
+            <td><Delete className={classes.deleteButton}/></td>
+        </tr>
+    )
+}
+
+// Checkboxes
+
+const CustomCheckbox = withStyles({
+  root: {
+     padding:'0px', 
+    '&$checked': {
+      color: '#FF9015',
+    },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
+
+function Checkboxes({setSelected, selected, id}) {
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = (event) => {
+     const {id, checked} = event.target
+    setChecked(event.target.checked);
+    // setSelected()
+    console.log(id)
+  };
+
+  return(
+      <CustomCheckbox
+        checked={checked}
+        onChange={handleChange}
+        inputProps={{ 'aria-label': 'primary checkbox' }}
+        size="small"
+      />
+  );
+}
+
+
 
 

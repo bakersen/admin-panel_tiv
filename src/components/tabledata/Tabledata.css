@@ -60,3 +60,7 @@ tbody > tr:nth-child(odd) {
     border-radius:20px;
     float: right;    
 }
+
+.selectedRow {
+    background-color: red !important;
+}
