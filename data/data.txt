@@ -1,0 +1,319 @@
+{
+  "events": [
+ {
+  "title": "Kampala Innovation Week",
+  "dateCreated": "2021-12-05T19:58:13.117Z",
+  "startDateTime": "2022-04-19T03:16:44.773Z",
+  "endDateTime": "2022-10-21T06:35:12.636Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Et asperiores laboriosam tempora nihil ea. Sed voluptates voluptate dolor dolorem. Nulla reiciendis eius nostrum. Dolore quia aliquid eius. Illum in natus sequi.",
+  "author": {
+   "firstName": "Kimberly",
+   "lastName": "Terry"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "1"
+ },
+ {
+  "title": "DevOps Conference",
+  "dateCreated": "2021-12-06T08:39:40.680Z",
+  "startDateTime": "2022-03-27T08:15:27.361Z",
+  "endDateTime": "2022-01-10T08:37:44.289Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Ut et cupiditate placeat. Et eaque quo sint rem quia. Autem autem nihil. Et et quia nihil nemo eligendi magnam.",
+  "author": {
+   "firstName": "Stanton",
+   "lastName": "Reilly"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "2"
+ },
+ {
+  "title": "Leveraging Community for a better Tech Industry",
+  "dateCreated": "2021-12-06T03:50:09.523Z",
+  "startDateTime": "2022-02-21T06:39:27.574Z",
+  "endDateTime": "2022-02-27T10:59:47.489Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Temporibus magnam aliquam. Itaque impedit veniam reprehenderit. Corporis blanditiis tempora.",
+  "author": {
+   "firstName": "Alverta",
+   "lastName": "Huel"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "3"
+ },
+ {
+  "title": "Email reminder test event",
+  "dateCreated": "2021-12-06T10:23:09.103Z",
+  "startDateTime": "2022-06-14T20:51:45.360Z",
+  "endDateTime": "2022-09-24T03:34:57.590Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Ex iusto eos. Eum consectetur veniam deserunt et illo sunt omnis ipsam. Soluta ex expedita maxime natus ab et qui saepe numquam.",
+  "author": {
+   "firstName": "Luis",
+   "lastName": "Bernier"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "4"
+ },
+ {
+  "title": "Women In Tech",
+  "dateCreated": "2021-12-06T12:35:00.047Z",
+  "startDateTime": "2022-02-02T16:13:16.741Z",
+  "endDateTime": "2022-10-14T06:59:13.643Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Nam illum aliquam ut fuga. Aliquam est sunt aut. Non eligendi debitis impedit quae qui ipsa eum. Culpa voluptate dolor corporis dolorum nulla consectetur. Non quae aut qui non quo quasi sed consequuntur vel. Harum quia aut voluptatem unde deleniti.",
+  "author": {
+   "firstName": "Billy",
+   "lastName": "Mosciski"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "5"
+ },
+ {
+  "title": "Startups Hup: Your start Now",
+  "dateCreated": "2021-12-05T16:23:07.766Z",
+  "startDateTime": "2022-10-01T17:44:24.415Z",
+  "endDateTime": "2022-09-28T01:31:58.967Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Nihil totam saepe dolor quas molestiae voluptas qui. Rerum quia quam. Quos beatae velit dignissimos facilis ipsum. Voluptas et alias rem itaque. Et vitae rerum aperiam consequatur maiores officiis harum.",
+  "author": {
+   "firstName": "Kurtis",
+   "lastName": "Macejkovic"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "6"
+ },
+ {
+  "title": "Microsoft Teams Testing and Learning",
+  "dateCreated": "2021-12-05T16:12:38.953Z",
+  "startDateTime": "2022-02-17T13:31:00.877Z",
+  "endDateTime": "2022-11-03T02:46:01.825Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Molestias voluptas aut voluptatum consequatur libero iure nostrum cum. Vel iusto qui officia omnis esse vero voluptatem. Ducimus consequatur blanditiis. Ut incidunt et atque occaecati doloribus beatae. Quae molestiae sit ut qui similique.",
+  "author": {
+   "firstName": "Trey",
+   "lastName": "Hoeger"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "7"
+ },
+ {
+  "title": "My Village Infosession",
+  "dateCreated": "2021-12-06T12:34:43.076Z",
+  "startDateTime": "2022-07-23T14:34:00.047Z",
+  "endDateTime": "2022-04-09T11:30:54.652Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Et cupiditate architecto sed vero amet ullam qui eum est. Neque neque maiores eaque fugiat temporibus tempore ut optio. Consequatur praesentium temporibus consequatur corrupti vitae enim aut placeat. Ea pariatur officia at qui vel. Et et sequi sunt quisquam et autem. Natus ipsum et neque cum molestiae repudiandae a esse quia.",
+  "author": {
+   "firstName": "Ayana",
+   "lastName": "Daniel"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "8"
+ },
+ {
+  "title": "Tukole Product Launch",
+  "dateCreated": "2021-12-07T08:31:07.635Z",
+  "startDateTime": "2022-07-01T15:56:23.643Z",
+  "endDateTime": "2022-07-14T04:14:09.276Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Voluptatem hic saepe fugiat. Autem dolorem ipsa autem inventore corporis cupiditate commodi architecto earum. Placeat beatae eius voluptates qui qui expedita corporis libero. Quae est eius rerum maiores nihil nesciunt. Consectetur sit mollitia.",
+  "author": {
+   "firstName": "Hailey",
+   "lastName": "Bailey"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "9"
+ },
+ {
+  "title": "Microfix Test Event",
+  "dateCreated": "2021-12-07T23:47:01.344Z",
+  "startDateTime": "2022-01-26T00:11:32.782Z",
+  "endDateTime": "2022-06-13T23:55:55.128Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Exercitationem est quam. Autem expedita est culpa adipisci eaque eaque illum et. Id corrupti tempora ut cumque esse alias voluptas exercitationem.",
+  "author": {
+   "firstName": "Carol",
+   "lastName": "Homenick"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "10"
+ },
+ {
+  "title": "Kampala Rolex Festival, Tech & Food",
+  "dateCreated": "2021-12-07T07:04:01.602Z",
+  "startDateTime": "2022-01-25T19:51:33.159Z",
+  "endDateTime": "2022-07-22T12:07:57.977Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Tempora numquam et atque nisi. Fugiat ab et et voluptatem quaerat maiores amet qui. Fugiat error libero ut praesentium molestias. Deserunt quod est molestiae debitis aspernatur molestias velit qui. Voluptatem sit quas optio reiciendis. Id dolor quam vitae enim.",
+  "author": {
+   "firstName": "Abdullah",
+   "lastName": "Prohaska"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "11"
+ },
+ {
+  "title": "Kampala Innovation Week",
+  "dateCreated": "2021-12-07T10:55:48.725Z",
+  "startDateTime": "2022-08-13T20:24:47.379Z",
+  "endDateTime": "2022-07-04T10:13:35.663Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Et distinctio pariatur odio repellendus ratione accusantium aut libero. Non labore excepturi praesentium ad odit facere. In ratione voluptate cupiditate excepturi quod.",
+  "author": {
+   "firstName": "Prudence",
+   "lastName": "Jaskolski"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "12"
+ },
+ {
+  "title": "Refactory Tech Knot",
+  "dateCreated": "2021-12-07T23:02:30.002Z",
+  "startDateTime": "2022-01-02T04:58:58.049Z",
+  "endDateTime": "2022-08-02T00:44:19.598Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Laboriosam aut ut eaque. Eveniet et exercitationem tenetur omnis rem. Quam molestiae quia repellendus et enim et. Nulla voluptatum vel quos.",
+  "author": {
+   "firstName": "Eliseo",
+   "lastName": "Mann"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "13"
+ },
+ {
+  "title": "World Conference on Technology & Enginerring sciences",
+  "dateCreated": "2021-12-07T16:09:38.453Z",
+  "startDateTime": "2022-09-16T19:36:52.697Z",
+  "endDateTime": "2022-02-26T22:38:16.108Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Nesciunt ab commodi voluptatem dolores nulla. Aliquam dignissimos dignissimos. Et iusto qui blanditiis voluptatibus repellendus pariatur. Aut numquam placeat non eos animi ducimus aspernatur sed. Sed tempore asperiores inventore corporis et.",
+  "author": {
+   "firstName": "Gisselle",
+   "lastName": "Blanda"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "14"
+ },
+ {
+  "title": "Human Centered Design Meet up",
+  "dateCreated": "2021-12-07T05:44:20.633Z",
+  "startDateTime": "2021-12-13T16:22:30.439Z",
+  "endDateTime": "2021-12-28T23:35:10.932Z",
+  "contact": {
+   "phone": [
+    "$phoneNumber",
+    "$phoneNumber"
+   ]
+  },
+  "eventDesc": "Illum doloremque et occaecati dolorem facere sequi officia ea quos. Inventore omnis quasi quia debitis laborum odio sit. Autem et nemo repellendus est nihil et nisi aliquid in. Dolorum dignissimos velit.",
+  "author": {
+   "firstName": "Meghan",
+   "lastName": "Brown"
+  },
+  "location": "Zoom",
+  "meetingType": "online",
+  "image": "$imageUrl",
+  "id": "15"
+ }
+ ]
+}

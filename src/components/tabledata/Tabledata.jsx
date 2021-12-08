@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core'
 import Checkbox from '@material-ui/core/Checkbox';
 import { withStyles } from '@material-ui/core/styles';
 import useFetch from '../helpers/useFetch'
+import Popup from './DeletePopup'
 
 
 
@@ -25,15 +26,28 @@ const useStyles = makeStyles ( {
    
 })
 
+// Checkbox Styling
+const CustomCheckbox = withStyles({
+  root: {
+     padding:'0px', 
+    '&$checked': {
+      color: '#FF9015',
+    },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
 
 
 
+//MAIN COMPONENT
 export default function Tabledata() {    
 
-    const {items} = useFetch(`https://61adfe5ca7c7f3001786f52a.mockapi.io/api/v1/events`);
+    const {items, loading} = useFetch(`http://localhost:8000/events`);
 
+    //State to handle selected items
     const [selected, setSelected]= React.useState([])
 
+    //Method to handle on change event on checkbox
     const handleChange = (event, data) => {
 
         const {name, checked} = event.target;
@@ -56,41 +70,11 @@ export default function Tabledata() {
                 }
             }
     }
-
     
-
-    // const events = [
-    //                 {
-    //                     "id": 1,
-    //                     "title": "Kampala Innovation Week",
-    //                     "dateCreated":"2021-12-05T19:58:13.117Z",
-    //                     "author":{
-    //                     "firstName": "baker",
-    //                     "lastName": "sentamu"}
-    //                 },
-    //                 {
-    //                     "id": 2,
-    //                     "title": "My Village launch",
-    //                     "dateCreated":"2021-12-05T19:58:13.117Z",
-    //                     "author":{
-    //                     "firstName": "esther",
-    //                     "lastName": "sentamu"}
-    //                 }, 
-
-    //                 {
-    //                     "id": 3,
-    //                     "title": "DevOps Conference",
-    //                     "dateCreated":"2021-12-05T19:58:13.117Z",
-    //                     "author":{
-    //                     "firstName": "rachel",
-    //                     "lastName": "sentamu"}
-    //                 }
-    // ]
-
+    //State to manage Search
     const [searchTerm, setSearch] = React.useState("")
     
-    console.log(items)
-
+    if(loading) return <h4 style={{textAlign:'center'}}>loading events...</h4>
    
     return (
         <>
@@ -100,6 +84,9 @@ export default function Tabledata() {
                         <h4>Events</h4>
                     </Col>
                     <Col className="top-row float-right" md={6} >
+                        <div>
+
+                        </div>
                         <div className="search">
                         <Search style={{marginRight:"8px"}}/>
                         <input type="text" placeholder= {"Search"} onChange= {(e) => {
@@ -131,11 +118,14 @@ export default function Tabledata() {
                         </thead>
                         <tbody>
                             { 
+                            
                             items.filter(value =>{
                                 if (searchTerm ==="") {
                                     return value;
                                 }
-                                else if (value.author.firstName.toLowerCase().includes(searchTerm.toLowerCase())){
+                                else if (value.title.toLowerCase().includes(searchTerm.toLowerCase()) 
+                                || value.author.firstName.toLowerCase().includes(searchTerm.toLowerCase())
+                                || value.author.lastName.toLowerCase().includes(searchTerm.toLowerCase())) {
                                     return value;
                                 }
 
@@ -161,13 +151,19 @@ export default function Tabledata() {
     )
 }
 
+//TABLE ROW COMPONENT
+function Tablerow({name, setSelected, selected, id, data, handleChange}) {    
 
-function Tablerow({name, setSelected, selected, id, data, handleChange}) {
-    
+    //State to manage Delete Pop up
+     const [show, setShow] = React.useState(false);
+
+     const handleClose = () => setShow(false);
+     const handleShow = () => setShow(true);
     
     const classes = useStyles()
 
     return (
+        <>
         <tr>
             <td>
                 <CustomCheckbox
@@ -178,24 +174,28 @@ function Tablerow({name, setSelected, selected, id, data, handleChange}) {
                     size="small"
                 />
             </td>
-            <td>{name?.title}</td>
-            <td>{name?.author.firstName} {name?.author.lastName}</td>
-            <td>{name?.dateCreated}</td>
-            <td><Delete className={classes.deleteButton}/></td>
+            <td>
+                {name?.title}
+            </td>
+            <td>
+                {name?.author.firstName} {name?.author.lastName}
+            </td>
+            <td>
+                {name?.dateCreated}
+            </td>
+            <td>
+                <Delete className={classes.deleteButton} onClick={handleShow}/>
+            </td>
         </tr>
+
+        <Popup id={id} setShow={setShow} show={show} onHide={handleClose}/>
+        </>
+        
     )
 }
 
-// Checkbox Styling
-const CustomCheckbox = withStyles({
-  root: {
-     padding:'0px', 
-    '&$checked': {
-      color: '#FF9015',
-    },
-  },
-  checked: {},
-})((props) => <Checkbox color="default" {...props} />);
+
+
 
 
 

@@ -60,3 +60,17 @@ tbody > tr:nth-child(odd) {
     border-radius:20px;
     float: right;    
 }
+
+.modal-footer {
+    border-top:none;
+    padding:10px 20px
+}
+
+.btn.btn-primary {
+    background-color:#ff9015;
+    border:none;
+}
+
+.modal-title > h4 {
+    font-size:21px;
+}

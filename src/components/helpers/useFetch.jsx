@@ -11,8 +11,8 @@ function useFetch(url) {
     React.useEffect(()=> {
         axios.get(url)
             .then((response) => {
-                setData(response.data)
                 setLoading(false)
+                setTimeout(()=>setData(response.data), 2000);                
             })
             .catch((err)=> setError(err))
     }, [url, items]);
