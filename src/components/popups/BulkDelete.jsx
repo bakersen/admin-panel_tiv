@@ -27,9 +27,9 @@ export default function AlertDialog(props) {
   const {deleteItem} = useFetch(`http://localhost:8000/events/${id}`);
   
   const handleBulkDelete = (deleteItem) => {
-      selected.filter((delete) => {
-            return deleteItem()
-      })
+      // selected.filter((delete) => {
+      //       return deleteItem()
+      // })
   }
 
   const [open, setOpen] = React.useState(false);
