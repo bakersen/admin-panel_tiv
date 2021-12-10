@@ -3,10 +3,13 @@ import {Table, Container, Col, Row} from 'react-bootstrap'
 import {Delete, Search} from '@material-ui/icons/';
 import './Tabledata.css'
 import { makeStyles } from '@material-ui/core'
-import Checkbox from '@material-ui/core/Checkbox';
-import { withStyles } from '@material-ui/core/styles';
+import Checkbox from '@material-ui/core/Checkbox'
+import { withStyles } from '@material-ui/core/styles'
 import useFetch from '../helpers/useFetch'
-import Popup from './DeletePopup'
+import Popup from '../Popup/DeletePopup'
+import Drawer from '../drawer/Drawer'
+import Moment from 'react-moment';
+
 
 
 
@@ -20,6 +23,12 @@ const useStyles = makeStyles ( {
             color:'#ff9015',
         }
     },
+    bulkDelete:{
+        fontSize:'22px',
+        display:'flex',
+        alignItems:'inherit'
+    },
+    
     selectedRow: {        
         backgroundColor:'red'
     },
@@ -42,7 +51,7 @@ const CustomCheckbox = withStyles({
 //MAIN COMPONENT
 export default function Tabledata() {    
 
-    const {items, loading} = useFetch(`http://localhost:8000/events`);
+    const {items} = useFetch(`http://localhost:8000/events`);
 
     //State to handle selected items
     const [selected, setSelected]= React.useState([])
@@ -73,25 +82,33 @@ export default function Tabledata() {
     
     //State to manage Search
     const [searchTerm, setSearch] = React.useState("")
+
+    // //Load styles
+    // const classes = useStyles
     
-    if(loading) return <h4 style={{textAlign:'center'}}>loading events...</h4>
    
     return (
         <>
             <Container fluid>
-                <Row no-gutters>
-                    <Col className="top-row" md={6}>
+                <Row style={{marginTop:'20px', marginBottom:'30px'}}>
+                    <Col className="top-row-left" md={4}>
                         <h4>Events</h4>
                     </Col>
-                    <Col className="top-row float-right" md={6} >
-                        <div>
-
+                    <Col className="top-row-right float-right" md={8} >
+                        <div className="bulk-delete">
+                            {selected.length > 0 ?
+                            <>
+                            <Delete/>
+                            <h6>Delete Selected Items ({selected.length})</h6> 
+                            </>
+                            : 
+                            ""
+                            }
+                           
                         </div>
                         <div className="search">
                         <Search style={{marginRight:"8px"}}/>
-                        <input type="text" placeholder= {"Search"} onChange= {(e) => {
-                            setSearch(e.target.value)
-                            }}
+                        <input type="text" placeholder= {"Search"} onChange= {(e) => {setSearch(e.target.value) }}
                         />
                         </div>
                        
@@ -125,7 +142,8 @@ export default function Tabledata() {
                                 }
                                 else if (value.title.toLowerCase().includes(searchTerm.toLowerCase()) 
                                 || value.author.firstName.toLowerCase().includes(searchTerm.toLowerCase())
-                                || value.author.lastName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                || value.author.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+                                || value.dateCreated.toLowerCase().includes(searchTerm.toLowerCase())) {
                                     return value;
                                 }
 
@@ -175,13 +193,16 @@ function Tablerow({name, setSelected, selected, id, data, handleChange}) {
                 />
             </td>
             <td>
-                {name?.title}
+                <Drawer events={name}/>
             </td>
             <td>
                 {name?.author.firstName} {name?.author.lastName}
             </td>
             <td>
-                {name?.dateCreated}
+                <Moment format="Do-MMM-YYYY">
+                     {name?.dateCreated}
+                </Moment>
+               
             </td>
             <td>
                 <Delete className={classes.deleteButton} onClick={handleShow}/>

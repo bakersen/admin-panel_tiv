@@ -3,9 +3,27 @@ import Topbar from './components/topbar/Topbar'
 import Main from './components/main-area/Main'
 import Sidebar from './components/sidebar/Sidebar'
 import './App.css'
+import {createTheme, ThemeProvider } from '@material-ui/core'
+
+const theme = createTheme({
+  palette:{
+    primary: {
+      main: '#ff9015'
+    },
+    secondary: {
+      main: '#ff9015'
+    }, 
+    overrides: {
+      MuiTableCell: {
+        textAlign:'left'
+      },
+    }
+  }
+})
 
 function App() {
 	return (
+  <ThemeProvider theme={theme}>
   <div>
     <Container fluid>
        <Row>
@@ -19,6 +37,7 @@ function App() {
       </Row>      
     </Container>			
   </div>
+  </ThemeProvider> 
 	)
 }
 

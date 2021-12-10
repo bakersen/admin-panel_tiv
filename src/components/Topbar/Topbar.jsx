@@ -9,10 +9,12 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles ( {
     button: {
-        backgroundColor: '#ff9015',
         color:'white',
         fontWeight:'700',
-        boxShadow:'none'
+        boxShadow:'none',
+        '&:hover':{
+            backgroundColor: 'primary'
+        }
     }
 })
 
@@ -26,7 +28,7 @@ export default function Topbar() {
                 <NotificationsNone />
             </div> 
             <div className="top-bar-item p-20">
-                <Button className={classes.button} size="small" variant="contained">
+                <Button className={classes.button} size="small" variant="contained" color="primary">
                     LOG OUT
                 </Button>
             </div>           

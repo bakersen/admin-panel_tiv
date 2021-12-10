@@ -64,46 +64,25 @@
       "id": "3"
     },
     {
-      "title": "Women In Tech",
-      "dateCreated": "2021-12-06T12:35:00.047Z",
-      "startDateTime": "2022-02-02T16:13:16.741Z",
-      "endDateTime": "2022-10-14T06:59:13.643Z",
+      "title": "Email reminder test event",
+      "dateCreated": "2021-12-06T10:23:09.103Z",
+      "startDateTime": "2022-06-14T20:51:45.360Z",
+      "endDateTime": "2022-09-24T03:34:57.590Z",
       "contact": {
         "phone": [
           "$phoneNumber",
           "$phoneNumber"
         ]
       },
-      "eventDesc": "Nam illum aliquam ut fuga. Aliquam est sunt aut. Non eligendi debitis impedit quae qui ipsa eum. Culpa voluptate dolor corporis dolorum nulla consectetur. Non quae aut qui non quo quasi sed consequuntur vel. Harum quia aut voluptatem unde deleniti.",
+      "eventDesc": "Ex iusto eos. Eum consectetur veniam deserunt et illo sunt omnis ipsam. Soluta ex expedita maxime natus ab et qui saepe numquam.",
       "author": {
-        "firstName": "Billy",
-        "lastName": "Mosciski"
+        "firstName": "Luis",
+        "lastName": "Bernier"
       },
       "location": "Zoom",
       "meetingType": "online",
       "image": "$imageUrl",
-      "id": "5"
-    },
-    {
-      "title": "Startups Hup: Your start Now",
-      "dateCreated": "2021-12-05T16:23:07.766Z",
-      "startDateTime": "2022-10-01T17:44:24.415Z",
-      "endDateTime": "2022-09-28T01:31:58.967Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Nihil totam saepe dolor quas molestiae voluptas qui. Rerum quia quam. Quos beatae velit dignissimos facilis ipsum. Voluptas et alias rem itaque. Et vitae rerum aperiam consequatur maiores officiis harum.",
-      "author": {
-        "firstName": "Kurtis",
-        "lastName": "Macejkovic"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "6"
+      "id": "4"
     },
     {
       "title": "Microsoft Teams Testing and Learning",
@@ -169,27 +148,6 @@
       "id": "9"
     },
     {
-      "title": "Microfix Test Event",
-      "dateCreated": "2021-12-07T23:47:01.344Z",
-      "startDateTime": "2022-01-26T00:11:32.782Z",
-      "endDateTime": "2022-06-13T23:55:55.128Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Exercitationem est quam. Autem expedita est culpa adipisci eaque eaque illum et. Id corrupti tempora ut cumque esse alias voluptas exercitationem.",
-      "author": {
-        "firstName": "Carol",
-        "lastName": "Homenick"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "10"
-    },
-    {
       "title": "Kampala Rolex Festival, Tech & Food",
       "dateCreated": "2021-12-07T07:04:01.602Z",
       "startDateTime": "2022-01-25T19:51:33.159Z",
@@ -251,27 +209,6 @@
       "meetingType": "online",
       "image": "$imageUrl",
       "id": "13"
-    },
-    {
-      "title": "World Conference on Technology & Enginerring sciences",
-      "dateCreated": "2021-12-07T16:09:38.453Z",
-      "startDateTime": "2022-09-16T19:36:52.697Z",
-      "endDateTime": "2022-02-26T22:38:16.108Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Nesciunt ab commodi voluptatem dolores nulla. Aliquam dignissimos dignissimos. Et iusto qui blanditiis voluptatibus repellendus pariatur. Aut numquam placeat non eos animi ducimus aspernatur sed. Sed tempore asperiores inventore corporis et.",
-      "author": {
-        "firstName": "Gisselle",
-        "lastName": "Blanda"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "14"
     }
   ]
 }

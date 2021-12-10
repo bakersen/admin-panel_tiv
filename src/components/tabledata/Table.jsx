@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,24 +13,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
-
-function createData(event, author, date, deleteColumn) {
-  return { event, author, date, deleteColumn };
-}
-
-const rows = [
-  createData('Wedding Launch', 'Priscilla', '12-Oct-2021', 'delete'),
-  createData('Wedding Launch', 'Priscilla', '12-Oct-2021', 'delete' ),
-  createData('Wedding Launch', 'Priscilla', '12-Oct-2021', 'delete'),
-  createData('Wedding Launch', 'Priscilla', '12-Oct-2021', 'delete'),
-  createData('Wedding Launch', 'Priscilla', '12-Oct-2021', 'delete'),
-];
+// import IconButton from '@material-ui/core/IconButton';
+// import Tooltip from '@material-ui/core/Tooltip';
+// import FilterListIcon from '@material-ui/icons/FilterList';
+import useFetch from '../helpers/useFetch'
+import Moment from 'react-moment';
+import TextField from '@material-ui/core/TextField';
+import Delete from '../popups/Delete'
+import BulkDelete from '../popups/BulkDelete'
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -61,9 +50,9 @@ function stableSort(array, comparator) {
 
 const headCells = [
   { id: 'event', numeric: false, disablePadding: true, label: 'Event' },
-  { id: 'author', numeric: false, disablePadding: false, label: 'Posted by' },
-  { id: 'date', numeric: false, disablePadding: false, label: 'Date Published' },
-  { id: 'deleteColumn', numeric: false, disablePadding: false, label: '' },
+  { id: 'author', numeric: false, disablePadding: false, label: 'Posted By' },
+  { id: 'date', numeric: true, disablePadding: false, label: 'Date Published' },
+  { id: 'delete', numeric: false, disablePadding: false, label: 'Action' }
 ];
 
 function EnhancedTableHead(props) {
@@ -73,7 +62,7 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead>
+    <TableHead style={{fontSize:'16px'}}>
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
@@ -81,12 +70,13 @@ function EnhancedTableHead(props) {
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{ 'aria-label': 'select all desserts' }}
+            size='small'
           />
         </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -136,42 +126,34 @@ const useToolbarStyles = makeStyles((theme) => ({
         },
   title: {
     flex: '1 1 100%',
+    fontWeight:'700'
   },
 }));
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
-  const { numSelected } = props;
+  const { numSelected, selected, setSearch } = props;
 
   return (
-    <Toolbar
-      className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0,
-      })}
-    >
-      {numSelected > 0 ? (
-        <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Nutrition
-        </Typography>
-      )}
+    <Toolbar style={{paddingTop:'20px'}}>
+      <Typography className={classes.title} variant="h5" id="tableTitle" component="div">
+          Events
+      </Typography>        
 
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+        <BulkDelete selected={selected} />
       ) : (
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
+        <TextField 
+          id="outlined-search" 
+          placeholder="Search" 
+          type="search" 
+          margin="dense" 
+          size="small" 
+          variant="outlined"
+          onChange= {(e) => {setSearch(e.target.value) }}
+        />
       )}
+
     </Toolbar>
   );
 };
@@ -205,13 +187,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EnhancedTable() {
+
+  
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [searchTerm, setSearch] = React.useState("")
+  const {items} = useFetch(`http://localhost:8000/events`); 
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -221,19 +206,19 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, id) => {
+    const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -257,23 +242,27 @@ export default function EnhancedTable() {
     setPage(0);
   };
 
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked);
-  };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (id) => selected.indexOf(id) !== -1;
+
+  const rows = items.filter((items)=> {
+        return items
+  })
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar
+        numSelected={selected.length}
+        setSearch = {setSearch}
+        selected={selected} 
+        />
         <TableContainer>
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
             aria-label="enhanced table"
           >
             <EnhancedTableHead
@@ -288,37 +277,56 @@ export default function EnhancedTable() {
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .filter(value =>{
+                        if (searchTerm ==="") {
+                            return value;
+                        }
+                        else if (value.title.toLowerCase().includes(searchTerm.toLowerCase()) 
+                        || value.author.firstName.toLowerCase().includes(searchTerm.toLowerCase())
+                        || value.author.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+                        || value.dateCreated.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return value;
+                        }
+                          return false;
+                    })
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.event}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
+                          size='small'
+                          onChange={(event) => handleClick(event, row.id)}
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.event}
+                        {row.title} 
                       </TableCell>
-                      <TableCell align="right">{row.author}</TableCell>
-                      <TableCell align="right">{row.date}</TableCell>
-                      <TableCell align="right">{row.deleteColumn}</TableCell>
+                      <TableCell>{row.author.firstName}  {row.author.lastName}</TableCell>
+                      <TableCell>
+                        <Moment format="Do-MMM-YYYY">
+                            {row.dateCreated}
+                        </Moment>                        
+                      </TableCell>
+                      <TableCell>                        
+                        {isItemSelected ? "": <Delete id={row.id} /> }
+                      </TableCell>
                     </TableRow>
                   );
                 })}
               {emptyRows > 0 && (
-                <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                <TableRow>
                   <TableCell colSpan={6} />
                 </TableRow>
               )}
@@ -326,7 +334,7 @@ export default function EnhancedTable() {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25, 50]}
+          rowsPerPageOptions={[5, 10, 25,50]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
@@ -335,10 +343,6 @@ export default function EnhancedTable() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
     </div>
   );
 }
