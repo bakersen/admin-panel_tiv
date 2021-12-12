@@ -1,9 +1,9 @@
 /* eslint-disable */
 
-import { Container, Row, Col } from 'react-bootstrap'
-import Sidebar from './components/sidebar/Sidebar'
-import Topbar from './components/topbar/Topbar'
-import Main from './components/main-area/Main'
+import { Container, Row, Col } from 'react-bootstrap';
+import Sidebar from './components/Sidebar/Sidebar';
+import Topbar from './components/Topbar/Topbar';
+import Main from './components/Main-area/Main';
 
 function App() {
 	return (
@@ -23,4 +23,4 @@ function App() {
 	)
 }
 
-export default App
+export default App;
