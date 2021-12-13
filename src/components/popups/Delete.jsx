@@ -7,13 +7,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Delete from '@material-ui/icons/Delete';
-import useFetch from '../helpers/useFetch';
+import useAPI from '../helpers/useAPI';
 
 export default function AlertDialog(props) {
 
-  const {id} = props  
+  const {id, setState} = props  
 
-  const {deleteItem} = useFetch(`http://localhost:8000/events/${id}`);  
+  const {deleteItem} = useAPI(`https://profiles-test.innovationvillage.co.ug/api/events?id=${id}`);  
 
   const [open, setOpen] = React.useState(false);
 
@@ -22,6 +22,12 @@ export default function AlertDialog(props) {
   };
 
   const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleDelete = (newState) => {
+    deleteItem()
+    setState({ open: true, ...newState });
     setOpen(false);
   };
 
@@ -44,7 +50,12 @@ export default function AlertDialog(props) {
           <Button onClick={handleClose} color="primary">
            Cancel
           </Button>
-          <Button onClick={()=>deleteItem()} color="primary" autoFocus>
+          <Button onClick={()=> handleDelete({
+          vertical: 'top',
+          horizontal: 'right',
+          })} 
+          color="primary" autoFocus
+          >
             Delete
           </Button>
         </DialogActions>

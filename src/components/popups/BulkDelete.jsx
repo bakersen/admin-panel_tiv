@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Delete from '@material-ui/icons/Delete';
-import useFetch from '../helpers/useFetch';
+import useAPI from '../helpers/useAPI';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles } from '@material-ui/core/styles';
 
@@ -24,12 +24,15 @@ export default function AlertDialog(props) {
 
   const {id, selected} = props  
 
-  const {deleteItem} = useFetch(`http://localhost:8000/events/${id}`);
-  
-  const handleBulkDelete = (deleteItem) => {
-      // selected.filter((delete) => {
-      //       return deleteItem()
-      // })
+  const {deleteItem, baseURL} = useAPI(`http://localhost:8000/events/${id}`);
+
+  // const bulkSelected = selected.map((id) => {
+  //     return `baseUrl/${id}`
+  // })
+
+     
+  const handleBulkDelete = () => {
+        console.log(baseURL)
   }
 
   const [open, setOpen] = React.useState(false);
@@ -59,7 +62,7 @@ export default function AlertDialog(props) {
         <DialogTitle id="alert-dialog-title">{"Delete Event?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-           Are you sure you want to delete {selected.length > 1 ? "these events?" : "this event?"}
+            Are you sure you want to delete {selected.length > 1 ? "these events?" : "this event?"}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

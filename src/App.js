@@ -14,9 +14,11 @@ const theme = createTheme({
       main: '#ff9015'
     }, 
     overrides: {
-      MuiTableCell: {
-        textAlign:'left'
-      },
+      MuiOutlinedInput: {
+        inputMarginDense: {
+          padding:'0'
+        }        
+      }
     }
   }
 })

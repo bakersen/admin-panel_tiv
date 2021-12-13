@@ -16,11 +16,16 @@ import Checkbox from '@material-ui/core/Checkbox';
 // import IconButton from '@material-ui/core/IconButton';
 // import Tooltip from '@material-ui/core/Tooltip';
 // import FilterListIcon from '@material-ui/icons/FilterList';
-import useFetch from '../helpers/useFetch'
+import useAPI from '../helpers/useAPI'
 import Moment from 'react-moment';
 import TextField from '@material-ui/core/TextField';
 import Delete from '../popups/Delete'
 import BulkDelete from '../popups/BulkDelete'
+import Drawer from '../drawer/Drawer'
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+import Loader from '../helpers/Loader'
+import Snackbar from '@material-ui/core/Snackbar';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -69,7 +74,7 @@ function EnhancedTableHead(props) {
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
+            inputProps={{ 'aria-label': '' }}
             size='small'
           />
         </TableCell>
@@ -114,6 +119,9 @@ const useToolbarStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(1),
   },
+  search: {
+    borderRadius: '30px',
+  },
   highlight:
     theme.palette.type === 'light'
       ? {
@@ -145,12 +153,20 @@ const EnhancedTableToolbar = (props) => {
       ) : (
         <TextField 
           id="outlined-search" 
-          placeholder="Search" 
+          placeholder="Search"
           type="search" 
           margin="dense" 
           size="small" 
           variant="outlined"
           onChange= {(e) => {setSearch(e.target.value) }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="end">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+            className: classes.search
+            }}
         />
       )}
 
@@ -196,7 +212,8 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [searchTerm, setSearch] = React.useState("")
-  const {items} = useFetch(`http://localhost:8000/events`); 
+  const {items, isLoading, error} = useAPI(`https://profiles-test.innovationvillage.co.ug/api/events`); 
+
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -249,7 +266,21 @@ export default function EnhancedTable() {
         return items
   })
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  //Notification After Deleting Item
+   
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+
+  const { vertical, horizontal, open } = state;
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+
+
 
   return (
     <div className={classes.root}>
@@ -259,6 +290,7 @@ export default function EnhancedTable() {
         setSearch = {setSearch}
         selected={selected} 
         />
+       
         <TableContainer>
           <Table
             className={classes.table}
@@ -274,17 +306,34 @@ export default function EnhancedTable() {
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
+            <div>
+                <Snackbar
+                  anchorOrigin={{ vertical, horizontal }}
+                  open={open}
+                  onClose={handleClose}
+                  message={error ? console.log("what the heck") : "Successfully Deleted"}
+                  key={vertical + horizontal}
+                  autoHideDuration={5000}
+                />
+              </div>
+              
             <TableBody>
+              {isLoading && (
+                  <TableRow>
+                <TableCell Colspan={6}>
+                      <Loader />
+                </TableCell>               
+              </TableRow>
+                )
+              }
+            
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .filter(value =>{
                         if (searchTerm ==="") {
                             return value;
                         }
-                        else if (value.title.toLowerCase().includes(searchTerm.toLowerCase()) 
-                        || value.author.firstName.toLowerCase().includes(searchTerm.toLowerCase())
-                        || value.author.lastName.toLowerCase().includes(searchTerm.toLowerCase())
-                        || value.dateCreated.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        else if (value.title.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return value;
                         }
                           return false;
@@ -294,6 +343,7 @@ export default function EnhancedTable() {
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
+
                     <TableRow
                       hover
                       role="checkbox"
@@ -311,25 +361,20 @@ export default function EnhancedTable() {
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.title} 
+                        <Drawer events={row}/>
                       </TableCell>
-                      <TableCell>{row.author.firstName}  {row.author.lastName}</TableCell>
+                      <TableCell>{row.createdBy}</TableCell>
                       <TableCell>
                         <Moment format="Do-MMM-YYYY">
                             {row.dateCreated}
                         </Moment>                        
                       </TableCell>
                       <TableCell>                        
-                        {isItemSelected ? "": <Delete id={row.id} /> }
+                        {!isItemSelected && <Delete setState={setState} id={row.id} /> }
                       </TableCell>
                     </TableRow>
                   );
                 })}
-              {emptyRows > 0 && (
-                <TableRow>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>
