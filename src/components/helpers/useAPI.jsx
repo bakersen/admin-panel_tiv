@@ -17,7 +17,7 @@ function useFetch(url) {
                 setLoading(false)                             
             })
             .catch((err)=> setError(err))
-    }, [url, items, isLoading]);
+    }, [url, items, isLoading, error]);
 
     const deleteItem = () => {
         axios.delete(url)
@@ -27,7 +27,6 @@ function useFetch(url) {
         })
         .catch((err)=> {
             setError(err.response.data.status)
-            console.log(err.response.data.status)
         })
     }
 

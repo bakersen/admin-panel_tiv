@@ -13,7 +13,7 @@ export default function AlertDialog(props) {
 
   const {id, setState} = props  
 
-  const {deleteItem} = useAPI(`https://profiles-test.innovationvillage.co.ug/api/events?id=${id}`);  
+  const {deleteItem, error } = useAPI(`https://profiles-test.innovationvillage.co.ug/api/events?id=${id}`);  
 
   const [open, setOpen] = React.useState(false);
 
@@ -26,9 +26,12 @@ export default function AlertDialog(props) {
   };
 
   const handleDelete = (newState) => {
-    deleteItem()
-    setState({ open: true, ...newState });
-    setOpen(false);
+     deleteItem()   
+    // setState({ open: true, ...newState });
+    // setOpen(false); 
+    setTimeout(()=>{
+       console.log(error)
+    }, 2000)
   };
 
   return (

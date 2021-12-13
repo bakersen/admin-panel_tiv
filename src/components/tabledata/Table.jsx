@@ -306,6 +306,27 @@ export default function EnhancedTable() {
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
+            {
+              error !== null ? (
+                 <Snackbar
+                  anchorOrigin={{ vertical, horizontal }}
+                  open={open}
+                  onClose={handleClose}
+                  message={`${error} Error. Failed to delete`}
+                  key={vertical + horizontal}
+                  autoHideDuration={5000}
+                />
+              ) : (
+                 <Snackbar
+                  anchorOrigin={{ vertical, horizontal }}
+                  open={open}
+                  onClose={handleClose}
+                  message={"Successfully Deleted"}
+                  key={vertical + horizontal}
+                  autoHideDuration={5000}
+                />
+              )
+            }
             <div>
                 <Snackbar
                   anchorOrigin={{ vertical, horizontal }}
@@ -315,7 +336,7 @@ export default function EnhancedTable() {
                   key={vertical + horizontal}
                   autoHideDuration={5000}
                 />
-              </div>
+            </div>
               
             <TableBody>
               {isLoading && (
