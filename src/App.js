@@ -12,13 +12,6 @@ const theme = createTheme({
     },
     secondary: {
       main: '#ff9015'
-    }, 
-    overrides: {
-      MuiOutlinedInput: {
-        inputMarginDense: {
-          padding:'0'
-        }        
-      }
     }
   }
 })

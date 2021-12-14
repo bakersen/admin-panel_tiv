@@ -307,7 +307,7 @@ export default function EnhancedTable() {
               rowCount={rows.length}
             />
             {
-              error !== null ? (
+              !error  ? (
                  <Snackbar
                   anchorOrigin={{ vertical, horizontal }}
                   open={open}
@@ -327,16 +327,7 @@ export default function EnhancedTable() {
                 />
               )
             }
-            <div>
-                <Snackbar
-                  anchorOrigin={{ vertical, horizontal }}
-                  open={open}
-                  onClose={handleClose}
-                  message={error ? console.log("what the heck") : "Successfully Deleted"}
-                  key={vertical + horizontal}
-                  autoHideDuration={5000}
-                />
-            </div>
+          
               
             <TableBody>
               {isLoading && (

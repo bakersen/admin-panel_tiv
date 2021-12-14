@@ -8,7 +8,7 @@ function useFetch(url) {
     const [items, setData] = React.useState([])
     const [isLoading, setLoading] = React.useState(true)
     const [error, setError] = React.useState(null)
-    const baseURL = url 
+    const baseURL = url
 
     React.useEffect(()=> {
         axios.get(url)
@@ -17,16 +17,16 @@ function useFetch(url) {
                 setLoading(false)                             
             })
             .catch((err)=> setError(err))
-    }, [url, items, isLoading, error]);
+    }, [url, items, isLoading]);
 
     const deleteItem = () => {
         axios.delete(url)
         .then((response)=> {
             setData(response.data)
-            setLoading(false) 
         })
         .catch((err)=> {
-            setError(err.response.data.status)
+            setError(err.response.status)
+            console.log(error)
         })
     }
 

@@ -74,7 +74,7 @@ export default function TemporaryDrawer({events}) {
       // onKeyDown={toggleDrawer(anchor, false)}
     >
 
-  <Grid container>
+  <Grid>
       <Paper className={classes.paper}>
          <Grid item xs={12} className={classes.toprow}>
           <MyAvatar name={events?.title}/>

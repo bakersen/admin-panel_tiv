@@ -6,6 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,10 +45,18 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: '#fff',
+    textTransform:'none'
+  },
+  paper: {
+    padding: theme.spacing(2),
+    color: 'black',
+    boxShadow:'none',
   },
 }));
 
-export default function SimpleTabs() {
+export default function SimpleTabs(props) {
+
+  const {events} = props
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -56,6 +65,7 @@ export default function SimpleTabs() {
   };
 
   return (
+    <React.Fragment>    
     <div className={classes.root}>
       <AppBar position="static" style={{backgroundColor:'#fff', boxShadow:'none'}}>
         <Tabs 
@@ -64,16 +74,57 @@ export default function SimpleTabs() {
         aria-label="simple tabs example"
         style={{color:'black', indicator:'blue'}}
         >
-          <Tab label="Event Info" {...a11yProps(0)} />
-          <Tab label="Events Description" {...a11yProps(1)} />
+          <Tab label="Event Info" {...a11yProps(0)} style={{textTransform:'none', fontSize:'18px', marginRight:'20px'}} />
+          <Tab label="Events Description" {...a11yProps(1)} style={{textTransform:'none', fontSize:'18px'}}/>
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        
+        <Grid container fluid spacing={1}>
+          <Grid item xs={6}>
+              <div>
+                <Typography style={{fontWeight:'700'}}>
+                    Location: 
+                </Typography>
+                <Typography>
+                    {events.location}
+                </Typography>
+              </div>
+          </Grid>
+          <Grid item xs={6}>
+             <div>
+                <Typography style={{fontWeight:'700'}}>
+                   Start Date: 
+                </Typography>
+                <Typography>
+                    {events.startDateTime}
+                </Typography>
+              </div>
+          </Grid>
+          <Grid item xs={6}>
+             <div>
+                <Typography style={{fontWeight:'700'}}>
+                   Posted By: 
+                </Typography>
+                <Typography>
+                    {events.createdBy}
+                </Typography>
+              </div>
+          </Grid>
+          <Grid item xs={6}>
+             <div>
+                <Typography style={{fontWeight:'700'}}>
+                   End Date: 
+                </Typography>
+                <Typography>
+                    {events.endDateTime}
+                </Typography>
+              </div>
+          </Grid>
+        </Grid>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-
+      <TabPanel value={value} index={1}>  
       </TabPanel>
     </div>
+   </React.Fragment>
   );
 }
