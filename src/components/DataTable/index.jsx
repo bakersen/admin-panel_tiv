@@ -26,6 +26,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import useFetch from '../helpers/useFetch';
 import Moment from 'react-moment';
+import TemporaryDrawer from '../Drawer/drawer';
 
 
 
@@ -126,6 +127,9 @@ const useToolbarStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(1),
   },
+  searchable: {
+    borderRadius: '30px',
+  },
   highlight:
     theme.palette.type === 'light'
       ? {
@@ -138,6 +142,7 @@ const useToolbarStyles = makeStyles((theme) => ({
         },
   title: {
     flex: '1 1 100%',
+    fontWeight: '700',
   },
 }));
 
@@ -146,11 +151,7 @@ const EnhancedTableToolbar = (props) => {
   const { numSelected } = props;
 
   return (
-    <Toolbar
-      className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0,
-      })}
-    >
+    <Toolbar>
       {numSelected > 0 ? (
         <Typography className={classes.details} color="inherit" variant="subtitle1" component="div">
           {numSelected} selected
@@ -206,8 +207,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTable() {
-  const {data} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts`);
+export default function EnhancedTable(toggleDrawer) {
+  const {data} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`);
+  
   const rows = data;
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -217,6 +219,13 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+
+  // function search(rows){
+  //   return rows.filter(row => row.email.toLowerCase().indexOf(q) > -1)
+  //   }
+
+
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -225,19 +234,19 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.details);
+      const newSelecteds = rows.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, details) => {
-    const selectedIndex = selected.indexOf(details);
+  const handleClick = (event, id) => {
+    const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, details);
+      newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -312,8 +321,9 @@ export default function EnhancedTable() {
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
                       </TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.details}
+                      
+                      <TableCell component="th" id={labelId} scope="row" padding="none" >
+                        <TemporaryDrawer row={row}/> 
                       </TableCell>
                       <TableCell align="right">{ `${row.author.firstname} ${row.author.lastname}`}</TableCell>
                       <TableCell align="right"> <Moment format="Do-MMM-YYYY">
@@ -328,11 +338,7 @@ export default function EnhancedTable() {
                     </TableRow>
                   );
                 })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
+             
             </TableBody>
           </Table>
       

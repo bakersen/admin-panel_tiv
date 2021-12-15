@@ -7,13 +7,13 @@ import {Searching, SearchIconWrapper, StyledInputBase} from  "../Searchbar/Searc
 //import DeletePopup from '../DeleteButton/DeleteButton';
 import useFetch from "../helpers/useFetch";
 import EnhancedTable from  "../DataTable/index";
-
+import TemporaryDrawer from '../Drawer/drawer';
 
 
 
 export default function Content() {
 
-   //const {data, q, setQ} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts`);
+//    const {data,} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts`);
 
    
 
@@ -38,9 +38,6 @@ export default function Content() {
     
     
    
-//    function search(rows){
-//     return rows.filter(row => row.email.toLowerCase().indexOf(q) > -1)
-//     }
 
 
 

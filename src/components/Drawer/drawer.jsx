@@ -1,39 +1,73 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
-import { makeStyles,createTheme} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import Avatar from '@material-ui/core/Avatar';
-import './temporarydrawer.css';
-import FullWidthTabs from '../tabs/FullWidthTabs';
+import {Grid, Typography, ButtonBase,Avatar, Divider,Paper } from '@material-ui/core';
+import Delete from '@material-ui/icons/Delete';
+import MyAvatar from "./avatar";
+import axios from "axios";
 
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    color: 'black',
+    boxShadow:'none',
+  },
   list: {
     width: 500,
   },
   fullList: {
     width: 'auto',
   },
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
+  link: {
+    '&:hover': {
+        'textDecoration':'underline',
+        'cursor':'pointer',
     },
+  },
+  toprow: {
+    display:'Flex',
+    alignItems: 'start',    
+  },
+  MuiTypography:{
+      h4:{
+        color:'black',
+        fontWeight:'700'
+      }
   },
 }));
 
-const theme = createTheme();
-  theme.typography.p={
-    fontSize: 8,
-  }
 
-
-export default function TemporaryDrawer({job}) {
+export default function TemporaryDrawer({row}) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
+  const [error, setError] = useState(null);
+  const [data,setData] = useState([]);
+
+  const url = `https://profiles-test.innovationvillage.co.ug/api/blog/comments?PostId= ${row.id}`;
+
+  useEffect(()=> {
+    axios.get(url)
+    
+        .then((response) => {
+            
+        setData(response.data.comments)
+      
+            
+            
+        })
+        .catch((err)=> setError(err))
+}, [url, data]);
+
+
+
+const [state, setState] = React.useState({
+    
     right: false,
   });
 
@@ -51,31 +85,74 @@ export default function TemporaryDrawer({job}) {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
-      // onClick={toggleDrawer(anchor, false)}
+      onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        <h3>
-        <Avatar >
-          {job.initials}
-        </Avatar>
-          <span>&nbsp;</span>
-          {job.jobTitle}
-        </h3>
-      </List>
-      <Divider />
-      <List>
-        <FullWidthTabs job={job} />
-      </List>
+     <Grid container>
+      <Paper className={classes.paper}>
+         <Grid item xs={12} className={classes.toprow}>
+          <MyAvatar name={`${row?.author.firstname} ${row?.author.lastname}`}/>
+          <div style={{paddingTop:'2%', marginBottom:'7%'}}>
+              <Typography component="div" variant="h4" style={{fontWeight:'700', marginBottom:'3%'}}>
+              {`${row?.author.firstname} ${row?.author.lastname}`}
+              </Typography>
+              <div style={{display:'Flex'}}>
+                  <Delete color="primary" /> Delete Event
+              </div>
+          </div>
+         </Grid>
+         
+      </Paper>
+  </Grid>
+
+        <Divider/>
+        <Grid container spacing={12}>
+         
+          <Grid item xs= {3} sm container>
+            <Grid >
+              <Grid>
+                {row.avatar}
+                <Typography variant="h5" gutterBottom style={{fontWeight:'700', margin:'20px'}}>
+                {row.details}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Divider/>
+        <Grid container spacing={12}>
+          <Grid item xs={3}>
+            <ButtonBase className={classes.image}>
+                <div className={classes.root}>
+                  <Avatar 
+                    alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large}  />
+                </div>
+            </ButtonBase>
+          </Grid>
+          <Grid item xs= {3} sm container>
+            <Grid >
+              <Grid>
+                <Typography variant="h4" gutterBottom>
+               { data.map((data, index)=>{
+  const commentsData = data.details
+  return(
+    //console.log(commentsData)
+      commentsData
+  )
+})}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
     </div>
   );
 
   return (
-    <div className={classes.root}>
-      {[ 'right'].map((anchor) => (
-        <React.Fragment key={job.id}>
-          
-          <Typography variant="p" role='button' onClick={toggleDrawer(anchor, true)} style={{textTransform: 'none'}}>{job.jobTitle} </Typography >
+    <div>
+      {['right'].map((anchor) => (
+        <React.Fragment key={row.id}>
+          <p onClick={toggleDrawer(anchor, true)} role='button'> {(!row.title)?row.details:row.title} </p>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>

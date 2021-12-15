@@ -20,12 +20,14 @@ useEffect(()=> {
         .then((response) => {
             
             setData(response.data.posts)
-        
-            setLoading(false)
+            
+            
             
         })
         .catch((err)=> setError(err))
-}, [url, data]);
+}, [url, data ]);
+
+
 
 
 
