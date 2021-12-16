@@ -27,7 +27,8 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import useFetch from '../helpers/useFetch';
 import Moment from 'react-moment';
 import TemporaryDrawer from '../Drawer/drawer';
-
+import Search from '@material-ui/icons/Search';
+import {Searching, SearchIconWrapper, StyledInputBase} from  "../Searchbar/Searchbar.styles";
 
 
 
@@ -149,9 +150,11 @@ const useToolbarStyles = makeStyles((theme) => ({
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
+  const {q, setQ} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`)
 
   return (
     <Toolbar>
+       
       {numSelected > 0 ? (
         <Typography className={classes.details} color="inherit" variant="subtitle1" component="div">
           {numSelected} selected
@@ -174,7 +177,17 @@ const EnhancedTableToolbar = (props) => {
             <FilterListIcon />
           </IconButton>
         </Tooltip>
+        
       )}
+      <Searching type ="text" value= {q} onChange={(e) => setQ(e.target.value)}>
+        <SearchIconWrapper>
+       <Search />
+      </SearchIconWrapper>
+        <StyledInputBase
+      placeholder="Search…"
+      inputProps={{ 'aria-label': 'search' }}
+         />
+        </Searching>
     </Toolbar>
   );
 };
@@ -208,9 +221,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EnhancedTable(toggleDrawer) {
-  const {data} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`);
+  const {data,q} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`);
   
-  const rows = data;
+  
+  const rows = data.filter(data => data.title.toLowerCase().indexOf(q) > -1) 
+
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('dateCreated');
@@ -218,12 +233,10 @@ export default function EnhancedTable(toggleDrawer) {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  
+  
 
-
-  // function search(rows){
-  //   return rows.filter(row => row.email.toLowerCase().indexOf(q) > -1)
-  //   }
-
+  
 
 
   const handleRequestSort = (event, property) => {
@@ -276,7 +289,7 @@ export default function EnhancedTable(toggleDrawer) {
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  
 
   return (
     <div className={classes.root}>
@@ -299,6 +312,7 @@ export default function EnhancedTable(toggleDrawer) {
               rowCount={rows.length}
             />
             <TableBody>
+             
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
@@ -352,10 +366,7 @@ export default function EnhancedTable(toggleDrawer) {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
+     
     </div>
   );
 }

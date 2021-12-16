@@ -3,7 +3,7 @@ import InputBase from '@mui/material/InputBase';
 
 export const Searching = styled('div')(({ theme }) => ({
     position: 'relative',
-    left : '820px',
+    left : '650px',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     '&:hover': {
