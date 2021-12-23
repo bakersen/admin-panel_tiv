@@ -50,7 +50,7 @@ export default function AlertDialog(props) {
   return (
     <div>
 
-      <Typography className={classes.bulkDelete} variant="h6" id="tableTitle" component="div" onClick={handleClickOpen}>
+      <Typography className={classes.bulkDelete} variant="p" id="tableTitle" component="div" onClick={handleClickOpen}>
           <Delete  /> Delete {selected.length > 1 ? "Events?" : "Event?"}
       </Typography>
       <Dialog

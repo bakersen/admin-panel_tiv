@@ -43,7 +43,7 @@ export default function AlertDialog(props) {
         <DialogTitle id="alert-dialog-title">{"Delete Event?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-           Are you sure you want to delete this event
+           Are you sure you want to delete this event 2 {undefined}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

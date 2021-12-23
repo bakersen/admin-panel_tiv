@@ -212,7 +212,7 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [searchTerm, setSearch] = React.useState("")
-  const {items, isLoading, error} = useAPI(`https://profiles-test.innovationvillage.co.ug/api/events`); 
+  const {items, isLoading, error} = useAPI(`http://localhost:8000/events`); 
 
 
   const handleRequestSort = (event, property) => {
@@ -339,9 +339,7 @@ export default function EnhancedTable() {
                 )
               }
             
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .filter(value =>{
+              {stableSort(rows, getComparator(order, orderBy)).filter(value =>{
                         if (searchTerm ==="") {
                             return value;
                         }
@@ -349,7 +347,7 @@ export default function EnhancedTable() {
                             return value;
                         }
                           return false;
-                    })
+                    }).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
