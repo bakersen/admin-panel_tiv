@@ -13,9 +13,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-// import IconButton from '@material-ui/core/IconButton';
-// import Tooltip from '@material-ui/core/Tooltip';
-// import FilterListIcon from '@material-ui/icons/FilterList';
 import useAPI from '../helpers/useAPI'
 import Moment from 'react-moment';
 import TextField from '@material-ui/core/TextField';
@@ -25,7 +22,9 @@ import Drawer from '../drawer/Drawer'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import Loader from '../helpers/Loader'
+import Refresh from '../helpers/Refresh'
 import Snackbar from '@material-ui/core/Snackbar';
+
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -202,9 +201,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function EnhancedTable() {
 
-  
+
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -212,7 +212,7 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [searchTerm, setSearch] = React.useState("")
-  const {items, isLoading, error} = useAPI(`http://localhost:8000/events`); 
+  const {items, isLoading, isError} = useAPI(`http://localhost/8000/events`); 
 
 
   const handleRequestSort = (event, property) => {
@@ -307,12 +307,12 @@ export default function EnhancedTable() {
               rowCount={rows.length}
             />
             {
-              !error  ? (
+              !isError  ? (
                  <Snackbar
                   anchorOrigin={{ vertical, horizontal }}
                   open={open}
                   onClose={handleClose}
-                  message={`${error} Error. Failed to delete`}
+                  message={`${isError} Error. Failed to delete`}
                   key={vertical + horizontal}
                   autoHideDuration={5000}
                 />
@@ -332,14 +332,22 @@ export default function EnhancedTable() {
             <TableBody>
               {isLoading && (
                   <TableRow>
-                <TableCell Colspan={6}>
-                      <Loader />
-                </TableCell>               
-              </TableRow>
+                    <TableCell Colspan={6}>
+                          <Loader />
+                    </TableCell>               
+                  </TableRow>
                 )
               }
             
-              {stableSort(rows, getComparator(order, orderBy)).filter(value =>{
+              {
+                isError ? (
+                  <TableRow>
+                    <TableCell Colspan={6}>
+                          <Refresh name="events"/>
+                    </TableCell>               
+                  </TableRow>
+                ) : (
+                  stableSort(rows, getComparator(order, orderBy)).filter(value =>{
                         if (searchTerm ==="") {
                             return value;
                         }
@@ -384,7 +392,9 @@ export default function EnhancedTable() {
                       </TableCell>
                     </TableRow>
                   );
-                })}
+                })
+                )
+              }
             </TableBody>
           </Table>
         </TableContainer>

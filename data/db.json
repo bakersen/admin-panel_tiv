@@ -1,10 +1,6 @@
 {
   "events": [
     {
-      "id": "1",
-      "startDateTime": "2022-10-07T03:16:00.000Z"
-    },
-    {
       "title": "DevOps Conference",
       "dateCreated": "2021-12-06T08:39:40.680Z",
       "startDateTime": "2022-01-07T08:15:00.000Z",
@@ -28,7 +24,7 @@
     {
       "title": "Leveraging Community for a better Tech Industry",
       "dateCreated": "2021-12-06T03:50:09.523Z",
-      "startDateTime": "2022-02-23T06:39:00.000Z",
+      "startDateTime": "2022-02-24T09:00:00.000Z",
       "endDateTime": "2022-02-27T10:59:47.489Z",
       "contact": {
         "phone": [
