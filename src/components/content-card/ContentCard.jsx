@@ -8,12 +8,9 @@ import EnhancedTable from  "../DataTable/index";
 import TemporaryDrawer from '../Drawer/drawer';
 
 
-
 export default function Content() {
+   // const {q,data} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`);
 
-//    const {data,} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts`);
-
-   
 
     
     //const {handleClickOpen} = DeletePopup();
@@ -44,9 +41,9 @@ return(
         
          <Card>
             <Card.Body>
-                       
                
-                <EnhancedTable/>
+               
+                <EnhancedTable />
             {/* < DeletePopup  variant="contained"  /> */}
           
             </Card.Body>

@@ -9,7 +9,7 @@ const useFetch = (url)=>{
 
 const [data, setData] = useState([]);
 const [loading, setLoading] = useState(true)
-const [q , setQ] = useState("");
+
 const [error, setError] = useState(null)
     
 
@@ -41,7 +41,7 @@ useEffect(()=> {
     }
 
 
-return {data, setData, loading, setLoading, q, setQ, deleteItem}
+return {data, setData, loading, setLoading, deleteItem}
 
 
 }

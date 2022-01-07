@@ -1,8 +1,7 @@
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+
 //import React from 'react';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -19,17 +18,17 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import TextField from '@material-ui/core/TextField';
+//import Loader from '../helpers/Loader'
+import Snackbar from '@material-ui/core/Snackbar';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import useFetch from '../helpers/useFetch';
 import Moment from 'react-moment';
 import TemporaryDrawer from '../Drawer/drawer';
-import Search from '@material-ui/icons/Search';
-import {Searching, SearchIconWrapper, StyledInputBase} from  "../Searchbar/Searchbar.styles";
-
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+//import BulkDelete from '../popups/BulkDelete'
 
 
 
@@ -77,7 +76,7 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead>
+    <TableHead style={{fontSize:'16px'}}>
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
@@ -90,7 +89,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align= {'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -149,45 +148,44 @@ const useToolbarStyles = makeStyles((theme) => ({
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
-  const { numSelected } = props;
-  const {q, setQ} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`)
+  const { numSelected, selected, setQ } = props;
+  //const {q,setQ} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`);
+  
+
+
 
   return (
-    <Toolbar>
-       
-      {numSelected > 0 ? (
-        <Typography className={classes.details} color="inherit" variant="subtitle1" component="div">
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Typography className={classes.details} variant="h6" id="tableTitle" component="div">
+    <Toolbar style={{paddingTop:'20px'}}>
+      
+        <Typography className={classes.title} variant="h5" id="tableTitle" component="div">
           Recent Posts
         </Typography>
-      )}
-
+      
+{/* 
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+        <BulkDelete selected={selected} />
       ) : (
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
+         <TextField 
+          id="outlined-search" 
+          placeholder="Search"
+          type="search" 
+          margin="dense" 
+          size="small" 
+          variant="outlined"
+          onChange= {(e) => {setQ(e.target.value) }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="end">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+            className: classes.search
+          }}
+        />
         
       )}
-      <Searching type ="text" value= {q} onChange={(e) => setQ(e.target.value)}>
-        <SearchIconWrapper>
-       <Search />
-      </SearchIconWrapper>
-        <StyledInputBase
-      placeholder="Search…"
-      inputProps={{ 'aria-label': 'search' }}
-         />
-        </Searching>
+       */}
+        
     </Toolbar>
   );
 };
@@ -205,7 +203,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   table: {
-    minWidth: 500,
+    minWidth: 750,
   },
   visuallyHidden: {
     border: 0,
@@ -220,30 +218,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTable(toggleDrawer) {
-  const {data,q} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`);
-  
-  
-  const rows = data.filter(data => data.title.toLowerCase().indexOf(q) > -1) 
-
+export default function EnhancedTable() {
+  const {data} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`);
+  const [q,setQ] = React.useState("");
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('dateCreated');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   
-  
+      
+  // const rows = data.filter((data)=>{
+  //   return data
+  // })
+ 
+  const rows = data;
 
-  
 
-
-  const handleRequestSort = (event, property) => {
+  function handleRequestSort(event, property) {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-  };
+  }
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -283,9 +280,7 @@ export default function EnhancedTable(toggleDrawer) {
     setPage(0);
   };
 
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked);
-  };
+  
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
@@ -299,7 +294,7 @@ export default function EnhancedTable(toggleDrawer) {
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
+            //size={dense ? 'small' : 'medium'}
             aria-label="enhanced table"
           >
             <EnhancedTableHead
@@ -315,6 +310,7 @@ export default function EnhancedTable(toggleDrawer) {
              
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.details);
                   const labelId = `enhanced-table-checkbox-${index}`;
