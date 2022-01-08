@@ -1,24 +1,12 @@
-import { Container, Row} from 'react-bootstrap'
-import Topbar from './components/topbar/Topbar'
-import Main from './components/main-area/Main'
-import Sidebar from './components/sidebar/Sidebar'
-import './App.css'
-import {createTheme, ThemeProvider } from '@material-ui/core'
+/* eslint-disable */
 
-const theme = createTheme({
-  palette:{
-    primary: {
-      main: '#ff9015'
-    },
-    secondary: {
-      main: '#ff9015'
-    }
-  }
-})
+import { Container, Row, Col } from 'react-bootstrap';
+import Sidebar from './components/Sidebar/Sidebar';
+import Topbar from './components/Topbar/Topbar';
+import Main from './components/Main-area/Main';
 
 function App() {
 	return (
-  <ThemeProvider theme={theme}>
   <div>
     <Container fluid>
        <Row>
@@ -32,8 +20,7 @@ function App() {
       </Row>      
     </Container>			
   </div>
-  </ThemeProvider> 
 	)
 }
 
-export default App
+export default App;
