@@ -26,6 +26,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import Loader from '../helpers/Loader'
 import Snackbar from '@material-ui/core/Snackbar';
+import { Outlet } from 'react-router-dom';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -398,6 +399,7 @@ export default function EnhancedTable() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+      <Outlet/>
     </div>
   );
 }

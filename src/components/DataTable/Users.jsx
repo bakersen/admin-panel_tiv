@@ -16,8 +16,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import useFetch from '../fetch/useFetch'
 import './users.css'
 import { Row, Col, Container} from 'react-bootstrap'
-import DeleteDialogue from './DeleteDialogue'
-import { orange } from "@mui/material/colors";
+//import DeleteDialogue from './DeleteDialogue'
+//import { orange } from "@mui/material/colors";
 import Drawer from "../drawer/Drawer";
 
 
@@ -243,7 +243,7 @@ const useStyles = makeStyles(theme => ({
     cursor:'pointer',
     padding:'0',
     "&:hover": {
-        color: orange,
+        color: '',
     }
 },
 selectedRow: {        
@@ -395,7 +395,7 @@ export default function App() {
                       <TableCell>{row.dateCreated} </TableCell>
                       <TableCell>
                       
-                        <DeleteDialogue id={row.userId} />
+                        {/* <DeleteDialogue id={row.userId} /> */}
                       
                       
                       </TableCell>

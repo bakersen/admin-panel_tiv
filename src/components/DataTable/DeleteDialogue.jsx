@@ -1,7 +1,7 @@
 import * as React from 'react';
 import useFetch from '../fetch/useFetch.jsx'
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
+import Button from '@material-ui/material/Button';
+import Dialog from '@material-ui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Delete from "@material-ui/icons/Delete";

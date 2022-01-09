@@ -25,7 +25,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import useFetch from '../helpers/useFetch';
 import Moment from 'react-moment';
-import TemporaryDrawer from '../Drawer/drawer';
+import TemporaryDrawer from '../drawer/Drawer';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 //import BulkDelete from '../popups/BulkDelete'
