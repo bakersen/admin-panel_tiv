@@ -1,3 +1,65 @@
+/* .left-panel {
+    background-color: #1C1C1C;
+    padding: 30px 20px 0px 30px;
+    height: 100%;
+    position: sticky;
+}
+
+img {
+    max-width:60%;
+}
+
+h4.admin-text {
+    text-align: center;
+    color:white;
+    margin-top:20px;
+    font-size: 18px;
+    font-weight:700;
+    margin-bottom: 20px;
+}
+
+.nav {
+    margin-left: 8%;
+    display: block;
+}
+
+.nav-link {
+    color:#fff !important;
+    margin-top: 12px;
+    display: flex;
+}
+
+.nav-link > span {
+    font-size:18px;
+    font-weight: 400;
+    margin-left:10px;
+}
+
+
+
+.nav-link:focus, .nav-link:hover {
+    color: #ff9015;
+    background: #161616;
+    border-radius: 5px;
+}
+
+.w-25 {
+    width:18% !important;
+}
+
+.w-75 {
+    width:82% !important;
+}
+
+.jobs{
+    color:#ff9015;
+}
+
+.jobs-icon{
+    color:#ff9015;
+} */
+
+
 .left-panel {
     background-color: #1C1C1C;
     padding: 30px 20px 0px 0px;
@@ -40,11 +102,4 @@ h4.admin-text {
     color: #ff9015;
     background: #161616;
     border-radius: 5px;
-}
-.w-25 {
-    width:20% !important;
-}
-
-.w-75 {
-    width:80% !important;
 }

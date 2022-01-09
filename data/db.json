@@ -1,281 +1,121 @@
 {
-  "events": [
+  "jobs": [
     {
-      "id": "1",
-      "startDateTime": "2022-10-07T03:16:00.000Z"
+      "id": 2,
+      "company": "Facebook",
+      "jobTitle": "Legal Assistant",
+      "jobDescription": "sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas",
+      "deadline": "10/12/2020",
+      "date": "22/03/2021",
+      "jobCatergory": "erat fermentum justo nec condimentum",
+      "jobType": "consectetuer adipiscing elit proin interdum",
+      "salaryRange": "$0.10",
+      "jobPosting": "12/11/2020",
+      "requirements": "aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat"
     },
     {
-      "title": "DevOps Conference",
-      "dateCreated": "2021-12-06T08:39:40.680Z",
-      "startDateTime": "2022-01-07T08:15:00.000Z",
-      "endDateTime": "2022-01-10T08:37:44.289Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Ut et cupiditate placeat. Et eaque quo sint rem quia. Autem autem nihil. Et et quia nihil nemo eligendi magnam.",
-      "author": {
-        "firstName": "Stanton",
-        "lastName": "Reilly"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "2"
+      "id": 3,
+      "company": "Innovation village",
+      "jobTitle": "Accountant IV",
+      "jobDescription": "eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices",
+      "deadline": "26/02/2021",
+      "date": "27/08/2021",
+      "jobCatergory": "nisi at nibh in hac",
+      "jobType": "ante ipsum primis in faucibus",
+      "salaryRange": "$1.26",
+      "jobPosting": "13/10/2021",
+      "requirements": "in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar"
     },
     {
-      "title": "Leveraging Community for a better Tech Industry",
-      "dateCreated": "2021-12-06T03:50:09.523Z",
-      "startDateTime": "2022-02-23T06:39:00.000Z",
-      "endDateTime": "2022-02-27T10:59:47.489Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Temporibus magnam aliquam. Itaque impedit veniam reprehenderit. Corporis blanditiis tempora.",
-      "author": {
-        "firstName": "Alverta",
-        "lastName": "Huel"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "3"
+      "id": 4,
+      "company": "Blogtags",
+      "jobTitle": "VP Accounting",
+      "jobDescription": "fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec",
+      "deadline": "03/11/2020",
+      "date": "07/04/2021",
+      "jobCatergory": "fusce congue diam id ornare",
+      "jobType": "sapien a libero nam dui",
+      "salaryRange": "$6.13",
+      "jobPosting": "30/07/2021",
+      "requirements": "erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam"
     },
     {
-      "title": "Email reminder test event",
-      "dateCreated": "2021-12-06T10:23:09.103Z",
-      "startDateTime": "2022-06-14T20:51:45.360Z",
-      "endDateTime": "2022-09-24T03:34:57.590Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Ex iusto eos. Eum consectetur veniam deserunt et illo sunt omnis ipsam. Soluta ex expedita maxime natus ab et qui saepe numquam.",
-      "author": {
-        "firstName": "Luis",
-        "lastName": "Bernier"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "4"
+      "id": 5,
+      "company": "Browsebug",
+      "jobTitle": "Statistician I",
+      "jobDescription": "mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst",
+      "deadline": "01/12/2020",
+      "date": "14/01/2021",
+      "jobCatergory": "felis fusce posuere felis sed",
+      "jobType": "ut at dolor quis odio",
+      "salaryRange": "$6.00",
+      "jobPosting": "06/10/2021",
+      "requirements": "nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia"
     },
     {
-      "title": "Women In Tech",
-      "dateCreated": "2021-12-06T12:35:00.047Z",
-      "startDateTime": "2022-02-28T16:13:00.000Z",
-      "endDateTime": "2022-10-14T06:59:13.643Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Nam illum aliquam ut fuga. Aliquam est sunt aut. Non eligendi debitis impedit quae qui ipsa eum. Culpa voluptate dolor corporis dolorum nulla consectetur. Non quae aut qui non quo quasi sed consequuntur vel. Harum quia aut voluptatem unde deleniti.",
-      "author": {
-        "firstName": "Billy",
-        "lastName": "Mosciski"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "5"
+      "id": 6,
+      "company": "Feedfire",
+      "jobTitle": "VP Product Management",
+      "jobDescription": "pretium quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum",
+      "deadline": "04/01/2021",
+      "date": "14/08/2021",
+      "jobCatergory": "vel nulla eget eros elementum",
+      "jobType": "sit amet justo morbi ut",
+      "salaryRange": "$0.08",
+      "jobPosting": "03/06/2021",
+      "requirements": "luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor"
     },
     {
-      "title": "Startups Hup: Your start Now",
-      "dateCreated": "2021-12-05T16:23:07.766Z",
-      "startDateTime": "2022-10-01T17:44:24.415Z",
-      "endDateTime": "2022-09-28T01:31:58.967Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Nihil totam saepe dolor quas molestiae voluptas qui. Rerum quia quam. Quos beatae velit dignissimos facilis ipsum. Voluptas et alias rem itaque. Et vitae rerum aperiam consequatur maiores officiis harum.",
-      "author": {
-        "firstName": "Kurtis",
-        "lastName": "Macejkovic"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "6"
+      "id": 7,
+      "company": "Edgewire",
+      "jobTitle": "Quality Control Specialist",
+      "jobDescription": "eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque",
+      "deadline": "22/12/2020",
+      "date": "30/05/2021",
+      "jobCatergory": "nulla elit ac nulla sed",
+      "jobType": "morbi sem mauris laoreet ut",
+      "salaryRange": "$5.29",
+      "jobPosting": "27/04/2021",
+      "requirements": "morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere"
     },
     {
-      "title": "Microsoft Teams Testing and Learning",
-      "dateCreated": "2021-12-05T16:12:38.953Z",
-      "startDateTime": "2022-02-17T13:31:00.877Z",
-      "endDateTime": "2022-11-03T02:46:01.825Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Molestias voluptas aut voluptatum consequatur libero iure nostrum cum. Vel iusto qui officia omnis esse vero voluptatem. Ducimus consequatur blanditiis. Ut incidunt et atque occaecati doloribus beatae. Quae molestiae sit ut qui similique.",
-      "author": {
-        "firstName": "Trey",
-        "lastName": "Hoeger"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "7"
+      "id": 8,
+      "company": "Mydeo",
+      "jobTitle": "Account Executive",
+      "jobDescription": "sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus",
+      "deadline": "28/08/2021",
+      "date": "14/01/2021",
+      "jobCatergory": "consectetuer eget rutrum at lorem",
+      "jobType": "eros suspendisse accumsan tortor quis",
+      "salaryRange": "$8.43",
+      "jobPosting": "15/05/2021",
+      "requirements": "faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel"
     },
     {
-      "title": "My Village Infosession",
-      "dateCreated": "2021-12-06T12:34:43.076Z",
-      "startDateTime": "2022-07-23T14:34:00.047Z",
-      "endDateTime": "2022-04-09T11:30:54.652Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Et cupiditate architecto sed vero amet ullam qui eum est. Neque neque maiores eaque fugiat temporibus tempore ut optio. Consequatur praesentium temporibus consequatur corrupti vitae enim aut placeat. Ea pariatur officia at qui vel. Et et sequi sunt quisquam et autem. Natus ipsum et neque cum molestiae repudiandae a esse quia.",
-      "author": {
-        "firstName": "Ayana",
-        "lastName": "Daniel"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "8"
+      "id": 9,
+      "company": "Ntags",
+      "jobTitle": "Actuary",
+      "jobDescription": "suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris",
+      "deadline": "10/08/2021",
+      "date": "09/08/2021",
+      "jobCatergory": "pellentesque ultrices phasellus id sapien",
+      "jobType": "neque aenean auctor gravida sem",
+      "salaryRange": "$4.32",
+      "jobPosting": "01/12/2020",
+      "requirements": "risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo"
     },
     {
-      "title": "Tukole Product Launch",
-      "dateCreated": "2021-12-07T08:31:07.635Z",
-      "startDateTime": "2022-07-01T15:56:23.643Z",
-      "endDateTime": "2022-07-14T04:14:09.276Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Voluptatem hic saepe fugiat. Autem dolorem ipsa autem inventore corporis cupiditate commodi architecto earum. Placeat beatae eius voluptates qui qui expedita corporis libero. Quae est eius rerum maiores nihil nesciunt. Consectetur sit mollitia.",
-      "author": {
-        "firstName": "Hailey",
-        "lastName": "Bailey"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "9"
-    },
-    {
-      "title": "Microfix Test Event",
-      "dateCreated": "2021-12-07T23:47:01.344Z",
-      "startDateTime": "2022-01-26T00:11:32.782Z",
-      "endDateTime": "2022-06-13T23:55:55.128Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Exercitationem est quam. Autem expedita est culpa adipisci eaque eaque illum et. Id corrupti tempora ut cumque esse alias voluptas exercitationem.",
-      "author": {
-        "firstName": "Carol",
-        "lastName": "Homenick"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "10"
-    },
-    {
-      "title": "Kampala Rolex Festival, Tech & Food",
-      "dateCreated": "2021-12-07T07:04:01.602Z",
-      "startDateTime": "2022-01-25T19:51:33.159Z",
-      "endDateTime": "2022-07-22T12:07:57.977Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Tempora numquam et atque nisi. Fugiat ab et et voluptatem quaerat maiores amet qui. Fugiat error libero ut praesentium molestias. Deserunt quod est molestiae debitis aspernatur molestias velit qui. Voluptatem sit quas optio reiciendis. Id dolor quam vitae enim.",
-      "author": {
-        "firstName": "Abdullah",
-        "lastName": "Prohaska"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "11"
-    },
-    {
-      "title": "Kampala Innovation Week",
-      "dateCreated": "2021-12-07T10:55:48.725Z",
-      "startDateTime": "2022-08-13T20:24:47.379Z",
-      "endDateTime": "2022-07-04T10:13:35.663Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Et distinctio pariatur odio repellendus ratione accusantium aut libero. Non labore excepturi praesentium ad odit facere. In ratione voluptate cupiditate excepturi quod.",
-      "author": {
-        "firstName": "Prudence",
-        "lastName": "Jaskolski"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "12"
-    },
-    {
-      "title": "Refactory Tech Knot",
-      "dateCreated": "2021-12-07T23:02:30.002Z",
-      "startDateTime": "2022-01-02T04:58:58.049Z",
-      "endDateTime": "2022-08-02T00:44:19.598Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Laboriosam aut ut eaque. Eveniet et exercitationem tenetur omnis rem. Quam molestiae quia repellendus et enim et. Nulla voluptatum vel quos.",
-      "author": {
-        "firstName": "Eliseo",
-        "lastName": "Mann"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "13"
-    },
-    {
-      "title": "World Conference on Technology & Enginerring sciences",
-      "dateCreated": "2021-12-07T16:09:38.453Z",
-      "startDateTime": "2022-09-16T19:36:52.697Z",
-      "endDateTime": "2022-02-26T22:38:16.108Z",
-      "contact": {
-        "phone": [
-          "$phoneNumber",
-          "$phoneNumber"
-        ]
-      },
-      "eventDesc": "Nesciunt ab commodi voluptatem dolores nulla. Aliquam dignissimos dignissimos. Et iusto qui blanditiis voluptatibus repellendus pariatur. Aut numquam placeat non eos animi ducimus aspernatur sed. Sed tempore asperiores inventore corporis et.",
-      "author": {
-        "firstName": "Gisselle",
-        "lastName": "Blanda"
-      },
-      "location": "Zoom",
-      "meetingType": "online",
-      "image": "$imageUrl",
-      "id": "14"
+      "id": 10,
+      "company": "Blogspan",
+      "jobTitle": "Associate Professor",
+      "jobDescription": "platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est",
+      "deadline": "08/11/2020",
+      "date": "12/07/2021",
+      "jobCatergory": "sit amet sem fusce consequat",
+      "jobType": "imperdiet nullam orci pede venenatis",
+      "salaryRange": "$6.60",
+      "jobPosting": "20/08/2021",
+      "requirements": "maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam"
     }
   ]
 }

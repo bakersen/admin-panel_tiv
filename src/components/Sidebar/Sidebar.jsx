@@ -1,9 +1,9 @@
 import React from 'react';
-import Logo from './my-village-logo-01.svg'
+import Logo from './my-village-logo.svg'
 import './sidebar.css'
 import {Container, Row, Col, Nav } from 'react-bootstrap'
 import {Home, People, LibraryBooks, Work, Event, LocalFlorist} from '@material-ui/icons';
-import { Link} from 'react-router-dom';
+
 export default function Sidebar() {
   return (
   <div className="left-panel">
@@ -16,24 +16,17 @@ export default function Sidebar() {
         </Row>
         <Row>
           <Col>
-            <Nav className='nav'>
-              <Link 
-              to={'/home'} className='nav-link'><Home/><span>Dashboard</span></Link>
-               <Link 
-               to={'/users'} className='nav-link'><People/><span>Members</span></Link>
-               <Link
-               to={'/startups'} className='nav-link'><LocalFlorist/><span>Start ups</span></Link> 
-               <Link
-               to={'/posts'} className='nav-link'><LibraryBooks/><span>Posts</span></Link>
-               <Link
-               to={'/jobs'} className='nav-link'><Work/><span>Jobs</span></Link> 
-               <Link
-               to={'/'} className='nav-link'><Event/><span>Events</span></Link> |{" "}
+            <Nav>
+              <Nav.Link><Home/><span>Dashboard</span></Nav.Link>
+               <Nav.Link><People/><span>Members</span></Nav.Link>
+               <Nav.Link><LocalFlorist/><span>Start ups</span></Nav.Link> 
+               <Nav.Link><LibraryBooks/><span>Posts</span></Nav.Link>
+               <Nav.Link><Work/><span>Jobs</span></Nav.Link> 
+               <Nav.Link><Event/><span>Events</span></Nav.Link> 
             </Nav>
           </Col>
         </Row>
       </Container>
-      
   </div>
   )
 }

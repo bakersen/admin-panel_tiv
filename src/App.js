@@ -1,13 +1,45 @@
-import Topbar from './components/Topbar/Top'
-import Sidebar from './components/Sidebar/Sidebar'
-import { Container, Row } from 'react-bootstrap'
-import {createTheme, ThemeProvider} from '@material-ui/core'
-import  Events from './components/DataTable/Table';
-import {Card} from 'react-bootstrap';
-import  Posts from  "./components/DataTable/index";
-import './App.css';
-import Users  from "./components/DataTable/Users";
-import { BrowserRouter,Routes, Route } from 'react-router-dom';
+// import React from 'react';
+// import './App.css';
+// import {Container, Row} from 'react-bootstrap'
+// import Navbar from './components/navbar/Navbar';
+// import Sidebar from './components/sidebar/Sidebar';
+// import Main from './components/main/Main';
+
+
+
+// function App() {
+  
+ 
+//   return (
+//    <React.Fragment>
+//       <Container fluid>
+//         <Row>
+//         <div className="w-25 p-0">
+//             <Sidebar />
+//         </div>
+//         <div className="w-75 p-0">
+//             <Container fluid>
+//                 <Navbar />
+//                 <Main/>
+//             </Container>
+//           </div>
+//         </Row>
+//       </Container>
+//    </React.Fragment>
+//   );
+// }
+
+// export default App;
+
+
+
+
+import { Container, Row} from 'react-bootstrap'
+import Sidebar from './components/sidebar/Sidebar'
+import Topbar from './components/navbar/Navbar'
+import Main from './components/main-area/Main'
+import './App.css'
+import {createTheme, ThemeProvider } from '@material-ui/core'
 
 const theme = createTheme({
   palette:{
@@ -18,52 +50,34 @@ const theme = createTheme({
       main: '#ff9015'
     }, 
     overrides: {
-      MuiTableCell: {
-        textAlign:'left'
-      },
+      MuiOutlinedInput: {
+        inputMarginDense: {
+          padding:'0'
+        }        
+      }
     }
   }
 })
 
 
-
-
-
-
 function App() {
-  
-
-  return(
-    <BrowserRouter>
-<ThemeProvider theme={theme} >
-    <div>
-      <Container fluid>
-        <Row>
-          <div className = "w-25 p-0">
-            <Sidebar />
-          </div>
-          <div className = "w-75 p-0">
-            <Topbar />
-            
-  <Routes>
-    <Route path="/" element={<Events />}/>
-    <Route path="users" element={<Users />}/>
-    <Route path="posts" element={<Card>
-        <Card.Body>
-        <Posts />
-        </Card.Body>
-        </Card>
-    }/>
-         </Routes>
-          </div>
-        </Row>
-      </Container>
-    </div>
+	return (
+    <ThemeProvider theme={theme}>
+      <div>
+        <Container fluid>
+          <Row>
+            <div className="w-25 p-0">
+                <Sidebar />
+            </div>
+            <div className="w-75 p-0">
+              <Topbar />
+              <Main />
+            </div>
+          </Row>      
+        </Container>			
+      </div>
     </ThemeProvider>
-   
-
-</BrowserRouter>
-    
-  )
+	)
 }
+
 export default App

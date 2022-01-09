@@ -1,12 +1,4 @@
-
-.w-25 {
-    width:18% !important;
-}
-
-.w-75 {
-    width:82% !important;
-}
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -43,20 +35,13 @@
   to {
     transform: rotate(360deg);
   }
-}
-.card {
-  border:0;
-  border-radius:10px;
-  height: 1000px;
-  
+} */
+
+
+.w-25 {
+  width:18% !important;
 }
 
-.userListsHide{
- border: none;
-  border-radius: 10px;
-  padding: 5px 10px;
-  background-color: rgb(240, 113, 10);
-  height: 70%;
-  width: 30%; 
-  
+.w-75 {
+  width:82% !important;
 }

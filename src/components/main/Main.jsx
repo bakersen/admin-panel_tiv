@@ -1,8 +1,7 @@
 import React from 'react'
 import './main.css';
 import {Container, Row, Col} from 'react-bootstrap'
-import EnhancedTable from './table';
-
+import Content from './ContentCard';
 
 
 export default function Main() {
@@ -10,7 +9,7 @@ export default function Main() {
         <Container className="main-area">
             <Row>
                 <Col className="box" md={12}>
-                   <EnhancedTable /> 
+                    <Content/>
                 </Col>
             </Row>
         </Container>
