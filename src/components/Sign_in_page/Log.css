@@ -1,0 +1,64 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  position: absolute;
+  width: 189px;
+  height: 120px;
+  padding-bottom: 30%;
+  margin: auto;
+
+}
+
+
+
+.App-header {
+  background-color: #1D1C1C;;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.login{
+  position: absolute;
+  margin-top: 120px;
+width: 190px;
+height: 50px;
+left: calc(50% - 190px/2 - 5px);
+top: calc(50% - 50px/2 - 60px);
+background: #FF9015;
+opacity: 0.9;
+border-radius: 5px;
+}
+.App-link {
+  color: #61dafb;
+}
+
+.p{
+ font-family: Roboto; 
+ font-style: normal;
+ font-weight: normal;
+font-size: 28px;
+line-height: 33px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+}
+
+.h3{
+font-family: Roboto;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+align-items: center;
+text-align: center;
+
+color: #FDF8F8;
+
+}
