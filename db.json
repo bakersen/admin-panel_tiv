@@ -1,0 +1,32 @@
+{
+  "startups": [
+    {
+      
+      "startupid": "1",
+          "startupname": "mt startup",
+          "ownersname": "Kanaar",
+          "email": "applboss@gmail.com",
+          "datecreated": "24th october 2012"
+        },
+        {
+          "startupid": "2",
+          "startupname": "Benaco innovations",
+          "ownersname": "Kanaar",
+          "email": "applboss@gmail.com",
+          "datecreated": "11th october 2030"
+        },
+        {
+          "startupid": "3",
+          "startupname": "innovations village",
+          "ownersname": "Kanaar",
+          "email": "applboss@gmail.com",
+          "datecreated": "25th october 2015"
+        },{
+          "startupid": "4",
+          "startupname": "kata innovations",
+          "ownersname": "Kanaar",
+          "email": "applboss@gmail.com",
+          "datecreated": "28th october 2022"
+    }
+  ]
+}

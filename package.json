@@ -1,0 +1,19 @@
+{
+  "name": "drawer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "middleware.js",
+  "scripts": {
+    "server": "json-server --watch db.json --port 5000 --middlewares ./middleware.js",
+    "drawerr": "npm start --prefix drawerr",
+    "dev": "concurrently \"npm run server\" \"npm run drawerr\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.4.0",
+    "json-server": "^0.17.0",
+    "react-moment": "^1.1.1"
+  }
+}
