@@ -195,7 +195,6 @@ const useStyles = makeStyles((theme) => ({
     margin: -1,
     overflow: 'hidden',
     padding: 0,
-    position: 'absolute',
     top: 20,
     width: 1,
   },
