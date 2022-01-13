@@ -1,20 +1,9 @@
-#Feature For Listing Posts
+# Background: 
 
-## As an administrator, I want to see the list of all events on MyVillage.
+My Village is a platform intended to connect all players in the entrepreneurial ecosystem. The platform has the following modules: startups for business entity registration, community that is a collection of all users that have sign-up to the platform who are sub categorized into developers and freelancers. The platform also provides a place for the members to post job adverts and upcoming events and a feed to express themselves in form of feed posts. Currently a user is able to register onto the platform, and interact with content such as feed posts, event and job posts and also interact with other users on the platform. Additionally, a user able to profile their business in the startup section.
 
-### Description 
+## Major Functionalities:
 
-There should be a component that fetches the posts and lists them.
-The details of the items in the list will be accessed using right-hand drawer when a given list item is clicked.
+* Content Management: This will involve creation of a user interface that will enable an administrator to modify or remove content from any parts of the platform i.e. activity feed, Jobs, Events, freelancer projects.
 
-The user should be able to do the following;
-*Delete an item from the list
-*Edit the title and events date
-*Search within the list
-
-
-### Acceptance criteria:
-
-Given the admin is logged in when they select an event in the navigation bar, then they are taken to a page with a list of all events on the MyVillage platform.
-These will be listed with the most recent on top.
-The list should display a maximum of 50 posts per loading/page
+* Access control This will give the administrator the rights to manage users by blocking, deleting, suspending users who violate the platforms terms and conditions.
