@@ -1,3 +1,4 @@
+
 .w-25 {
     width:18% !important;
 }
@@ -5,3 +6,8 @@
 .w-75 {
     width:82% !important;
 }
+
+.page {
+  padding:30px 20px;
+}
+
