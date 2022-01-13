@@ -1,9 +1,5 @@
-
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
-//import React from 'react';
-import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,22 +13,17 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import TextField from '@material-ui/core/TextField';
-//import Loader from '../helpers/Loader'
-import Snackbar from '@material-ui/core/Snackbar';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
-import useFetch from '../helpers/useFetch';
+import useAPI from '../helpers/useAPI'
 import Moment from 'react-moment';
-import PostsDrawer from '../drawer/PostsDrawer';
+import TextField from '@material-ui/core/TextField';
+import Delete from '../popups/Delete'
+import BulkDelete from '../popups/BulkDelete'
+import Drawer from '../drawer/Drawer'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
-//import BulkDelete from '../popups/BulkDelete'
-
-
-
-
+import Loader from '../helpers/Loader'
+import Refresh from '../helpers/Refresh'
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 function descendingComparator(a, b, orderBy) {
@@ -62,11 +53,10 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'details', numeric: false, disablePadding: true, label: 'Post' },
-  { id: 'author' , numeric: true, disablePadding: false, label: 'Posted By'},
-  { id: 'dateCreated', numeric: true, disablePadding: false, label: 'Date Published' },
-  { id: 'delete', numeric: true, disablePadding: false, label: 'Action' },
-  
+  { id: 'event', numeric: false, disablePadding: true, label: 'Event' },
+  { id: 'author', numeric: false, disablePadding: false, label: 'Posted By' },
+  { id: 'date', numeric: true, disablePadding: false, label: 'Date Published' },
+  { id: 'delete', numeric: false, disablePadding: false, label: 'Action' }
 ];
 
 function EnhancedTableHead(props) {
@@ -83,13 +73,14 @@ function EnhancedTableHead(props) {
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
+            inputProps={{ 'aria-label': '' }}
+            size='small'
           />
         </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align= {'left'}
+            align={'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -127,7 +118,7 @@ const useToolbarStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(1),
   },
-  searchable: {
+  search: {
     borderRadius: '30px',
   },
   highlight:
@@ -142,37 +133,31 @@ const useToolbarStyles = makeStyles((theme) => ({
         },
   title: {
     flex: '1 1 100%',
-    fontWeight: '700',
+    fontWeight:'700'
   },
 }));
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
-  const { numSelected, selected, setQ } = props;
-  //const {q,setQ} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`);
-  
-
-
+  const { numSelected, selected, setSearch } = props;
 
   return (
     <Toolbar style={{paddingTop:'20px'}}>
-      
-        <Typography className={classes.title} variant="h5" id="tableTitle" component="div">
-          Recent Posts
-        </Typography>
-      
-{/* 
+      <Typography className={classes.title} variant="h5" id="tableTitle" component="div">
+          Events
+      </Typography>        
+
       {numSelected > 0 ? (
         <BulkDelete selected={selected} />
       ) : (
-         <TextField 
+        <TextField 
           id="outlined-search" 
           placeholder="Search"
           type="search" 
           margin="dense" 
           size="small" 
           variant="outlined"
-          onChange= {(e) => {setQ(e.target.value) }}
+          onChange= {(e) => {setSearch(e.target.value) }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="end">
@@ -180,12 +165,10 @@ const EnhancedTableToolbar = (props) => {
               </InputAdornment>
             ),
             className: classes.search
-          }}
+            }}
         />
-        
       )}
-       */}
-        
+
     </Toolbar>
   );
 };
@@ -218,29 +201,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function EnhancedTable() {
-  const {data} = useFetch(`http://localhost:8000/posts`);
-  
+
+
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('dateCreated');
+  const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  
-      
-  // const rows = data.filter((data)=>{
-  //   return data
-  // })
- 
-  const rows = data;
+  const [searchTerm, setSearch] = React.useState("")
+  const {items, isLoading, isError} = useAPI('http://localhost:8000/events'); 
 
 
-  function handleRequestSort(event, property) {
+  const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-  }
+  };
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -280,21 +259,42 @@ export default function EnhancedTable() {
     setPage(0);
   };
 
-  
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
-  
+  const rows = items.filter((items)=> {
+        return items
+  })
+
+  //Notification After Deleting Item
+   
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+
+  const { vertical, horizontal, open } = state;
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+
+
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
-        
+        <EnhancedTableToolbar
+        numSelected={selected.length}
+        setSearch = {setSearch}
+        selected={selected} 
+        />
+       
+        <TableContainer>
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
-            //size={dense ? 'small' : 'medium'}
             aria-label="enhanced table"
           >
             <EnhancedTableHead
@@ -306,54 +306,100 @@ export default function EnhancedTable() {
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
+            {
+              !isError  ? (
+                 <Snackbar
+                  anchorOrigin={{ vertical, horizontal }}
+                  open={open}
+                  onClose={handleClose}
+                  message={`${isError} Error. Failed to delete`}
+                  key={vertical + horizontal}
+                  autoHideDuration={5000}
+                />
+              ) : (
+                 <Snackbar
+                  anchorOrigin={{ vertical, horizontal }}
+                  open={open}
+                  onClose={handleClose}
+                  message={"Successfully Deleted"}
+                  key={vertical + horizontal}
+                  autoHideDuration={5000}
+                />
+              )
+            }
+          
+              
             <TableBody>
-             
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                
+              {isLoading && (
+                  <TableRow>
+                    <TableCell Colspan={6}>
+                          <Loader />
+                    </TableCell>               
+                  </TableRow>
+                )
+              }
+            
+              {
+                isError ? (
+                  <TableRow>
+                    <TableCell Colspan={6}>
+                          <Refresh name="events"/>
+                    </TableCell>               
+                  </TableRow>
+                ) : (
+                  stableSort(rows, getComparator(order, orderBy)).filter(value =>{
+                        if (searchTerm ==="") {
+                            return value;
+                        }
+                        else if (value.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return value;
+                        }
+                          return false;
+                    }).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.postsText);
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
+
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.postsText)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.posts}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
+                          size='small'
+                          onChange={(event) => handleClick(event, row.id)}
                         />
                       </TableCell>
-                      
-                      <TableCell component="th" id={labelId} scope="row" padding="none" >
-                        <PostsDrawer row={row}/> 
+                      <TableCell component="th" id={labelId} scope="row" padding="none">
+                        <Drawer events={row}/>
                       </TableCell>
-                      <TableCell align="right">{ `${row.firstName} ${row.lastName}`}</TableCell>
-                      <TableCell align="right"> <Moment format="Do-MMM-YYYY">
+                      <TableCell>{row.createdBy}</TableCell>
+                      <TableCell>
+                        <Moment format="Do-MMM-YYYY">
                             {row.dateCreated}
-                            </Moment>
-                          </TableCell>
-                          <TableCell  align="right">                        
-                        {isItemSelected ? "": <DeleteIcon id={row.id} /> }
+                        </Moment>                        
                       </TableCell>
-
-                      
+                      <TableCell>                        
+                        {!isItemSelected && <Delete setState={setState} id={row.id} /> }
+                      </TableCell>
                     </TableRow>
                   );
-                })}
-             
+                })
+                )
+              }
             </TableBody>
           </Table>
-      
+        </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5, 10, 25,50]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
@@ -362,40 +408,6 @@ export default function EnhancedTable() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-     
     </div>
   );
 }
-
-//           '&$checked': {
-//             color: '#FF9015',
-//           },
-//         },
-//         checked: {},
-//       })((props) => <Checkbox color="default" {...props} />);
-      
-      
-// function Checkboxes({setSelected, selected, id}) {
-//         const [checked, setChecked] = React.useState(false);
-      
-//         const handleChange = (event) => {
-//            const  {data,checked} = event.target
-//           setChecked(event.target.checked);
-//           // setSelected()
-//           console.log(id)
-//         };
-      
-//         return(
-//             <CustomCheckbox
-//               checked={checked}
-//               onChange={handleChange}
-//               inputProps={{ 'aria-label': 'primary checkbox' }}
-//               size="small"
-//             />
-//         );
-//       }
-      
-      
-      
-      
-           
