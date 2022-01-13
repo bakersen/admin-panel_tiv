@@ -44,9 +44,9 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function CustomizedDialogs() {
+export default function CustomizedDialogs({job}) {
 const [jobs, setJobs] = useState([])
-  const [open, setOpen] = React.useState(false);
+const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -85,7 +85,7 @@ const [jobs, setJobs] = useState([])
           </Button>
           <Button onClick={() => handleDelete()} style={{backgroundColor:"#ff9015",textTransform:'none',color:'white',fontWeight:'lighter'}} autoFocus>
             Delete
-        </Button>
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

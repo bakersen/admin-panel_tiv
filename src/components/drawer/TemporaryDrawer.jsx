@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Title({ job }) {
   const [isEdit, setIsEdit] = React.useState(false);
-  const [title, setTitle] = React.useState(job.title);
+  const [title, setTitle] = React.useState(job.jobTitle);
 
   if (isEdit) {
     return <div>
@@ -64,7 +64,7 @@ function Title({ job }) {
         setTitle(e.target.value)
       }} />
       <Close onClick={() => {
-        setTitle(job.title)
+        setTitle(job.jobTitle)
         setIsEdit(false)
       }}>Cancel </Close>
       <Check onClick={() => {
@@ -85,7 +85,7 @@ function Title({ job }) {
           }
         }
         handleEdit(job.id)
-        job.title = title
+        job.jobTitle = title
         setIsEdit(false)
       }}>Save </Check>
     </div>
@@ -93,7 +93,7 @@ function Title({ job }) {
 
 
   return <div>
-    {job.title}
+    {job.jobTitle}
 
     <CreateIcon onClick={() => setIsEdit(true)}>Edit </CreateIcon>
   </div>
@@ -127,7 +127,7 @@ export default function TemporaryDrawer({ job, isDrawerOpen, setDrawerState, edi
             <ButtonBase className={classes.image}>
               <div className={classes.root}>
                 <Avatar
-                  alt={job.title} src="/static/images/avatar/1.jpg" className={classes.bgcolor} />
+                  alt={job.jobTitle} src="/static/images/avatar/1.jpg" className={classes.bgcolor} />
               </div>
             </ButtonBase>
           </Grid>

@@ -272,6 +272,8 @@ export default function EnhancedTable() {
     }, [])
 
 
+
+
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
     const rows = jobs.filter((jobs) => {
@@ -303,19 +305,18 @@ export default function EnhancedTable() {
                         />
                         <TableBody>
                             {stableSort(rows, getComparator(order, orderBy))
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .filter(value => {
-                                    
                                     if (searchitem === '') {
                                         return value;
                                     } else if (
                                         (// value.company.toLowerCase().includes(searchitem.toLowerCase()) ||
-                                        value?.title.toLowerCase().includes(searchitem.toLowerCase()))
+                                        value?.jobTitle.toLowerCase().includes(searchitem.toLowerCase()))
                                     ) {
                                         return value
                                     }
                                     return false;
                                 })
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
                                     const isItemSelected = isSelected(row.id);
                                     const labelId = `enhanced-table-checkbox-${index}`;
@@ -323,7 +324,6 @@ export default function EnhancedTable() {
                                     return (
                                         <TableRow
                                             hover
-                                            
                                             role="checkbox"
                                             aria-checked={isItemSelected}
                                             tabIndex={-1}
@@ -346,9 +346,9 @@ export default function EnhancedTable() {
                                                     }}
                                                     job={job}
                                             >
-                                                {row.title ||'-'}
+                                                {row.jobTitle ||'-'}
                                             </TableCell>
-                                            <TableCell>{row.companyId !==null ? row.companyId : 'Not provided'}</TableCell>
+                                            <TableCell>{row.company !==null ? row.company : 'Not provided'}</TableCell>
                                             <TableCell>
                                                 <Moment format='Do-MM-YYYY'>
                                                     {row.dateCreated}
@@ -359,7 +359,7 @@ export default function EnhancedTable() {
                                                     {row.deadline}
                                                 </Moment>
                                             </TableCell>
-                                            <TableCell>{isItemSelected ? "" : <CustomizedDialogs />}</TableCell>
+                                            <TableCell>{isItemSelected ? "" : <CustomizedDialogs job={job} />}</TableCell>
                                         </TableRow>
                                     );
                                 })}

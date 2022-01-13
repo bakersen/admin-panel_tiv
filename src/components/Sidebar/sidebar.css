@@ -1,7 +1,8 @@
-.left-panel {
+/* .left-panel {
     background-color: #1C1C1C;
-    padding: 30px 20px 0px 0px;
-    height: 100%
+    padding: 30px 20px 0px 30px;
+    height: 100%;
+    position: sticky;
 }
 
 img {
@@ -12,7 +13,7 @@ h4.admin-text {
     text-align: center;
     color:white;
     margin-top:20px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight:700;
     margin-bottom: 20px;
 }
@@ -23,7 +24,7 @@ h4.admin-text {
 }
 
 .nav-link {
-    color:#fff;
+    color:#fff !important;
     margin-top: 12px;
     display: flex;
 }
@@ -50,3 +51,55 @@ h4.admin-text {
     width:82% !important;
 }
 
+.jobs{
+    color:#ff9015;
+}
+
+.jobs-icon{
+    color:#ff9015;
+} */
+
+
+.left-panel {
+    background-color: #1C1C1C;
+    padding: 30px 20px 0px 0px;
+    height: 100%
+}
+
+img {
+    max-width:80%;
+}
+
+h4.admin-text {
+    text-align: center;
+    color:white;
+    margin-top:20px;
+    font-size: 18px;
+    font-weight:700;
+    margin-bottom: 20px;
+}
+
+.nav {
+    margin-left: 0%;
+    display: block;
+}
+
+.nav-link {
+    color:#fff;
+    margin-top: 12px;
+    display: flex;
+}
+
+.nav-link > span {
+    font-size:16px;
+    font-weight: 400;
+    margin-left:5%;
+}
+
+
+
+.nav-link:focus, .nav-link:hover {
+    color: #ff9015;
+    background: #161616;
+    border-radius: 5px;
+}
