@@ -19,12 +19,12 @@ useEffect(()=> {
     
         .then((response) => {
             
-            setData(response.data.posts)
+            setData(response.data)
             
             
             
         })
-        .catch((err)=> setError(err))
+        .catch((err)=> setError(error))
 }, [url, data ]);
 
 
