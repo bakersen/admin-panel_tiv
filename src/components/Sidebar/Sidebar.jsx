@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from './my-village-logo-01.svg'
-import './sidebar.css'
+import './Sidebar.css'
 import {Container, Row, Col, Nav } from 'react-bootstrap'
 import {Home, People, LibraryBooks, Work, Event, LocalFlorist} from '@material-ui/icons';
 import { Link } from 'react-router-dom';

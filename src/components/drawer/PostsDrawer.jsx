@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
     display:'Flex',
     alignItems: 'start',    
   },
+  comments:{
+    
+
+  },
   MuiTypography:{
       h4:{
         color:'black',
@@ -112,7 +116,7 @@ const [state, setState] = React.useState({
               {`${row?.firstName} ${row?.lastName}`}
               </Typography>
               <div style={{display:'Flex'}}>
-                  <Delete color="primary" /> Delete Event
+                  <Delete color="primary" /> Delete Post
               </div>
           </div>
          </Grid>
