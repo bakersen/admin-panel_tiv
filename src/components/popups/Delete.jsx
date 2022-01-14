@@ -13,7 +13,7 @@ export default function AlertDialog(props) {
 
   const {id, setState} = props  
 
-  const {deleteItem} = useAPI(`https://profiles-test.innovationvillage.co.ug/api/events/${id}`);  
+  const {deleteItem} = useAPI(`http://localhost:8000/events/${id}`);  
 
   const [open, setOpen] = React.useState(false);
 
@@ -43,7 +43,7 @@ export default function AlertDialog(props) {
         <DialogTitle id="alert-dialog-title">{"Delete Event?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-           Are you sure you want to delete this event 2 {undefined}
+           Are you sure you want to delete this event?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
