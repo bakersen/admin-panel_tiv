@@ -26,13 +26,13 @@ export default function AlertDialog(props) {
 
   const {deleteItem, baseURL} = useAPI(`http://localhost:8000/events/${id}`);
 
-  // const bulkSelected = selected.map((id) => {
-  //     return `baseUrl/${id}`
-  // })
-
-     
+ 
+  const bulkSelected = selected.filter(element => {
+    return selected[element]
+  });
+       
   const handleBulkDelete = () => {
-        console.log(baseURL)
+      console.log(bulkSelected)
   }
 
   const [open, setOpen] = React.useState(false);

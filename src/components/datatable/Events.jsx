@@ -18,7 +18,7 @@ import Moment from 'react-moment';
 import TextField from '@material-ui/core/TextField';
 import Delete from '../popups/Delete'
 import BulkDelete from '../popups/BulkDelete'
-import Drawer from '../drawer/Drawer'
+import EventsDrawer from '../drawer/EventsDrawer'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import Loader from '../helpers/Loader'
@@ -308,7 +308,7 @@ export default function EnhancedTable() {
               rowCount={rows.length}
             />
             {
-              !isError  ? (
+              isError  ? (
                  <Snackbar
                   anchorOrigin={{ vertical, horizontal }}
                   open={open}
@@ -380,9 +380,9 @@ export default function EnhancedTable() {
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        <Drawer events={row}/>
+                        <EventsDrawer events={row}/>
                       </TableCell>
-                      <TableCell>{row.createdBy}</TableCell>
+                      <TableCell>{row.author.firstName} {row.author.firstName}</TableCell>
                       <TableCell>
                         <Moment format="Do-MMM-YYYY">
                             {row.dateCreated}

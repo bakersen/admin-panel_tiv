@@ -9,7 +9,7 @@ import Tabs from './Tabs';
 import Paper from '@material-ui/core/Paper';
 import Delete from '@material-ui/icons/Delete';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({ 
   root: {
     flexGrow: 1,
   },
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TemporaryDrawer({events}) {
+export default function EventsDrawer({events}) {
 
  
 

@@ -17,18 +17,18 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-// import IconButton from '@material-ui/core/IconButton';
-// import TextField from '@material-ui/core/TextField';
-//import Loader from '../helpers/Loader'
+ import IconButton from '@material-ui/core/IconButton';
+import TextField from '@material-ui/core/TextField';
+import Loader from '../helpers/Loader'
 import Snackbar from '@material-ui/core/Snackbar';
 import DeleteIcon from '@material-ui/icons/Delete';
-// import FilterListIcon from '@material-ui/icons/FilterList';
+ import FilterListIcon from '@material-ui/icons/FilterList';
 import useFetch from '../helpers/useFetch';
 import Moment from 'react-moment';
 import PostsDrawer from '../drawer/PostsDrawer';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
-//import BulkDelete from '../popups/BulkDelete'
+import BulkDelete from '../popups/posts_popup'
 
 
 
@@ -84,6 +84,7 @@ function EnhancedTableHead(props) {
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{ 'aria-label': 'select all desserts' }}
+            size='small'
           />
         </TableCell>
         {headCells.map((headCell) => (
@@ -149,7 +150,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   //const {q,setQ} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`);
-  
+  const { numSelected, selected, setSearch } = props;
 
 
 
@@ -160,7 +161,7 @@ const EnhancedTableToolbar = (props) => {
           Recent Posts
         </Typography>
       
-{/* 
+
       {numSelected > 0 ? (
         <BulkDelete selected={selected} />
       ) : (
@@ -171,7 +172,7 @@ const EnhancedTableToolbar = (props) => {
           margin="dense" 
           size="small" 
           variant="outlined"
-          onChange= {(e) => {setQ(e.target.value) }}
+          onChange= {(e) => {setSearch(e.target.value) }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="end">
@@ -183,7 +184,7 @@ const EnhancedTableToolbar = (props) => {
         />
         
       )}
-       */}
+      
         
     </Toolbar>
   );
@@ -226,13 +227,15 @@ export default function EnhancedTable() {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  
+  const [searchTerm, setSearch] = React.useState("")
       
   // const rows = data.filter((data)=>{
   //   return data
   // })
  
-  const rows = data;
+  const rows = data.filter((data)=> {
+    return data
+})
 
 
   function handleRequestSort(event, property) {
@@ -288,7 +291,9 @@ export default function EnhancedTable() {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length}
+        setSearch = {setSearch}
+        selected={selected}  />
         
           <Table
             className={classes.table}
@@ -307,8 +312,16 @@ export default function EnhancedTable() {
             />
             <TableBody>
              
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              {stableSort(rows, getComparator(order, orderBy)).filter(value =>{
+                        if (searchTerm ==="") {
+                            return value;
+                        }
+                        else if (value.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                 value.lastName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return value;
+                        }
+                          return false;
+              }).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.postsText);
@@ -326,8 +339,10 @@ export default function EnhancedTable() {
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
+                          onClick={(event) => handleClick(event, row.id)}
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
+                          size='small'
                         />
                       </TableCell>
                       
