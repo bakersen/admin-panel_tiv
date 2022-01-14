@@ -372,7 +372,7 @@ export default function EnhancedTable() {
                             )}
                         </TableBody>
                     </Table>
-                    <TemporaryDrawer job={job} isDrawerOpen={isDrawerOpen} setDrawerState={setDrawerState} />
+                    <TemporaryDrawer job={job} isDrawerOpen={isDrawerOpen} setDrawerState={setDrawerState} key={job.id}/>
                 </TableContainer>
                 <TablePagination
                     rowsPerPageOptions={[5, 10, 25]}

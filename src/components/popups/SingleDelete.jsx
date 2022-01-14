@@ -6,7 +6,7 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
-import api from '../helpers/jobs_api';
+import api from '../api/API';
 import { DeleteOutline } from '@material-ui/icons';
 
 const styles = (theme) => ({
@@ -46,7 +46,7 @@ const DialogActions = withStyles((theme) => ({
 
 export default function CustomizedDialogs() {
 const [jobs, setJobs] = useState([])
-  const [open, setOpen] = React.useState(false);
+const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);

@@ -145,7 +145,7 @@ function Requirements({ job }) {
           }
         }
         handleEdit(job.id)
-        job.requirements = requirements
+        job.qualifications = requirements
         setIsEdit(false)
       }}>Save </Check>
     </div>
@@ -249,19 +249,19 @@ export default function CustomizedTabs({job}) {
             <Grid item xs={12} sm={6}>
               <h6>Job Catergory</h6>
               <li>
-                {job.jobCategory}
+                {job.jobCatergory}
               </li>
             </Grid>
             <Grid item xs={12} sm={6}>
             <h6>Job Posting</h6>
               <li>
-                -
+               {job.date}
               </li>
             </Grid>
             <Grid item xs={12} sm={6}>
             <h6>Job type</h6>
               <li>
-                {job.jobType || "-"}
+                {job.jobType}
               </li>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -273,7 +273,7 @@ export default function CustomizedTabs({job}) {
             <Grid item xs={12} sm={6}>
             <h6>Salary range</h6>
               <li>
-              {job.minSalary || '-'}
+              {job.salaryRange || '-'}
               </li>
             </Grid>
           </Grid>
@@ -283,7 +283,7 @@ export default function CustomizedTabs({job}) {
             <Grid item xs={12} >
               <h6>Job Description</h6>
               <li>
-                {job.details}
+                {job.jobDescription}
               </li>
             </Grid>
             <Grid item xs={12} >
