@@ -53,9 +53,10 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'event', numeric: false, disablePadding: true, label: 'Event' },
-  { id: 'author', numeric: false, disablePadding: false, label: 'Posted By' },
-  { id: 'date', numeric: true, disablePadding: false, label: 'Date Published' },
+  { id: 'name', numeric: false, disablePadding: true, label: 'Startup Name' },
+  { id: 'owner', numeric: false, disablePadding: false, label: 'Owners Name' },
+  { id: 'email', numeric: true, disablePadding: false, label: 'Email' },
+  { id: 'date', numeric: false, disablePadding: false, label: 'Date Created' },
   { id: 'delete', numeric: false, disablePadding: false, label: 'Action' }
 ];
 
@@ -144,7 +145,7 @@ const EnhancedTableToolbar = (props) => {
   return (
     <Toolbar style={{paddingTop:'20px'}}>
       <Typography className={classes.title} variant="h5" id="tableTitle" component="div">
-          Events
+          Startups
       </Typography>        
 
       {numSelected > 0 ? (
@@ -212,7 +213,7 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [searchTerm, setSearch] = React.useState("")
-  const {items, isLoading, isError} = useAPI('http://localhost:8000/events'); 
+  const {items, isLoading, isError} = useAPI('http://localhost:8000/startups'); 
 
 
   const handleRequestSort = (event, property) => {
@@ -343,7 +344,7 @@ export default function EnhancedTable() {
                 isError ? (
                   <TableRow>
                     <TableCell Colspan={6}>
-                          <Refresh name="events"/>
+                          <Refresh name="Start Ups"/>
                     </TableCell>               
                   </TableRow>
                 ) : (
@@ -381,7 +382,9 @@ export default function EnhancedTable() {
                       <TableCell component="th" id={labelId} scope="row" padding="none">
                         <Drawer events={row}/>
                       </TableCell>
-                      <TableCell>{row.createdBy}</TableCell>
+                      <TableCell>{row.startupName}</TableCell>
+                      <TableCell>{row.ownersName}</TableCell>
+                      <TableCell>{row.email}</TableCell>
                       <TableCell>
                         <Moment format="Do-MMM-YYYY">
                             {row.dateCreated}

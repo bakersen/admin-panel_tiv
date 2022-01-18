@@ -152,7 +152,7 @@ export default function Dashboard() {
           </Grid>
       </Grid>
 
-      <Divider style={{marginTop:'4%', marginBottom:'4%', height:'1px', backgroundColor:'#1c1c1c'}} />
+      <Divider style={{margin:'3% 0', height:'1px', backgroundColor:'#1c1c1c'}} />
 
 
        <Grid container spacing={3}>
