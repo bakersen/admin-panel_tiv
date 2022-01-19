@@ -2,13 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-//import React from 'react';
-// import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-// import TableContainer from '@material-ui/core/TableContainer';
+
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
@@ -21,15 +19,15 @@ import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import Loader from '../helpers/Loader'
 import Snackbar from '@material-ui/core/Snackbar';
-import DeleteIcon from '@material-ui/icons/Delete';
+import AlertDialog from '../popups/posts_popup';
  import FilterListIcon from '@material-ui/icons/FilterList';
 import useFetch from '../helpers/useFetch';
 import Moment from 'react-moment';
 import PostsDrawer from '../drawer/PostsDrawer';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
-import BulkDelete from '../popups/posts_popup'
-
+import BulkDelete from '../popups/Posts_bulkdelete';
+import Refresh from '../helpers/Refresh';
 
 
 
@@ -149,7 +147,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
-  //const {q,setQ} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/blog/posts?PageSize=50`);
+  
   const { numSelected, selected, setSearch } = props;
 
 
@@ -219,7 +217,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EnhancedTable() {
-  const {data} = useFetch(`http://localhost:8000/posts`);
+  const {data, loading, error,} = useFetch(`http://localhost:8000/posts`);
   
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -282,6 +280,17 @@ export default function EnhancedTable() {
     setPage(0);
   };
 
+   const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+
+  const { vertical, horizontal, open } = state;
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
   
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
@@ -310,9 +319,46 @@ export default function EnhancedTable() {
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
+             {
+              error  ? (
+                 <Snackbar
+                  anchorOrigin={{ vertical, horizontal }}
+                  open={open}
+                  onClose={handleClose}
+                  message={`${error} Error. Failed to delete`}
+                  key={vertical + horizontal}
+                  autoHideDuration={5000}
+                />
+              ) : (
+                 <Snackbar
+                  anchorOrigin={{ vertical, horizontal }}
+                  open={open}
+                  onClose={handleClose}
+                  message={"Successfully Deleted"}
+                  key={vertical + horizontal}
+                  autoHideDuration={5000}
+                />
+              )
+            }
             <TableBody>
-             
-              {stableSort(rows, getComparator(order, orderBy)).filter(value =>{
+            {loading && (
+                  <TableRow>
+                    <TableCell Colspan={6}>
+                          <Loader />
+                    </TableCell>               
+                  </TableRow>
+                )
+              }
+            
+              {
+                error ? (
+                  <TableRow>
+                    <TableCell Colspan={6}>
+                          <Refresh name="posts"/>
+                    </TableCell>               
+                  </TableRow>
+                ) : ( 
+                  stableSort(rows, getComparator(order, orderBy)).filter(value => {
                         if (searchTerm ==="") {
                             return value;
                         }
@@ -324,7 +370,7 @@ export default function EnhancedTable() {
               }).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.postsText);
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
@@ -355,13 +401,15 @@ export default function EnhancedTable() {
                             </Moment>
                           </TableCell>
                           <TableCell >                        
-                        {isItemSelected ? "": <DeleteIcon id={row.id} /> }
+                        {!isItemSelected && <AlertDialog setState={setState} id={row.id} /> }
                       </TableCell>
 
                       
                     </TableRow>
-                  );
-                })}
+                   );
+                })
+                )
+              }
              
             </TableBody>
           </Table>

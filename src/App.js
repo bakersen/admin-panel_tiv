@@ -1,5 +1,5 @@
 import Topbar from './components/topbar/Topbar'
-import Sidebar from './components/sidebar/Sidebar'
+import Sidebar from './components/sidebar/Sidebar';
 import { Container, Row } from 'react-bootstrap'
 import {createTheme, ThemeProvider} from '@material-ui/core'
 import  Events from './pages/Events';
