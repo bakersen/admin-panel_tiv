@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import { green } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -13,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
   },
   bgcolor: {
     color: '#fff',
-    backgroundColor: green[500],
-    width: theme.spacing(15),
-    height: theme.spacing(15),
-    fontSize:'3rem'
+    backgroundColor: '#7B9985',
+    width: theme.spacing(16),
+    height: theme.spacing(16),
+    fontSize:'4rem'
   },
 }));
 

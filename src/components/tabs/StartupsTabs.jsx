@@ -7,13 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import Moment from 'react-moment';
-import API from '../helpers/API'
-import MomentUtils from '@date-io/moment';
-import {DateTimePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
-import CloseIcon from '@material-ui/icons/Close';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import CreateIcon from '@material-ui/icons/Create';
+// import Moment from 'react-moment';
 
 
 
@@ -66,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleTabs(props) {
 
-  const {events} = props
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 

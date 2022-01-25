@@ -82,8 +82,8 @@ export default function EventsDrawer({startups}) {
               <Typography component="div" variant="h4" style={{fontWeight:'700', marginBottom:'0'}}>
                   {startups?.startupName}
               </Typography>
-              <Typography component="div" variant="p" style={{marginBottom:'10%'}}>
-                  {startups?.ownersName}
+              <Typography component="div" variant="p" style={{marginBottom:'8%', marginLeft:'1%'}}>
+                  Owner: {startups?.ownersName}
               </Typography>
               <div style={{display:'Flex'}}>
                   <Delete color="primary" /> Delete Start Up
