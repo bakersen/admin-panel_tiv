@@ -20,28 +20,34 @@ useEffect(()=> {
         .then((response) => {
             
             setData(response.data)
-            
+            setLoading(false)
             
             
         })
-        .catch((err)=> setError(error))
-}, [url, data ]);
-
-
-
-
-
-
-    function deleteItem() {
-        axios.delete(url)
-            .then((response) => {
-                setData(response.data);
+        .catch((err)=> {              
+                setError(err)
+                setLoading(false)           
             })
-            .catch((err) => setError(err));
+}, [url, data,loading ]);
+
+
+
+
+
+
+     const deleteItem = () => {
+        axios.delete(url)
+        .then((response)=> {
+            setData(response.data)
+        })
+        .catch((err)=> {
+            setError(err.response.status)
+            console.log(err.response.status)
+        })
     }
 
 
-return {data, setData, loading, setLoading, deleteItem}
+return {data, setData, loading, setLoading, deleteItem,error, setError}
 
 
 }
