@@ -352,7 +352,9 @@ export default function EnhancedTable() {
                         if (searchTerm ==="") {
                             return value;
                         }
-                        else if (value.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        else if (value.startupName.toLowerCase().includes(searchTerm.toLowerCase())
+                        || value.ownersName.toLowerCase().includes(searchTerm.toLowerCase())
+                        || value.email.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return value;
                         }
                           return false;
@@ -382,7 +384,6 @@ export default function EnhancedTable() {
                       <TableCell component="th" id={labelId} scope="row" padding="none">
                         <Drawer events={row}/>
                       </TableCell>
-                      <TableCell>{row.startupName}</TableCell>
                       <TableCell>{row.ownersName}</TableCell>
                       <TableCell>{row.email}</TableCell>
                       <TableCell>

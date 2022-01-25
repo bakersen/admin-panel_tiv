@@ -17,7 +17,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Moment from 'react-moment';
 import ConfirmDelete from '../popups/ConfirmDelete';
 import CustomizedDialogs from '../popups/SingleDelete';
-import TemporaryDrawer from '../drawer/TemporaryDrawer';
+import TemporaryDrawer from '../drawer/JobsDrawer';
 import SearchJob from './SearchJob';
 
 

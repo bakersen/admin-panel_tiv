@@ -6,7 +6,7 @@ import api from '../helpers/jobs_api'
 import List from '@material-ui/core/List';
 import Avatar from '@material-ui/core/Avatar';
 import './temporarydrawer.css';
-import FullWidthTabs from '../tabs/FullWidthTabs.jsx';
+import JobTabs from '../tabs/JobTabs.jsx';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
@@ -154,7 +154,7 @@ export default function TemporaryDrawer({ job, isDrawerOpen, setDrawerState, edi
       </List> */}
 
       <List>
-        <FullWidthTabs job={job} editjob={editjob} setEditJob={setEditJob} handleEdit={handleEdit} />
+        <JobTabs job={job} editjob={editjob} setEditJob={setEditJob} handleEdit={handleEdit} />
       </List>
     </div>
   );

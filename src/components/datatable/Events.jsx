@@ -382,7 +382,7 @@ export default function EnhancedTable() {
                       <TableCell component="th" id={labelId} scope="row" padding="none">
                         <EventsDrawer events={row}/>
                       </TableCell>
-                      <TableCell>{row.author.firstName} {row.author.firstName}</TableCell>
+                      <TableCell>{row['author']['firstName']} {row.author.firstName}</TableCell>
                       <TableCell>
                         <Moment format="Do-MMM-YYYY">
                             {row.dateCreated}

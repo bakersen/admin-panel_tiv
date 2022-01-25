@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import MyAvatar from './Avatar';
+import MyAvatar from './StartupsAvatar';
 import Tabs from './Tabs';
 import Paper from '@material-ui/core/Paper';
 import Delete from '@material-ui/icons/Delete';
@@ -104,7 +104,7 @@ export default function EventsDrawer({events}) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <span className={classes.link} onClick={toggleDrawer(anchor, true)}>{events.title}</span>
+          <span className={classes.link} onClick={toggleDrawer(anchor, true)}>{events.startupName}</span>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
