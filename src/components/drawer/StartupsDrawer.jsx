@@ -5,7 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import MyAvatar from './StartupsAvatar';
-import Tabs from './Tabs';
+import Tabs from '../tabs/StartupsTabs';
 import Paper from '@material-ui/core/Paper';
 import Delete from '@material-ui/icons/Delete';
 
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EventsDrawer({events}) {
+export default function EventsDrawer({startups}) {
 
  
 
@@ -77,18 +77,21 @@ export default function EventsDrawer({events}) {
   <Grid>
       <Paper className={classes.paper}>
          <Grid item xs={12} className={classes.toprow}>
-          <MyAvatar name={events?.title}/>
+          <MyAvatar name={startups?.startupName}/>
           <div style={{paddingTop:'2%', marginBottom:'7%'}}>
-              <Typography component="div" variant="h4" style={{fontWeight:'700', marginBottom:'3%'}}>
-                  {events?.title}
+              <Typography component="div" variant="h4" style={{fontWeight:'700', marginBottom:'0'}}>
+                  {startups?.startupName}
+              </Typography>
+              <Typography component="div" variant="p" style={{marginBottom:'10%'}}>
+                  {startups?.ownersName}
               </Typography>
               <div style={{display:'Flex'}}>
-                  <Delete color="primary" /> Delete Event
+                  <Delete color="primary" /> Delete Start Up
               </div>
           </div>
          </Grid>
           <Grid item xs={12} className={classes.toprow}>
-              <Tabs events={events}/>
+              <Tabs startups={startups}/>
          </Grid>
       </Paper>
   </Grid>
@@ -104,7 +107,7 @@ export default function EventsDrawer({events}) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <span className={classes.link} onClick={toggleDrawer(anchor, true)}>{events.startupName}</span>
+          <span className={classes.link} onClick={toggleDrawer(anchor, true)}>{startups.startupName}</span>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>

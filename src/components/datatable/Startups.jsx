@@ -382,7 +382,7 @@ export default function EnhancedTable() {
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        <Drawer events={row}/>
+                        <Drawer startups={row}/>
                       </TableCell>
                       <TableCell>{row.ownersName}</TableCell>
                       <TableCell>{row.email}</TableCell>

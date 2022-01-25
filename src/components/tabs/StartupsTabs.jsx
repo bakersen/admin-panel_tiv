@@ -63,64 +63,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Date(props) {
-
-   const {events} = props
-
-  const [isEdit, setIsEdit] = React.useState(false);
-  const [selectedDate, handleDateChange] = React.useState(events.startDateTime);
-  const [isShown, setIsShown] = React.useState(false);
-
-  if(isEdit) {
-    return ( 
-    <React.Fragment>
-      <MuiPickersUtilsProvider utils={MomentUtils}>
-          <DateTimePicker value={selectedDate} onChange={handleDateChange} />
-      </MuiPickersUtilsProvider>
-      <CloseIcon onClick={() => {
-          setIsEdit(false)
-      }} />
-      <CheckCircleIcon onClick={()=>{
-        const body = {
-          id: events.id,
-          startDateTime: selectedDate
-        }
-
-        const handleEdit = async(id) => {
-          try {
-              await API.patch(`http://localhost:8000/events/${id}`, body)
-          } catch (err) {
-            console.log(err.response.status)
-          }
-        }
-
-        handleEdit(events.id)
-        setIsEdit(false)
-      }} />
-
-    </React.Fragment> )   
-  }
-
-  return (
-    <React.Fragment>
-      <span
-       onMouseEnter={() => setIsShown(true)}
-      //  onMouseLeave={() => setIsShown(false)}
-      >
-      <Moment format="Do-MMMM-YYYY">
-          {events.startDateTime}
-      </Moment>
-       
-      </span>
-
-      {
-        isShown && <CreateIcon onClick={()=>setIsEdit(true)} />
-      }
-      
-    </React.Fragment>
-
-  )
-}
 
 export default function SimpleTabs(props) {
 
@@ -144,8 +86,9 @@ export default function SimpleTabs(props) {
         aria-label="simple tabs example"
         style={{color:'black', indicator:'blue'}}
         >
-          <Tab label="Event Info" {...a11yProps(0)} style={{textTransform:'none', fontSize:'18px', marginRight:'20px'}} />
-          <Tab label="Events Description" {...a11yProps(1)} style={{textTransform:'none', fontSize:'18px'}}/>
+          <Tab label="Startup Info" {...a11yProps(0)} style={{textTransform:'none', fontSize:'18px', marginRight:'0'}} />
+          <Tab label="What We Do" {...a11yProps(1)} style={{textTransform:'none', fontSize:'18px'}}/>
+          <Tab label="Team" {...a11yProps(3)} style={{textTransform:'none', fontSize:'18px'}}/>
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -156,7 +99,7 @@ export default function SimpleTabs(props) {
                     Location: 
                 </Typography>
                 <Typography>
-                    {events.location}
+                    
                 </Typography>
               </div>
           </Grid>
@@ -166,7 +109,7 @@ export default function SimpleTabs(props) {
                    Start Date: 
                 </Typography>
                 <Typography>                     
-                    <Date events={events}/>                                                
+                                                                
                 </Typography>
                  
               </div>
@@ -177,7 +120,7 @@ export default function SimpleTabs(props) {
                    Posted By: 
                 </Typography>
                 <Typography>
-                    {events.createdBy}
+                   
                 </Typography>
               </div>
           </Grid>
@@ -187,16 +130,20 @@ export default function SimpleTabs(props) {
                    End Date: 
                 </Typography>
                 <Typography>
-                  <Moment format="Do-MMM-YYYY">
-                      {events.endDateTime}
-                  </Moment>                     
+                                      
                 </Typography>
               </div>
           </Grid>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <div dangerouslySetInnerHTML={{__html:events.details }}></div>  
+        
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        
       </TabPanel>
     </div>
    </React.Fragment>
