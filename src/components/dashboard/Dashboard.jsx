@@ -7,7 +7,6 @@ import CardContent from '@material-ui/core/CardContent';
 import {People, Work, Event, LocalFlorist, ArrowUpward, ArrowDownward} from '@material-ui/icons';
 import './dashboard.css'
 import Divider from '@material-ui/core/Divider';
-import Refresh from '../helpers/Refresh'
 
 
 const useStyles = makeStyles((theme) => ({

@@ -24,7 +24,7 @@ export default function AlertDialog(props) {
 
   const {id, selected} = props  
 
-  const {deleteItem, baseURL} = useAPI(`http://localhost:8000/events/${id}`);
+  const {deleteItem, baseURL} = useAPI(`http://localhost:8000/startups/${id}`);
 
  
   const bulkSelected = selected.filter(element => {
@@ -51,7 +51,7 @@ export default function AlertDialog(props) {
     <div>
 
       <Typography className={classes.bulkDelete} variant="p" id="tableTitle" component="div" onClick={handleClickOpen}>
-          <Delete  /> Delete {selected.length > 1 ? "Events?" : "Event?"}
+          <Delete  /> Delete {selected.length > 1 ? "Startups?" : "Startup?"}
       </Typography>
       <Dialog
         open={open}
@@ -62,7 +62,7 @@ export default function AlertDialog(props) {
         <DialogTitle id="alert-dialog-title">{"Delete Event?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to delete {selected.length > 1 ? "these events?" : "this event?"}
+            Are you sure you want to delete {selected.length > 1 ? "these startups?" : "this startup?"}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

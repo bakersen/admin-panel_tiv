@@ -54,10 +54,10 @@ function App() {
               <Route path="jobs" element={<Jobs />} />
               <Route path="events" element={<Events />} />
               <Route exact path="/reload" element={<Navigate to="/"/>} />
-              <Route exact path="members/reload" element={<Navigate to="/"/>} />
-              <Route exact path="startups/reload" element={<Navigate to="/"/>} />
-              <Route exact path="posts/reload" element={<Navigate to="/"/>} />
-              <Route exact path="jobs/reload" element={<Navigate to="/"/>} />
+              <Route exact path="members/reload" element={<Navigate to="/members"/>} />
+              <Route exact path="startups/reload" element={<Navigate to="/startups"/>} />
+              <Route exact path="posts/reload" element={<Navigate to="/posts"/>} />
+              <Route exact path="jobs/reload" element={<Navigate to="/jobs"/>} />
               <Route exact path="events/reload" element={<Navigate to="/events"/>} />
             </Routes>
           </div>

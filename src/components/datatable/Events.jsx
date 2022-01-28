@@ -17,7 +17,7 @@ import useAPI from '../helpers/useAPI'
 import Moment from 'react-moment';
 import TextField from '@material-ui/core/TextField';
 import Delete from '../popups/EventsDelete'
-import BulkDelete from '../popups/BulkDelete'
+import BulkDelete from '../popups/EventsBulkDelete'
 import EventsDrawer from '../drawer/EventsDrawer'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
