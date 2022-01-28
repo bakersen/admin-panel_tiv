@@ -34,6 +34,11 @@ function useFetch(url) {
         })
     }
 
+    const refresh = ()=>{
+        // re-renders the component
+        setData([]);
+    }
+
     const editItem = (newData) => {
         axios.patch(url, {deadline: `${newData}`})
         .then((response)=> {
@@ -46,7 +51,7 @@ function useFetch(url) {
         })
     }
     
-    return {items, isLoading, isError, setData, deleteItem, editItem, baseURL}
+    return {items, isLoading, isError, setData, deleteItem, editItem, baseURL, refresh}
     
 }
 

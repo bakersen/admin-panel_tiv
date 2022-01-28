@@ -16,7 +16,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import useAPI from '../helpers/useAPI'
 import Moment from 'react-moment';
 import TextField from '@material-ui/core/TextField';
-import Delete from '../popups/Delete'
+import Delete from '../popups/EventsDelete'
 import BulkDelete from '../popups/BulkDelete'
 import EventsDrawer from '../drawer/EventsDrawer'
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -24,6 +24,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Loader from '../helpers/Loader'
 import Refresh from '../helpers/Refresh'
 import Snackbar from '@material-ui/core/Snackbar';
+
 
 
 function descendingComparator(a, b, orderBy) {
@@ -198,6 +199,9 @@ const useStyles = makeStyles((theme) => ({
     top: 20,
     width: 1,
   },
+  deleteButton: {
+    cursor:'pointer'
+  }
 }));
 
 
@@ -340,11 +344,12 @@ export default function EnhancedTable() {
                 )
               }
             
-              {
+              
+              { 
                 isError ? (
                   <TableRow>
                     <TableCell Colspan={6}>
-                          <Refresh name="events"/>
+                      <Refresh name='Events'/> 
                     </TableCell>               
                   </TableRow>
                 ) : (

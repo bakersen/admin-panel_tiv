@@ -16,7 +16,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import useAPI from '../helpers/useAPI'
 import Moment from 'react-moment';
 import TextField from '@material-ui/core/TextField';
-import Delete from '../popups/Delete'
+import Delete from '../popups/EventsDelete'
 import BulkDelete from '../popups/BulkDelete'
 import Drawer from '../drawer/StartupsDrawer'
 import InputAdornment from '@material-ui/core/InputAdornment';

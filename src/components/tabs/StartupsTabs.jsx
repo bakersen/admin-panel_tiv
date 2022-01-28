@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleTabs(props) {
 
+  const {startups} = props
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -80,8 +81,9 @@ export default function SimpleTabs(props) {
         style={{color:'black', indicator:'blue'}}
         >
           <Tab label="Startup Info" {...a11yProps(0)} style={{textTransform:'none', fontSize:'18px', marginRight:'0'}} />
-          <Tab label="What We Do" {...a11yProps(1)} style={{textTransform:'none', fontSize:'18px'}}/>
-          <Tab label="Team" {...a11yProps(3)} style={{textTransform:'none', fontSize:'18px'}}/>
+          <Tab label="About" {...a11yProps(1)} style={{textTransform:'none', fontSize:'18px'}}/>
+          <Tab label="What We Do" {...a11yProps(2)} style={{textTransform:'none', fontSize:'18px'}}/>
+          
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -89,10 +91,10 @@ export default function SimpleTabs(props) {
           <Grid item xs={6}>
               <div>
                 <Typography style={{fontWeight:'700'}}>
-                    Location: 
+                    Incorporation Date: 
                 </Typography>
                 <Typography>
-                    
+                    {startups.dateCreated}
                 </Typography>
               </div>
           </Grid>
@@ -102,7 +104,7 @@ export default function SimpleTabs(props) {
                    Start Date: 
                 </Typography>
                 <Typography>                     
-                                                                
+                  {startups.employeeNum}                                         
                 </Typography>
                  
               </div>
@@ -110,33 +112,30 @@ export default function SimpleTabs(props) {
           <Grid item xs={6}>
              <div>
                 <Typography style={{fontWeight:'700'}}>
-                   Posted By: 
+                  Email Address: 
                 </Typography>
                 <Typography>
-                   
+                   {startups.email}    
                 </Typography>
               </div>
           </Grid>
           <Grid item xs={6}>
              <div>
                 <Typography style={{fontWeight:'700'}}>
-                   End Date: 
+                   Telephone: 
                 </Typography>
                 <Typography>
-                                      
+                   {startups.telephone}                   
                 </Typography>
               </div>
           </Grid>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        
+        <div dangerouslySetInnerHTML={{__html:startups.about}}></div>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        
+        <div dangerouslySetInnerHTML={{__html:startups.whatWeDo}}></div>
       </TabPanel>
     </div>
    </React.Fragment>
