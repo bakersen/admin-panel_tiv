@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Delete from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles } from '@material-ui/core/styles';
-import API from '../helpers/API'
+import axios from 'axios'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +36,7 @@ export default function AlertDialog(props) {
    const handleBulkDelete = async() => {
         try {
             await bulkSelected.forEach((url)=>{
-              API.delete(url)
+              axios.delete(url)
             })
         } catch(err){
           console.log(err.response.status)
