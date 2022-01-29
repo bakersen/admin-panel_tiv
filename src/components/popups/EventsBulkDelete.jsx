@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Delete from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles } from '@material-ui/core/styles';
-import axios from 'axios'
+import API from '../helpers/API'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,20 +23,12 @@ const useStyles = makeStyles((theme) => ({
 export default function AlertDialog(props) {
 
   const {selected} = props
-  const urlLink = "http://localhost:8000/events/"
-  
-   //Assign Bulk Selected urls to be deleted
-
-    const bulkSelected = selected.map((value)=>{
-        value = urlLink + value
-        return value
-    })
-   
+    
    //Bulk select delete method 
    const handleBulkDelete = async() => {
         try {
-            await bulkSelected.forEach((url)=>{
-              axios.delete(url)
+            await selected.forEach((url)=>{
+              API.delete(`/events/${url}`)
             })
         } catch(err){
           console.log(err.response.status)
