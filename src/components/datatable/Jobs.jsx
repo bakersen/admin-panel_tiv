@@ -16,7 +16,7 @@ import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import Moment from 'react-moment';
 import ConfirmDelete from '../popups/ConfirmDelete';
-import CustomizedDialogs from '../popups/SingleDelete';
+import Delete from '../popups/JobsDelete';
 import TemporaryDrawer from '../drawer/JobsDrawer';
 import SearchJob from './SearchJob';
 
@@ -361,7 +361,7 @@ export default function EnhancedTable() {
                                                     {row.deadline}
                                                 </Moment>
                                             </TableCell>
-                                            <TableCell>{isItemSelected ? "" : <CustomizedDialogs job={job} />}</TableCell>
+                                            <TableCell>{isItemSelected ? "" : <Delete job={job} />}</TableCell>
                                         </TableRow>
                                     );
                                 })}

@@ -8,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Delete from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import API from '../helpers/API'
 
 

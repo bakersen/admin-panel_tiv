@@ -25,7 +25,7 @@ export default function AlertDialog(props) {
 
   const handleDelete = async (newState) => {
     try {
-        await API.delete(`/events/${id}`)
+        await API.delete(`/jobs/${id}`)
         setState({ open: true, ...newState });
         setOpen(false);
     } catch(err){
@@ -46,7 +46,7 @@ export default function AlertDialog(props) {
         <DialogTitle id="alert-dialog-title">{"Delete Event?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-           Are you sure you want to delete this event?
+           Are you sure you want to delete this job posting?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
