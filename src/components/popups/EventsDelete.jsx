@@ -11,7 +11,7 @@ import API from '../helpers/API';
 
 export default function AlertDialog(props) {
 
-  const {id, setState} = props
+  const {id, setNotification} = props
 
   const [open, setOpen] = React.useState(false);
 
@@ -26,7 +26,7 @@ export default function AlertDialog(props) {
   const handleDelete = async (newState) => {
     try {
         await API.delete(`/events/${id}`)
-        setState({ open: true, ...newState });
+        setNotification({ open: true, ...newState });
         setOpen(false);
     } catch(err){
           console.log(err.response.status)

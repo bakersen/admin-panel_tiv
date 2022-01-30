@@ -271,9 +271,8 @@ export default function EnhancedTable() {
 
   console.log(items)
 
-  //Notification After Deleting Item
-   
-  const [state, setState] = React.useState({
+  //Notification After Deleting Item   
+  const [state, setNotification] = React.useState({
     open: false,
     vertical: 'top',
     horizontal: 'center',
@@ -282,7 +281,7 @@ export default function EnhancedTable() {
   const { vertical, horizontal, open } = state;
 
   const handleClose = () => {
-    setState({ ...state, open: false });
+    setNotification({ ...state, open: false });
   };
 
 
@@ -394,7 +393,7 @@ export default function EnhancedTable() {
                         </Moment>                        
                       </TableCell>
                       <TableCell>                        
-                        {!isItemSelected && <Delete setState={setState} id={row.id} /> }
+                        {!isItemSelected && <Delete setNotification={setNotification} id={row.id} /> }
                       </TableCell>
                     </TableRow>
                   );
