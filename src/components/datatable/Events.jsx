@@ -23,7 +23,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import Loader from '../helpers/Loader'
 import Refresh from '../helpers/Refresh'
-import Snackbar from '@material-ui/core/Snackbar';
+
 
 
 
@@ -204,7 +204,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
+ 
 export default function EnhancedTable() {
 
 
@@ -218,6 +218,7 @@ export default function EnhancedTable() {
   const {items, isLoading, isError} = useAPI('http://localhost:8000/events'); 
 
 
+ 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -271,18 +272,9 @@ export default function EnhancedTable() {
 
   console.log(items)
 
-  //Notification After Deleting Item   
-  const [state, setNotification] = React.useState({
-    open: false,
-    vertical: 'top',
-    horizontal: 'center',
-  });
-
-  const { vertical, horizontal, open } = state;
-
-  const handleClose = () => {
-    setNotification({ ...state, open: false });
-  };
+  //Notification After Deleting Item
+   
+ 
 
 
 
@@ -309,29 +301,7 @@ export default function EnhancedTable() {
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
-            />
-            {
-              isError  ? (
-                 <Snackbar
-                  anchorOrigin={{ vertical, horizontal }}
-                  open={open}
-                  onClose={handleClose}
-                  message={`${isError} Error. Failed to delete`}
-                  key={vertical + horizontal}
-                  autoHideDuration={5000}
-                />
-              ) : (
-                 <Snackbar
-                  anchorOrigin={{ vertical, horizontal }}
-                  open={open}
-                  onClose={handleClose}
-                  message={"Successfully Deleted"}
-                  key={vertical + horizontal}
-                  autoHideDuration={5000}
-                />
-              )
-            }
-          
+            />          
               
             <TableBody>
               {isLoading && (
@@ -393,7 +363,7 @@ export default function EnhancedTable() {
                         </Moment>                        
                       </TableCell>
                       <TableCell>                        
-                        {!isItemSelected && <Delete setNotification={setNotification} id={row.id} /> }
+                        {!isItemSelected && <Delete id={row.id} /> }
                       </TableCell>
                     </TableRow>
                   );

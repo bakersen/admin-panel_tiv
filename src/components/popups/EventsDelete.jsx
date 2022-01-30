@@ -8,10 +8,13 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Delete from '@material-ui/icons/Delete';
 import API from '../helpers/API';
+import useNotifications from '../helpers/useNotifications'
 
 export default function AlertDialog(props) {
 
-  const {id, setNotification} = props
+  const {handleMsg} = useNotifications()
+
+  const {id} = props
 
   const [open, setOpen] = React.useState(false);
 
@@ -23,13 +26,15 @@ export default function AlertDialog(props) {
     setOpen(false);
   };
 
+
   const handleDelete = async (newState) => {
     try {
         await API.delete(`/events/${id}`)
-        setNotification({ open: true, ...newState });
+        handleMsg()
         setOpen(false);
     } catch(err){
-          console.log(err.response.status)
+          setOpen(false);
+          console.log(err.response)
     }   
     
   };
