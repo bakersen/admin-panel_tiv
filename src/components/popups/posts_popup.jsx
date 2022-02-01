@@ -13,7 +13,7 @@ export default function AlertDialog(props) {
 
   const {id, setState} = props  
 
-  const {deleteItem} = useFetch(`http://localhost:8000/posts/${id}`);  
+  const {deleteItem} = useFetch(`http://localhost:5500/posts/${id}`);  
 
   const [open, setOpen] = React.useState(false);
 

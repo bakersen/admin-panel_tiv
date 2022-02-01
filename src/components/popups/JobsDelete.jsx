@@ -25,7 +25,7 @@ export default function AlertDialog(props) {
 
   const handleDelete = async (newState) => {
     try {
-        await API.delete(`http://localhost:8000/jobs/${id}`)
+        await API.delete(`/jobs/${id}`)
         setOpen(false);
     } catch(err){
           console.log(err.response.status)

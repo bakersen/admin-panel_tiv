@@ -217,7 +217,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EnhancedTable() {
-  const {data, loading, error,} = useFetch(`http://localhost:8000/posts`);
+  const {data, loading, error,} = useFetch(`http://localhost:5500/posts`);
   
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -375,12 +375,11 @@ export default function EnhancedTable() {
 
                   return (
                     <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.postsText)}
+                       hover
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.posts}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">

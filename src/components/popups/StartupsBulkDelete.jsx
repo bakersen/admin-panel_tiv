@@ -7,9 +7,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Delete from '@material-ui/icons/Delete';
-import useAPI from '../helpers/useAPI';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import API from '../helpers/API'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,19 +22,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AlertDialog(props) {
 
-  const {id, selected} = props  
-
-  const {deleteItem, baseURL} = useAPI(`http://localhost:8000/startups/${id}`);
-
+  const {selected} = props
+    
+   //Bulk select delete method 
+   const handleBulkDelete = async() => {
+        try {
+            await selected.forEach((url)=>{
+              API.delete(`/startups/${url}`)
+              setOpen(false);
+            })
+        } catch(err){
+          console.log(err.response.status)
+        }
+    }
  
-  const bulkSelected = selected.filter(element => {
-    return selected[element]
-  });
-       
-  const handleBulkDelete = () => {
-      console.log(bulkSelected)
-  }
-
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {

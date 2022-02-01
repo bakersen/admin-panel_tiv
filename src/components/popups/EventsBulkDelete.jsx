@@ -29,6 +29,7 @@ export default function AlertDialog(props) {
         try {
             await selected.forEach((url)=>{
               API.delete(`/events/${url}`)
+              setOpen(false);
             })
         } catch(err){
           console.log(err.response.status)

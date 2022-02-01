@@ -5,9 +5,9 @@ import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import MyAvatar from './MembersDrawer';
-import Tabs from './Tabs';
+import Tabs from '../tabs/MembersTabs';
 import Paper from '@material-ui/core/Paper';
-import Delete from '@material-ui/icons/Delete';
+import BlockIcon from '@material-ui/icons/Block';
 
 const useStyles = makeStyles((theme) => ({ 
   root: {
@@ -42,9 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EventsDrawer({events}) {
-
- 
+export default function EventsDrawer({members}) { 
 
 
   const classes = useStyles();
@@ -77,18 +75,18 @@ export default function EventsDrawer({events}) {
   <Grid>
       <Paper className={classes.paper}>
          <Grid item xs={12} className={classes.toprow}>
-          <MyAvatar name={events?.title}/>
+          <MyAvatar name={members?.title}/>
           <div style={{paddingTop:'2%', marginBottom:'7%'}}>
               <Typography component="div" variant="h4" style={{fontWeight:'700', marginBottom:'3%'}}>
-                  {events?.title}
+                  {members?.fullName}
               </Typography>
               <div style={{display:'Flex'}}>
-                  <Delete color="primary" /> Delete Event
+                  <BlockIcon color="primary" /> Suspend Member
               </div>
           </div>
          </Grid>
           <Grid item xs={12} className={classes.toprow}>
-              <Tabs events={events}/>
+              <Tabs members={members}/>
          </Grid>
       </Paper>
   </Grid>
@@ -104,7 +102,7 @@ export default function EventsDrawer({events}) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <span className={classes.link} onClick={toggleDrawer(anchor, true)}>{events.title}</span>
+          <span className={classes.link} onClick={toggleDrawer(anchor, true)}>{members.fullName}</span>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>

@@ -213,7 +213,7 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [searchTerm, setSearch] = React.useState("")
-  const {items, isLoading, isError} = useAPI('http://localhost:8000/startups'); 
+  const {items, isLoading, isError} = useAPI('http://localhost:5500/startups'); 
 
 
   const handleRequestSort = (event, property) => {

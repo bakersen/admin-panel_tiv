@@ -65,10 +65,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Date(props) {
 
-   const {events} = props
+   const {members} = props
 
   const [isEdit, setIsEdit] = React.useState(false);
-  const [selectedDate, handleDateChange] = React.useState(events.startDateTime);
+  const [selectedDate, handleDateChange] = React.useState(members.startDateTime);
   const [isShown, setIsShown] = React.useState(false);
 
   if(isEdit) {
@@ -82,19 +82,19 @@ function Date(props) {
       }} />
       <CheckCircleIcon onClick={()=>{
         const body = {
-          id: events.id,
+          id: members.id,
           startDateTime: selectedDate
         }
 
         const handleEdit = async(id) => {
           try {
-              await API.patch(`http://localhost:8000/events/${id}`, body)
+              await API.patch(`http://localhost:8000/members/${id}`, body)
           } catch (err) {
             console.log(err.response.status)
           }
         }
 
-        handleEdit(events.id)
+        handleEdit(members.id)
         setIsEdit(false)
       }} />
 
@@ -108,7 +108,7 @@ function Date(props) {
       //  onMouseLeave={() => setIsShown(false)}
       >
       <Moment format="Do-MMMM-YYYY">
-          {events.startDateTime}
+          {members.startDateTime}
       </Moment>
        
       </span>
@@ -124,7 +124,7 @@ function Date(props) {
 
 export default function SimpleTabs(props) {
 
-  const {events} = props
+  const {members} = props
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -144,8 +144,8 @@ export default function SimpleTabs(props) {
         aria-label="simple tabs example"
         style={{color:'black', indicator:'blue'}}
         >
-          <Tab label="Event Info" {...a11yProps(0)} style={{textTransform:'none', fontSize:'18px', marginRight:'20px'}} />
-          <Tab label="Events Description" {...a11yProps(1)} style={{textTransform:'none', fontSize:'18px'}}/>
+          <Tab label="Account" {...a11yProps(0)} style={{textTransform:'none', fontSize:'18px', marginRight:'20px'}} />
+          <Tab label="Profile Info" {...a11yProps(1)} style={{textTransform:'none', fontSize:'18px'}}/>
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -153,20 +153,20 @@ export default function SimpleTabs(props) {
           <Grid item xs={6}>
               <div>
                 <Typography style={{fontWeight:'700'}}>
-                    Location: 
+                    Email Address: 
                 </Typography>
                 <Typography>
-                    {events.location}
+                    {members.email}
                 </Typography>
               </div>
           </Grid>
           <Grid item xs={6}>
              <div>
                 <Typography style={{fontWeight:'700'}}>
-                   Start Date: 
+                   Date Joined: 
                 </Typography>
                 <Typography>                     
-                    <Date events={events} />                                                
+                    {members.dateJoined}                                               
                 </Typography>
                  
               </div>
@@ -174,29 +174,27 @@ export default function SimpleTabs(props) {
           <Grid item xs={6}>
              <div>
                 <Typography style={{fontWeight:'700'}}>
-                   Posted By: 
+                  Categories: 
                 </Typography>
                 <Typography>
-                    {events.createdBy}
+                    {members.categories}
                 </Typography>
               </div>
           </Grid>
           <Grid item xs={6}>
              <div>
                 <Typography style={{fontWeight:'700'}}>
-                   End Date: 
+                   Interests: 
                 </Typography>
                 <Typography>
-                  <Moment format="Do-MMM-YYYY">
-                      {events.endDateTime}
-                  </Moment>                     
+                      {members.interests}                 
                 </Typography>
               </div>
           </Grid>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <div dangerouslySetInnerHTML={{__html:events.details }}></div>  
+        
       </TabPanel>
     </div>
    </React.Fragment>

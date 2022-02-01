@@ -1,0 +1,57 @@
+[
+    {
+      "id": 1,
+      "fullName": "Lubowa Asuman",
+      "role": "Developer",
+      "email": "lubowa@gmail.com",
+      "dateJoined": "2020-10-18T15:51:44.517Z",
+      "categories": "Developer, Freelancer, Investor ",
+      "interests": "Travelling, reading, working with start ups",
+      "education": "Makerere University<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "employment": "Makerere University<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    {
+      "id": 2,
+      "fullName": "Priscilla Kayegi",
+      "role": "Investor",
+      "email": "priscilla@gmail.com",
+      "dateJoined": "2020-10-18T15:51:44.517Z",
+      "categories": "Investor ",
+      "interests": "Investing, reading, working with start ups",
+      "education": "Makerere University<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "employment": "Makerere University<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    {
+      "id": 3,
+      "fullName": "Kato Agaba",
+      "role": "Freelancer",
+      "email": "kato@gmail.com",
+      "dateJoined": "2020-10-18T15:51:44.517Z",
+      "categories": "Freelancing",
+      "interests": "Freelancing, reading, working with start ups",
+      "education": "Makerere University<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "employment": "Makerere University<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    {
+      "id": 4,
+      "fullName": "Michael Amone",
+      "role": "Developer",
+      "email": "michael@gmail.com",
+      "dateJoined": "2020-10-18T15:51:44.517Z",
+      "categories": "Freelancing",
+      "interests": "Freelancing, reading, working with start ups",
+      "education": "Makerere University<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "employment": "Makerere University<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    {
+      "id": 5,
+      "fullName": "Baker Sentamu",
+      "role": "Developer",
+      "email": "bakersen@gmail.com",
+      "dateJoined": "2020-10-18T15:51:44.517Z",
+      "categories": "Freelancing",
+      "interests": "Freelancing, reading, working with start ups",
+      "education": "Makerere University<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "employment": "Makerere University<br> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    }
+]

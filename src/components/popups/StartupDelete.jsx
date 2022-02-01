@@ -13,7 +13,7 @@ export default function AlertDialog(props) {
 
   const {id, setState} = props  
 
-  const {deleteItem} = useAPI(`http://localhost:8000/startups/${id}`);  
+  const {deleteItem} = useAPI(`http://localhost:5500/startups/${id}`);  
 
   const [open, setOpen] = React.useState(false);
 
