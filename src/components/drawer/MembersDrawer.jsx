@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import MyAvatar from './MembersDrawer';
+import MyAvatar from './MembersAvatar';
 import Tabs from '../tabs/MembersTabs';
 import Paper from '@material-ui/core/Paper';
 import BlockIcon from '@material-ui/icons/Block';
@@ -42,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EventsDrawer({members}) { 
+export default function MembersDrawer(props) { 
+
+  const {members} = props
 
 
   const classes = useStyles();
