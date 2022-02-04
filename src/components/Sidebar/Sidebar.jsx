@@ -1,9 +1,10 @@
 import React from 'react';
 import Logo from './my-village-logo-01.svg'
-import './sidebar.css';
+import './Sidebar.css';
 import {Container, Row, Col, Nav } from 'react-bootstrap'
 import {Home, People, LibraryBooks, Work, Event, LocalFlorist} from '@material-ui/icons';
 import { Link } from 'react-router-dom';
+
 
 
 export default function Sidebar() {
@@ -22,6 +23,7 @@ export default function Sidebar() {
             <Nav className='nav'>
               <Link 
               to={'/'} className='nav-link'><Home/><span>Dashboard</span></Link>
+               
                <Link 
                to={'/members'} className='nav-link'><People/><span>Members</span></Link>
                <Link

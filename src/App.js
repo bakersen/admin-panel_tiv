@@ -1,5 +1,5 @@
 import Topbar from './components/topbar/Topbar'
-import Sidebar from './components/Sidebar/Sidebar';
+import Sidebar from './components/sidebar/Sidebar';
 import { Container, Row } from 'react-bootstrap'
 import {createTheme, ThemeProvider} from '@material-ui/core'
 import  Events from './pages/Events';
@@ -48,6 +48,7 @@ function App() {
             
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              
               <Route path="members" element={<Members />} />
               <Route path="posts" element={<Posts />} />
               <Route path="startups" element={<Startups />} />
@@ -62,5 +63,6 @@ function App() {
 </BrowserRouter>
     
   )
+
 }
 export default App

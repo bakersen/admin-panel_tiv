@@ -4,12 +4,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import MyAvatar from './MembersDrawer';
-import Tabs from './Tabs';
+import Avatar from './MemAvatar';
+import Tabs from '../tabs/MembersTab';
 import Paper from '@material-ui/core/Paper';
 import Delete from '@material-ui/icons/Delete';
+import Block from '@material-ui/icons/Block';
+import RemoveCircleOutlineTwoToneIcon from '@material-ui/icons/RemoveCircleOutlineTwoTone';
+import DeleteDialogue from '../popups/DeleteDialogue'
 
-const useStyles = makeStyles((theme) => ({ 
+
+
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -35,17 +40,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'start',    
   },
   MuiTypography:{
-      h4:{
+      h3:{
         color:'black',
         fontWeight:'700'
       }
   },
 }));
 
-export default function EventsDrawer({events}) {
-
- 
-
+export default function TemporaryDrawer({users}) {
 
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -74,28 +76,29 @@ export default function EventsDrawer({events}) {
       // onKeyDown={toggleDrawer(anchor, false)}
     >
 
-  <Grid>
+  <Grid container>
       <Paper className={classes.paper}>
          <Grid item xs={12} className={classes.toprow}>
-          <MyAvatar name={events?.title}/>
+          <Avatar name={users?.firstname}/>
           <div style={{paddingTop:'2%', marginBottom:'7%'}}>
               <Typography component="div" variant="h4" style={{fontWeight:'700', marginBottom:'3%'}}>
-                  {events?.title}
+                  {users?.firstname} {users?.lastname}
               </Typography>
               <div style={{display:'Flex'}}>
-                  <Delete color="primary" /> Delete Event
+                  <Block color="primary" /> Block
+                  <RemoveCircleOutlineTwoToneIcon color="primary" /> Suspend
+                  <Delete color="primary" users={users.userId}/> Delete
+
+                
               </div>
           </div>
          </Grid>
           <Grid item xs={12} className={classes.toprow}>
-              <Tabs events={events}/>
+              <Tabs users={users}/>
          </Grid>
       </Paper>
   </Grid>
-     
-    
-      
-          
+           
     </div>
     </React.Fragment>
   );
@@ -104,7 +107,7 @@ export default function EventsDrawer({events}) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <span className={classes.link} onClick={toggleDrawer(anchor, true)}>{events.title}</span>
+          <span className={classes.link} onClick={toggleDrawer(anchor, true)}>{users.firstname} {users.lastname}</span>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>

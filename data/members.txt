@@ -1,0 +1,55 @@
+[
+    {
+      "userId": "1",
+      "firstname": "Michael",
+      "lastname": "Amone",
+      "Role": "Developer",
+      "Email": "applboss@gmail.com",
+      "DateCreated": "2021-12-06T08:39:40.680Z",
+      "employeeNum": "10",
+      "Educ": "Bachelors",
+      "telephone": "0775678453",
+      "about": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+      "whatWeDo": "Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum."
+    },
+    {
+      "userId": "2",
+      "firstname": "Kizza",
+      "lastname": "Eric",
+      "Role": "Front-End Developer",
+      "Email": "safeboda@gmail.com",
+      "DateCreated": "2021-12-06T08:39:40.680Z",
+      "employeeNum": "16000",
+      "Educ": "Bachelors",
+      "telephone": "0775678453",
+      "about": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+      "whatWeDo": "Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum."
+    },
+    {
+      "userId": "3",
+      "firstname": "Ruth",
+      "lastname": "Nakirya",
+      "Role": "Graphics Designer",
+      "Email": "socialclarke@gmail.com",
+      "DateCreated": "2021-12-06T08:39:40.680Z",
+      "employeeNum": "6",
+      "Educ": "Bachelors",
+      "telephone": "0775678453",
+      "about": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+      "whatWeDo": "Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum."
+    },
+    {
+      "userId": "4",
+      "firstname": "Emmanuel",
+      "lastname": "Akol",
+      "Role": "DevOps",
+      "Email": "socialclarke@gmail.com",
+      "DateCreated": "2021-12-06T08:39:40.680Z",
+      "employeeNum": "6",
+      "Educ": "Bachelors",
+      "telephone": "0775678453",
+      "about": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+      "whatWeDo": "Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna."
+    }
+       
+  ]

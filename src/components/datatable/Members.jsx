@@ -1,24 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
-import Toolbar from "@material-ui/core/Toolbar";
-import Paper from "@material-ui/core/Paper";
-import Checkbox from "@material-ui/core/Checkbox";
-import useFetch from '../fetch/useFetch'
-import './users.css'
-import { Row, Col, Container} from 'react-bootstrap'
-//import DeleteDialogue from './DeleteDialogue'
-//import { orange } from "@mui/material/colors";
-import Drawer from "../drawer/MembersDrawer";
-
+import React from 'react';
+import PropTypes from 'prop-types';
+import { lighten, makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Checkbox from '@material-ui/core/Checkbox';
+import useAPI from '../helpers/useAPI'
+import Moment from 'react-moment';
+import TextField from '@material-ui/core/TextField';
+import Delete from '../popups/Delete'
+import BulkDeleteMembers from '../popups/BulkDeleteMembers'
+import Drawer from '../drawer/MemDrawer'
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
+import Loader from '../helpers/Loader'
+import Refresh from '../helpers/Refresh'
+import Snackbar from '@material-ui/core/Snackbar';
+import DeleteDialogue from '../popups/DeleteDialogue'
 
 
 function descendingComparator(a, b, orderBy) {
@@ -32,7 +38,7 @@ function descendingComparator(a, b, orderBy) {
 }
 
 function getComparator(order, orderBy) {
-  return order === "desc"
+  return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
@@ -44,7 +50,7 @@ function stableSort(array, comparator) {
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  return stabilizedThis.map(el => el[0]);
+  return stabilizedThis.map((el) => el[0]);
 }
 
 const headCells = [
@@ -68,49 +74,39 @@ const headCells = [
 ];
 
 function EnhancedTableHead(props) {
-  const {
-    classes,
-    onSelectAllClick,
-    order,
-    orderBy,
-    numSelected,
-    rowCount,
-    onRequestSort
-  } = props;
-  const createSortHandler = property => event => {
+  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
 
-  
   return (
-   
-   <React.Fragment>
-     <TableHead>
+    <TableHead style={{fontSize:'16px'}}>
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ "aria-label": "select all desserts" }}
+            inputProps={{ 'aria-label': '' }}
+            size='small'
           />
         </TableCell>
-        {headCells.map(headCell => (
+        {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
-            padding={headCell.disablePadding ? "none" : "default"}
+            align={'left'}
+            padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : "asc"}
+              direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
                 <span className={classes.visuallyHidden}>
-                  {order === "desc" ? "sorted descending" : "sorted ascending"}
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </span>
               ) : null}
             </TableSortLabel>
@@ -118,183 +114,130 @@ function EnhancedTableHead(props) {
         ))}
       </TableRow>
     </TableHead>
-   </React.Fragment>
-   
-
-    
   );
 }
-
 
 EnhancedTableHead.propTypes = {
   classes: PropTypes.object.isRequired,
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(["asc", "desc"]).isRequired,
+  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
   orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired
+  rowCount: PropTypes.number.isRequired,
 };
 
-// const useToolbarStyles = makeStyles(theme => ({
-//   root: {
-//     paddingLeft: theme.spacing(2),
-//     paddingRight: theme.spacing(1)
-//   },
-//   highlight:
-//     theme.palette.type === "light"
-//       ? {
-//           color: theme.palette.secondary.main,
-//           backgroundColor: lighten(theme.palette.secondary.light, 0.85)
-//         }
-//       : {
-//           color: theme.palette.text.primary,
-//           backgroundColor: theme.palette.secondary.dark
-//         },
-//   title: {
-//     flex: "1 1 100%"
-//   }
-// }));
+const useToolbarStyles = makeStyles((theme) => ({
+  root: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+  },
+  search: {
+    borderRadius: '30px',
+  },
+  highlight:
+    theme.palette.type === 'light'
+      ? {
+          color: theme.palette.secondary.main,
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+        }
+      : {
+          color: theme.palette.text.primary,
+          backgroundColor: theme.palette.secondary.dark,
+        },
+  title: {
+    flex: '1 1 100%',
+    fontWeight:'700'
+  },
+}));
 
-const EnhancedTableToolbar = props => {
-  // const classes = useToolbarStyles();
-  const {setSearch} = props;
+const EnhancedTableToolbar = (props) => {
+  const classes = useToolbarStyles();
+  const { numSelected, selected, setSearch } = props;
 
+  return (
+    <Toolbar style={{paddingTop:'20px'}}>
+      <Typography className={classes.title} variant="h5" id="tableTitle" component="div">
+          Registered Members
+      </Typography>        
 
-return (
-  <>
-    <Container fluid>
-    <Row no-gutters>
-                    <Col className="top-row" md={6}>
-                        <h4>Registered Members</h4>
-                    </Col>
-                    <Col className="top-row float-right" md={5} >
-                        
-                        <div className="search">
-                        
-                        <search style={{marginRight:"5px"}}/>
-                        <input type="text" placeholder= {"Search"} onChange= {(e) => {
-                            setSearch(e.target.value)
-                            }}
-                        />
-                        </div>
-
-
-
-                        
-                        
-                       
-                    </Col>
-                </Row>
-    </Container>
-      
-  
-    <Toolbar >
-        
-      {/* {numSelected > 0 ? (
-        <Typography
-          className={classes.title}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {numSelected} selected
-        </Typography>
+      {numSelected > 0 ? (
+        <BulkDeleteMembers selected={selected} />
       ) : (
-        <Typography
-          className={classes.title}
-          variant="h6"
-          id="tableTitle"
-          component="div">
-          
-        </Typography>
-      )} */}
+        <TextField 
+          id="outlined-search" 
+          placeholder="Search"
+          type="search" 
+          margin="dense" 
+          size="small" 
+          variant="outlined"
+          onChange= {(e) => {setSearch(e.target.value) }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="end">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+            className: classes.search
+            }}
+        />
+      )}
 
-{/* {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton aria-label="delete">
-            <Delete />
-          </IconButton>
-        </Tooltip>
-      ) : 
-      (
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )
-      } */}
     </Toolbar>
-  </>
-  
-    
   );
 };
 
 EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired
+  numSelected: PropTypes.number.isRequired,
 };
 
-const useStyles = makeStyles(theme => ({
-  deleteButton: {
-    fontSize:'18px',
-    cursor:'pointer',
-    padding:'0',
-    "&:hover": {
-        color: '',
-    }
-},
-selectedRow: {        
-  backgroundColor:'orange'
-  },
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%"
+    width: '100%',
   },
   paper: {
-    width: "100%",
-    marginBottom: theme.spacing(2)
+    width: '100%',
+    marginBottom: theme.spacing(2),
   },
   table: {
-    minWidth: 750
+    minWidth: 750,
   },
   visuallyHidden: {
     border: 0,
-    clip: "rect(0 0 0 0)",
+    clip: 'rect(0 0 0 0)',
     height: 1,
     margin: -1,
-    overflow: "hidden",
+    overflow: 'hidden',
     padding: 0,
-    position: "absolute",
+    position: 'absolute',
     top: 20,
-    width: 1
-  }
+    width: 1,
+  },
 }));
 
-export default function App() {
+
+export default function EnhancedTable() {
+
 
   const classes = useStyles();
-  const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("calories");
-  const [searchTerm, setSearch] = React.useState("");
+  const [order, setOrder] = React.useState('asc');
+  const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [searchTerm, setSearch] = React.useState("")
+  const {items, isLoading, isError} = useAPI('http://localhost:8000/members'); 
 
-  const {items} = useFetch(`https://profiles-test.innovationvillage.co.ug/api/person?Page=10&PageSize=140`);
-    
-    const rows = items.filter((users)=>{
-    return users })
 
   const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = event => {
+  const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map(n => n.id);
+      const newSelecteds = rows.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -314,7 +257,7 @@ export default function App() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
+        selected.slice(selectedIndex + 1),
       );
     }
 
@@ -325,28 +268,49 @@ export default function App() {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = event => {
+  const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const isSelected = id => selected.indexOf(id) !== -1;
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  const isSelected = (id) => selected.indexOf(id) !== -1;
 
-  // const [show, setShow] = React.useState(false);
+  const rows = items.filter((items)=> {
+        return items
+  })
+
+  //Notification After Deleting Item
+   
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+
+  const { vertical, horizontal, open } = state;
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+
+
 
   return (
-    
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar 
+        <EnhancedTableToolbar
         numSelected={selected.length}
-        setSearch={setSearch}
-         />
+        setSearch = {setSearch}
+        selected={selected} 
+        />
+       
         <TableContainer>
-          <Table className={classes.table}>
+          <Table
+            className={classes.table}
+            aria-labelledby="tableTitle"
+            aria-label="enhanced table"
+          >
             <EnhancedTableHead
               classes={classes}
               numSelected={selected.length}
@@ -356,9 +320,49 @@ export default function App() {
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
+            {
+              !isError  ? (
+                 <Snackbar
+                  anchorOrigin={{ vertical, horizontal }}
+                  open={open}
+                  onClose={handleClose}
+                  message={`${isError} Error. Failed to delete`}
+                  key={vertical + horizontal}
+                  autoHideDuration={5000}
+                />
+              ) : (
+                 <Snackbar
+                  anchorOrigin={{ vertical, horizontal }}
+                  open={open}
+                  onClose={handleClose}
+                  message={"Successfully Deleted"}
+                  key={vertical + horizontal}
+                  autoHideDuration={5000}
+                />
+              )
+            }
+          
+              
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy)).filter(value =>{
-                  if (searchTerm ==="") {
+              {isLoading && (
+                  <TableRow>
+                    <TableCell Colspan={6}>
+                          <Loader />
+                    </TableCell>               
+                  </TableRow>
+                )
+              }
+            
+              {
+                isError ? (
+                  <TableRow>
+                    <TableCell Colspan={6}>
+                          <Refresh name="members"/>
+                    </TableCell>               
+                  </TableRow>
+                ) : (
+                  stableSort(rows, getComparator(order, orderBy)).filter(value =>{
+                    if (searchTerm ==="") {
                       return value;
                   }
                   else if (value.firstname.toLowerCase().includes(searchTerm.toLowerCase()) 
@@ -366,14 +370,13 @@ export default function App() {
                   || value.lastname.toLowerCase().includes(searchTerm.toLowerCase())) {
                       return value;
                   }
+                    }).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row, index) => {
+                  const isItemSelected = isSelected(row.id);
+                  const labelId = `enhanced-table-checkbox-${index}`;
 
-                  //  return false;
+                  return (
 
-              }).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
-                    
-                  const isItemSelected = isSelected(row.userId);
-                  
-            return (
                     <TableRow
                       hover
                       onClick={event => handleClick(event, row.userId)}
@@ -388,41 +391,32 @@ export default function App() {
                       </TableCell>
                       <TableCell component="th" scope="row" padding="none">
                         {/* {row.firstname} {row.lastname} */}
-                        <Drawer members={row}/>
+                        <Drawer users={row}/>
                       </TableCell>
-                      <TableCell>{row.email !== null && row.email !== "" ? row.email : "Not provided"}</TableCell>
-                      <TableCell>{row.dateCreated} </TableCell>
+                      <TableCell>{row.Email !== null && row.Email !== "" ? row.Email : "Not provided"}</TableCell>
+                      <TableCell>{row.DateCreated} </TableCell>
                       <TableCell>
                       
-                        {/* <DeleteDialogue id={row.userId} /> */}
+                        <DeleteDialogue id={row.userId} />
                       
                       
                       </TableCell>
                     </TableRow>
-                    
                   );
-                })}
-              {emptyRows > 0 && (
-                <TableRow>
-                  <TableCell />
-                </TableRow>
-                
-              )}
+                })
+                )
+              }
             </TableBody>
           </Table>
         </TableContainer>
-
-        
-               
-
         <TablePagination
-          rowsPerPageOptions={[5, 15, 30]}
+          rowsPerPageOptions={[5, 10, 25,50]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
     </div>

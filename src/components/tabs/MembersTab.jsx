@@ -9,10 +9,9 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Moment from 'react-moment';
 
-
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props
+  
   
 
   return (
@@ -53,7 +52,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimpleTabs(props) {
-  const members = props
+  
+  const {users} = props
+
+
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -82,7 +84,7 @@ export default function SimpleTabs(props) {
                     Email Address: 
                 </Typography>
                 <Typography>
-                {members.email !== null && members.email !== "" ? members.email : "Not provided"}
+                {users.Email !== null && users.Email !== "" ? users.Email : "Not provided"}
                 </Typography>
               </div>
           </Grid>
@@ -93,9 +95,9 @@ export default function SimpleTabs(props) {
                 </Typography>
                 <Typography>
                    <Moment format="Do-MMM-YYYY">
-                       {members.dateCreated}
+                       {users.DateCreated}
                   </Moment>  
-                  {/* {members.dateCreated} */}
+                 
                 </Typography>
                  
               </div>
@@ -106,7 +108,7 @@ export default function SimpleTabs(props) {
                    Categories: 
                 </Typography>
                 <Typography>
-                    {members.categories}
+                    {users.categories}
                 </Typography>
               </div>
           </Grid>
@@ -116,10 +118,7 @@ export default function SimpleTabs(props) {
                    Interests: 
                 </Typography>
                 <Typography>
-                  {/* <Moment format="Do-MMM-YYYY">
-                      {events.endDateTime}
-                  </Moment>                      */}
-                  {members.skills}
+                  {users.interests}
                 </Typography>
               </div>
           </Grid>
@@ -130,10 +129,7 @@ export default function SimpleTabs(props) {
                    Tech Stack: 
                 </Typography>
                 <Typography>
-                  {/* <Moment format="Do-MMM-YYYY">
-                      {events.endDateTime}
-                  </Moment>                      */}
-                  {members.stacks}
+                  {users.stack}
                 </Typography>
               </div>
           </Grid>
@@ -143,10 +139,8 @@ export default function SimpleTabs(props) {
                    Skills: 
                 </Typography>
                 <Typography>
-                  {/* <Moment format="Do-MMM-YYYY">
-                      {events.endDateTime}
-                  </Moment>                      */}
-                  {members.skills}
+                               
+                  {users.skills}
                 </Typography>
               </div>
           </Grid>
@@ -159,7 +153,7 @@ export default function SimpleTabs(props) {
                   {/* <Moment format="Do-MMM-YYYY">
                       {events.endDateTime}
                   </Moment>                      */}
-                  {members.stacks}
+                  {users.stacks}
                 </Typography>
               </div>
           </Grid>
@@ -172,7 +166,7 @@ export default function SimpleTabs(props) {
                   {/* <Moment format="Do-MMM-YYYY">
                       {events.endDateTime}
                   </Moment>                      */}
-                  {members.networks}
+                  {users.networks}
                 </Typography>
               </div>
           </Grid>
@@ -181,11 +175,22 @@ export default function SimpleTabs(props) {
       <Grid item xs={12}>
              <div>
                 <Typography style={{fontWeight:'700'}}>
+                   About User: 
+                </Typography>
+                <Typography>
+                                    
+                  {users.about}
+                </Typography>
+              </div>
+          </Grid>
+      <Grid item xs={12}>
+             <div>
+                <Typography style={{fontWeight:'700'}}>
                    Education Background: 
                 </Typography>
                 <Typography>
                                     
-                  {members.networks}
+                  {users.Educ}
                 </Typography>
               </div>
           </Grid>
@@ -196,7 +201,7 @@ export default function SimpleTabs(props) {
                 </Typography>
                 <Typography>
                                     
-                  {members.networks}
+                  {users.networks}
                 </Typography>
               </div>
           </Grid>
@@ -207,7 +212,7 @@ export default function SimpleTabs(props) {
                 </Typography>
                 <Typography>
                                     
-                  {members.networks}
+                  {users.stacks}
                 </Typography>
               </div>
           </Grid>
@@ -218,7 +223,18 @@ export default function SimpleTabs(props) {
                 </Typography>
                 <Typography>
                                     
-                  {members.networks}
+                  {users.networks}
+                </Typography>
+              </div>
+          </Grid>
+          <Grid item xs={12}>
+             <div>
+                <Typography style={{fontWeight:'700'}}>
+                   Telephone: 
+                </Typography>
+                <Typography>
+                                    
+                  {users.telephone}
                 </Typography>
               </div>
           </Grid>
