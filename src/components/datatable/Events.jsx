@@ -16,14 +16,15 @@ import Checkbox from '@material-ui/core/Checkbox';
 import useAPI from '../helpers/useAPI'
 import Moment from 'react-moment';
 import TextField from '@material-ui/core/TextField';
-import Delete from '../popups/Delete'
-import BulkDelete from '../popups/BulkDelete'
+import Delete from '../popups/EventsDelete'
+import BulkDelete from '../popups/EventsBulkDelete'
 import EventsDrawer from '../drawer/EventsDrawer'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import Loader from '../helpers/Loader'
 import Refresh from '../helpers/Refresh'
-import Snackbar from '@material-ui/core/Snackbar';
+
+
 
 
 function descendingComparator(a, b, orderBy) {
@@ -198,9 +199,12 @@ const useStyles = makeStyles((theme) => ({
     top: 20,
     width: 1,
   },
+  deleteButton: {
+    cursor:'pointer'
+  }
 }));
 
-
+ 
 export default function EnhancedTable() {
 
 
@@ -211,9 +215,10 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [searchTerm, setSearch] = React.useState("")
-  const {items, isLoading, isError} = useAPI('http://localhost:8000/events'); 
+  const {items, isLoading, isError} = useAPI('http://localhost:5500/events'); 
 
 
+ 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -269,17 +274,7 @@ export default function EnhancedTable() {
 
   //Notification After Deleting Item
    
-  const [state, setState] = React.useState({
-    open: false,
-    vertical: 'top',
-    horizontal: 'center',
-  });
-
-  const { vertical, horizontal, open } = state;
-
-  const handleClose = () => {
-    setState({ ...state, open: false });
-  };
+ 
 
 
 
@@ -306,29 +301,7 @@ export default function EnhancedTable() {
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
-            />
-            {
-              isError  ? (
-                 <Snackbar
-                  anchorOrigin={{ vertical, horizontal }}
-                  open={open}
-                  onClose={handleClose}
-                  message={`${isError} Error. Failed to delete`}
-                  key={vertical + horizontal}
-                  autoHideDuration={5000}
-                />
-              ) : (
-                 <Snackbar
-                  anchorOrigin={{ vertical, horizontal }}
-                  open={open}
-                  onClose={handleClose}
-                  message={"Successfully Deleted"}
-                  key={vertical + horizontal}
-                  autoHideDuration={5000}
-                />
-              )
-            }
-          
+            />          
               
             <TableBody>
               {isLoading && (
@@ -340,11 +313,12 @@ export default function EnhancedTable() {
                 )
               }
             
-              {
+              
+              { 
                 isError ? (
                   <TableRow>
                     <TableCell Colspan={6}>
-                          <Refresh name="events"/>
+                      <Refresh name='Events'/> 
                     </TableCell>               
                   </TableRow>
                 ) : (
@@ -389,7 +363,7 @@ export default function EnhancedTable() {
                         </Moment>                        
                       </TableCell>
                       <TableCell>                        
-                        {!isItemSelected && <Delete setState={setState} id={row.id} /> }
+                        {!isItemSelected && <Delete id={row.id} /> }
                       </TableCell>
                     </TableRow>
                   );

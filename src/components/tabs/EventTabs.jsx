@@ -166,7 +166,7 @@ export default function SimpleTabs(props) {
                    Start Date: 
                 </Typography>
                 <Typography>                     
-                    <Date events={events}/>                                                
+                    <Date events={events} />                                                
                 </Typography>
                  
               </div>

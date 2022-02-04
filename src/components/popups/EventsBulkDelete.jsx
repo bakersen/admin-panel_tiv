@@ -28,7 +28,7 @@ export default function AlertDialog(props) {
    const handleBulkDelete = async() => {
         try {
             await selected.forEach((url)=>{
-              API.delete(`/jobs/${url}`)
+              API.delete(`/events/${url}`)
               setOpen(false);
             })
         } catch(err){
@@ -52,7 +52,7 @@ export default function AlertDialog(props) {
     <div>
 
       <Typography className={classes.bulkDelete} variant="p" id="tableTitle" component="div" onClick={handleClickOpen}>
-          <Delete /> Delete {selected.length > 1 ? "Jobs?" : "Job?"}
+          <Delete  /> Delete {selected.length > 1 ? "Events?" : "Event?"}
       </Typography>
       <Dialog
         open={open}
@@ -63,7 +63,7 @@ export default function AlertDialog(props) {
         <DialogTitle id="alert-dialog-title">{"Delete Event?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to delete {selected.length > 1 ? "these jobs?" : "this job?"}
+            Are you sure you want to delete {selected.length > 1 ? "these events?" : "this event?"}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

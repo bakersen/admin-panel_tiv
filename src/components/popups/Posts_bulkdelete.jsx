@@ -7,9 +7,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Delete from '@material-ui/icons/Delete';
-import useFetch from '../helpers/useAPI';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import API from '../helpers/API'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,19 +22,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AlertDialog(props) {
 
-  const {id, selected} = props  
-
-  const {deleteItem} = useFetch(`http://localhost:8000/posts/${id}`);
-
+  const {selected} = props
+    
+   //Bulk select delete method 
+   const handleBulkDelete = async() => {
+        try {
+            await selected.forEach((url)=>{
+              API.delete(`/posts/${url}`)
+              setOpen(false);
+            })
+        } catch(err){
+          console.log(err.response.status)
+        }
+    }
  
-  const bulkSelected = selected.filter(element => {
-    return selected[element]
-  });
-       
-  const handleBulkDelete = () => {
-      console.log(bulkSelected)
-  }
-
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -59,7 +60,7 @@ export default function AlertDialog(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Delete Post?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Delete Event?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Are you sure you want to delete {selected.length > 1 ? "these posts?" : "this post?"}

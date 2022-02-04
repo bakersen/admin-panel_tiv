@@ -70,8 +70,7 @@ export default function EventsDrawer({events}) {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
-      // onClick={toggleDrawer(anchor, false)}
-      // onKeyDown={toggleDrawer(anchor, false)}
+   
     >
 
   <Grid>

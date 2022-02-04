@@ -7,7 +7,13 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-// import Moment from 'react-moment';
+import Moment from 'react-moment';
+import API from '../helpers/API'
+import MomentUtils from '@date-io/moment';
+import {DateTimePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
+import CloseIcon from '@material-ui/icons/Close';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CreateIcon from '@material-ui/icons/Create';
 
 
 
@@ -57,10 +63,68 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function Date(props) {
+
+   const {members} = props
+
+  const [isEdit, setIsEdit] = React.useState(false);
+  const [selectedDate, handleDateChange] = React.useState(members.startDateTime);
+  const [isShown, setIsShown] = React.useState(false);
+
+  if(isEdit) {
+    return ( 
+    <React.Fragment>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+          <DateTimePicker value={selectedDate} onChange={handleDateChange} />
+      </MuiPickersUtilsProvider>
+      <CloseIcon onClick={() => {
+          setIsEdit(false)
+      }} />
+      <CheckCircleIcon onClick={()=>{
+        const body = {
+          id: members.id,
+          startDateTime: selectedDate
+        }
+
+        const handleEdit = async(id) => {
+          try {
+              await API.patch(`http://localhost:8000/members/${id}`, body)
+          } catch (err) {
+            console.log(err.response.status)
+          }
+        }
+
+        handleEdit(members.id)
+        setIsEdit(false)
+      }} />
+
+    </React.Fragment> )   
+  }
+
+  return (
+    <React.Fragment>
+      <span
+       onMouseEnter={() => setIsShown(true)}
+      //  onMouseLeave={() => setIsShown(false)}
+      >
+      <Moment format="Do-MMMM-YYYY">
+          {members.startDateTime}
+      </Moment>
+       
+      </span>
+
+      {
+        isShown && <CreateIcon onClick={()=>setIsEdit(true)} />
+      }
+      
+    </React.Fragment>
+
+  )
+}
 
 export default function SimpleTabs(props) {
 
-  const {startups} = props
+  const {members} = props
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -80,10 +144,8 @@ export default function SimpleTabs(props) {
         aria-label="simple tabs example"
         style={{color:'black', indicator:'blue'}}
         >
-          <Tab label="Startup Info" {...a11yProps(0)} style={{textTransform:'none', fontSize:'18px', marginRight:'0'}} />
-          <Tab label="About" {...a11yProps(1)} style={{textTransform:'none', fontSize:'18px'}}/>
-          <Tab label="What We Do" {...a11yProps(2)} style={{textTransform:'none', fontSize:'18px'}}/>
-          
+          <Tab label="Account" {...a11yProps(0)} style={{textTransform:'none', fontSize:'18px', marginRight:'20px'}} />
+          <Tab label="Profile Info" {...a11yProps(1)} style={{textTransform:'none', fontSize:'18px'}}/>
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -91,20 +153,20 @@ export default function SimpleTabs(props) {
           <Grid item xs={6}>
               <div>
                 <Typography style={{fontWeight:'700'}}>
-                    Incorporation Date: 
+                    Email Address: 
                 </Typography>
                 <Typography>
-                    {startups.dateCreated}
+                    {members.email}
                 </Typography>
               </div>
           </Grid>
           <Grid item xs={6}>
              <div>
                 <Typography style={{fontWeight:'700'}}>
-                   Start Date: 
+                   Date Joined: 
                 </Typography>
                 <Typography>                     
-                  {startups.employeeNum}                                         
+                    {members.dateJoined}                                               
                 </Typography>
                  
               </div>
@@ -112,30 +174,27 @@ export default function SimpleTabs(props) {
           <Grid item xs={6}>
              <div>
                 <Typography style={{fontWeight:'700'}}>
-                  Email Address: 
+                  Categories: 
                 </Typography>
                 <Typography>
-                   {startups.email}    
+                    {members.categories}
                 </Typography>
               </div>
           </Grid>
           <Grid item xs={6}>
              <div>
                 <Typography style={{fontWeight:'700'}}>
-                   Telephone: 
+                   Interests: 
                 </Typography>
                 <Typography>
-                   {startups.telephone}                   
+                      {members.interests}                 
                 </Typography>
               </div>
           </Grid>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <div dangerouslySetInnerHTML={{__html:startups.about}}></div>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <div dangerouslySetInnerHTML={{__html:startups.whatWeDo}}></div>
+        
       </TabPanel>
     </div>
    </React.Fragment>

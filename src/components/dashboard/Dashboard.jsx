@@ -8,6 +8,7 @@ import {People, Work, Event, LocalFlorist, ArrowUpward, ArrowDownward} from '@ma
 import './dashboard.css'
 import Divider from '@material-ui/core/Divider';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

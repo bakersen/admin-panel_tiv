@@ -7,35 +7,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Delete from '@material-ui/icons/Delete';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import API from '../helpers/API'
-
-
-const useStyles = makeStyles((theme) => ({
-  bulkDelete: {
-      display:'Flex',
-      alignItems:'center',
-      width:'200px'    
-  }
-}));
+import API from '../helpers/API';
+import useNotifications from '../helpers/useNotifications'
 
 export default function AlertDialog(props) {
 
-  const {selected} = props
-    
-   //Bulk select delete method 
-   const handleBulkDelete = async() => {
-        try {
-            await selected.forEach((url)=>{
-              API.delete(`/jobs/${url}`)
-              setOpen(false);
-            })
-        } catch(err){
-          console.log(err.response.status)
-        }
-    }
- 
+  const {handleMsg} = useNotifications()
+
+  const {id} = props
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -46,14 +26,22 @@ export default function AlertDialog(props) {
     setOpen(false);
   };
 
-  const classes = useStyles()
+
+  const handleDelete = async (newState) => {
+    try {
+        await API.delete(`/events/${id}`)
+        handleMsg()
+        setOpen(false);
+    } catch(err){
+          setOpen(false);
+          console.log(err.response)
+    }   
+    
+  };
 
   return (
     <div>
-
-      <Typography className={classes.bulkDelete} variant="p" id="tableTitle" component="div" onClick={handleClickOpen}>
-          <Delete /> Delete {selected.length > 1 ? "Jobs?" : "Job?"}
-      </Typography>
+      <Delete onClick={handleClickOpen} />
       <Dialog
         open={open}
         onClose={handleClose}
@@ -63,14 +51,19 @@ export default function AlertDialog(props) {
         <DialogTitle id="alert-dialog-title">{"Delete Event?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to delete {selected.length > 1 ? "these jobs?" : "this job?"}
+           Are you sure you want to delete this event?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
            Cancel
           </Button>
-          <Button onClick={()=>handleBulkDelete()} color="primary" autoFocus>
+          <Button onClick={()=> handleDelete({
+          vertical: 'top',
+          horizontal: 'right',
+          })} 
+          color="primary" autoFocus
+          >
             Delete
           </Button>
         </DialogActions>

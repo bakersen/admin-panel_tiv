@@ -9,5 +9,6 @@ module.exports = () => ({
   jobs: jobs,
   members: members,
   posts: posts,
-  startups: startups
+  startups: startups,
+  members: members
 });

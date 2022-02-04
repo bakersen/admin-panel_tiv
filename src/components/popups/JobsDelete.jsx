@@ -7,13 +7,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Delete from '@material-ui/icons/Delete';
-import useAPI from '../helpers/useAPI';
+import API from '../helpers/API';
 
 export default function AlertDialog(props) {
 
-  const {id, setState} = props  
-
-  const {deleteItem} = useAPI(`http://localhost:8000/events/${id}`);  
+  const {id} = props
 
   const [open, setOpen] = React.useState(false);
 
@@ -26,9 +24,13 @@ export default function AlertDialog(props) {
   };
 
   const handleDelete = async (newState) => {
-    deleteItem()   
-    setState({ open: true, ...newState });
-    setOpen(false);
+    try {
+        await API.delete(`/jobs/${id}`)
+        setOpen(false);
+    } catch(err){
+          console.log(err.response.status)
+         }   
+    
   };
 
   return (
@@ -43,7 +45,7 @@ export default function AlertDialog(props) {
         <DialogTitle id="alert-dialog-title">{"Delete Event?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-           Are you sure you want to delete this event?
+           Are you sure you want to delete this job posting?
           </DialogContentText>
         </DialogContent>
         <DialogActions>

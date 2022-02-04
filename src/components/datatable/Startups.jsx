@@ -16,8 +16,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import useAPI from '../helpers/useAPI'
 import Moment from 'react-moment';
 import TextField from '@material-ui/core/TextField';
-import Delete from '../popups/Delete'
-import BulkDelete from '../popups/BulkDelete'
+import Delete from '../popups/StartupDelete'
+import BulkDelete from '../popups/StartupsBulkDelete'
 import Drawer from '../drawer/StartupsDrawer'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
@@ -213,7 +213,7 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [searchTerm, setSearch] = React.useState("")
-  const {items, isLoading, isError} = useAPI('http://localhost:8000/startups'); 
+  const {items, isLoading, isError} = useAPI('http://localhost:5500/startups'); 
 
 
   const handleRequestSort = (event, property) => {
@@ -308,7 +308,7 @@ export default function EnhancedTable() {
               rowCount={rows.length}
             />
             {
-              !isError  ? (
+              isError  ? (
                  <Snackbar
                   anchorOrigin={{ vertical, horizontal }}
                   open={open}

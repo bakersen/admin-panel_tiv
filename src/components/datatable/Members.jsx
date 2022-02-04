@@ -54,23 +54,10 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  {
-    id: "Names",
-    label: "REGISTERED NAMES"
-  },
-  
-  {
-    id: "Email",
-    label: "EMAIL"
-  },
-  {
-    id: "date",
-    label: "DATE CREATED"
-  },
-  {
-    id: "delete",
-    label: "ACTION"
-  },
+  { id: 'name', numeric: false, disablePadding: true, label: 'Full Name' },
+  { id: 'role', numeric: false, disablePadding: false, label: 'Role' },
+  { id: 'email', numeric: true, disablePadding: false, label: 'Email' },
+  { id: 'action', numeric: false, disablePadding: false, label: 'Action' }
 ];
 
 function EnhancedTableHead(props) {
@@ -158,11 +145,19 @@ const EnhancedTableToolbar = (props) => {
   return (
     <Toolbar style={{paddingTop:'20px'}}>
       <Typography className={classes.title} variant="h5" id="tableTitle" component="div">
+<<<<<<< HEAD
           Registered Members
       </Typography>        
 
       {numSelected > 0 ? (
         <BulkDeleteMembers selected={selected} />
+=======
+          Members
+      </Typography>        
+
+      {numSelected > 0 ? (
+        <BulkDelete selected={selected} />
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0
       ) : (
         <TextField 
           id="outlined-search" 
@@ -209,6 +204,7 @@ const useStyles = makeStyles((theme) => ({
     margin: -1,
     overflow: 'hidden',
     padding: 0,
+<<<<<<< HEAD
     position: 'absolute',
     top: 20,
     width: 1,
@@ -216,6 +212,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+=======
+    top: 20,
+    width: 1,
+  },
+  deleteButton: {
+    cursor:'pointer'
+  }
+}));
+
+ 
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0
 export default function EnhancedTable() {
 
 
@@ -226,9 +233,14 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [searchTerm, setSearch] = React.useState("")
+<<<<<<< HEAD
   const {items, isLoading, isError} = useAPI('http://localhost:8000/members'); 
+=======
+  const {items, isLoading, isError} = useAPI('http://localhost:5500/members'); 
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0
 
 
+ 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -280,6 +292,7 @@ export default function EnhancedTable() {
         return items
   })
 
+<<<<<<< HEAD
   //Notification After Deleting Item
    
   const [state, setState] = React.useState({
@@ -293,6 +306,13 @@ export default function EnhancedTable() {
   const handleClose = () => {
     setState({ ...state, open: false });
   };
+=======
+  console.log(items)
+
+  //Notification After Deleting Item
+   
+ 
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0
 
 
 
@@ -319,6 +339,7 @@ export default function EnhancedTable() {
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
+<<<<<<< HEAD
             />
             {
               !isError  ? (
@@ -342,6 +363,9 @@ export default function EnhancedTable() {
               )
             }
           
+=======
+            />          
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0
               
             <TableBody>
               {isLoading && (
@@ -353,15 +377,25 @@ export default function EnhancedTable() {
                 )
               }
             
+<<<<<<< HEAD
               {
                 isError ? (
                   <TableRow>
                     <TableCell Colspan={6}>
                           <Refresh name="members"/>
+=======
+              
+              { 
+                isError ? (
+                  <TableRow>
+                    <TableCell Colspan={6}>
+                      <Refresh name='Members'/> 
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0
                     </TableCell>               
                   </TableRow>
                 ) : (
                   stableSort(rows, getComparator(order, orderBy)).filter(value =>{
+<<<<<<< HEAD
                     if (searchTerm ==="") {
                       return value;
                   }
@@ -370,6 +404,15 @@ export default function EnhancedTable() {
                   || value.lastname.toLowerCase().includes(searchTerm.toLowerCase())) {
                       return value;
                   }
+=======
+                        if (searchTerm ==="") {
+                            return value;
+                        }
+                        else if (value.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return value;
+                        }
+                          return false;
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0
                     }).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.id);
@@ -379,16 +422,21 @@ export default function EnhancedTable() {
 
                     <TableRow
                       hover
-                      onClick={event => handleClick(event, row.userId)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.userId}
+                      key={row.id}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
-                        <Checkbox checked={isItemSelected} />
+                        <Checkbox
+                          checked={isItemSelected}
+                          inputProps={{ 'aria-labelledby': labelId }}
+                          size='small'
+                          onChange={(event) => handleClick(event, row.id)}
+                        />
                       </TableCell>
+<<<<<<< HEAD
                       <TableCell component="th" scope="row" padding="none">
                         {/* {row.firstname} {row.lastname} */}
                         <Drawer users={row}/>
@@ -400,6 +448,19 @@ export default function EnhancedTable() {
                         <DeleteDialogue id={row.userId} />
                       
                       
+=======
+                      <TableCell component="th" id={labelId} scope="row" padding="none">
+                        <Drawer members={row}/>
+                      </TableCell>
+                      <TableCell>
+                            {row.role}                                           
+                      </TableCell>
+                      <TableCell>
+                            {row.email}                                           
+                      </TableCell>
+                      <TableCell>                        
+                        {!isItemSelected && <Delete id={row.id} /> }
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0
                       </TableCell>
                     </TableRow>
                   );

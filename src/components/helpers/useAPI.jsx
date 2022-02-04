@@ -2,7 +2,7 @@ import React from "react"
 import axios from "axios"
 
 
-function useFetch(url) {
+function useAPI(url) {
     
     
     const [items, setData] = React.useState([])
@@ -50,4 +50,4 @@ function useFetch(url) {
     
 }
 
-export default useFetch;
+export default useAPI;

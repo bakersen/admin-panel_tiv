@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+<<<<<<< HEAD:src/components/drawer/MemDrawer.jsx
 import Avatar from './MemAvatar';
 import Tabs from '../tabs/MembersTab';
 import Paper from '@material-ui/core/Paper';
@@ -11,6 +12,12 @@ import Delete from '@material-ui/icons/Delete';
 import Block from '@material-ui/icons/Block';
 import RemoveCircleOutlineTwoToneIcon from '@material-ui/icons/RemoveCircleOutlineTwoTone';
 import DeleteDialogue from '../popups/DeleteDialogue'
+=======
+import MyAvatar from './MembersAvatar';
+import Tabs from '../tabs/MembersTabs';
+import Paper from '@material-ui/core/Paper';
+import BlockIcon from '@material-ui/icons/Block';
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0:src/components/drawer/MembersDrawer.jsx
 
 
 
@@ -47,7 +54,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+<<<<<<< HEAD:src/components/drawer/MemDrawer.jsx
 export default function TemporaryDrawer({users}) {
+=======
+export default function MembersDrawer(props) { 
+
+  const {members} = props
+
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0:src/components/drawer/MembersDrawer.jsx
 
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -79,6 +93,7 @@ export default function TemporaryDrawer({users}) {
   <Grid container>
       <Paper className={classes.paper}>
          <Grid item xs={12} className={classes.toprow}>
+<<<<<<< HEAD:src/components/drawer/MemDrawer.jsx
           <Avatar name={users?.firstname}/>
           <div style={{paddingTop:'2%', marginBottom:'7%'}}>
               <Typography component="div" variant="h4" style={{fontWeight:'700', marginBottom:'3%'}}>
@@ -90,11 +105,24 @@ export default function TemporaryDrawer({users}) {
                   <Delete color="primary" users={users.userId}/> Delete
 
                 
+=======
+          <MyAvatar name={members?.title}/>
+          <div style={{paddingTop:'2%', marginBottom:'7%'}}>
+              <Typography component="div" variant="h4" style={{fontWeight:'700', marginBottom:'3%'}}>
+                  {members?.fullName}
+              </Typography>
+              <div style={{display:'Flex'}}>
+                  <BlockIcon color="primary" /> Suspend Member
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0:src/components/drawer/MembersDrawer.jsx
               </div>
           </div>
          </Grid>
           <Grid item xs={12} className={classes.toprow}>
+<<<<<<< HEAD:src/components/drawer/MemDrawer.jsx
               <Tabs users={users}/>
+=======
+              <Tabs members={members}/>
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0:src/components/drawer/MembersDrawer.jsx
          </Grid>
       </Paper>
   </Grid>
@@ -107,7 +135,11 @@ export default function TemporaryDrawer({users}) {
     <div>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
+<<<<<<< HEAD:src/components/drawer/MemDrawer.jsx
           <span className={classes.link} onClick={toggleDrawer(anchor, true)}>{users.firstname} {users.lastname}</span>
+=======
+          <span className={classes.link} onClick={toggleDrawer(anchor, true)}>{members.fullName}</span>
+>>>>>>> b238ff4de78229d346e7f84ba9cabc9beb2d19b0:src/components/drawer/MembersDrawer.jsx
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
